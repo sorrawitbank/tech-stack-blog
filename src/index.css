@@ -40,9 +40,6 @@
   --color-brand-green: #12b279;
   --color-brand-green-soft: #d7f2e9;
   --color-brand-red: #eb5164;
-
-  /* Font Colors */
-  --color-gray-0: #1a1a2c;
 }
 
 /* Typography Utility Classes */
@@ -52,7 +49,6 @@
     font-size: var(--font-size-headline-1);
     line-height: var(--line-height-headline-1);
     letter-spacing: var(--letter-spacing);
-    color: var(--color-gray-0);
   }
 
   .text-headline-2 {
@@ -60,7 +56,6 @@
     font-size: var(--font-size-headline-2);
     line-height: var(--line-height-headline-2);
     letter-spacing: var(--letter-spacing);
-    color: var(--color-gray-0);
   }
 
   .text-headline-3 {
@@ -68,7 +63,6 @@
     font-size: var(--font-size-headline-3);
     line-height: var(--line-height-headline-3);
     letter-spacing: var(--letter-spacing);
-    color: var(--color-gray-0);
   }
 
   .text-headline-4 {
@@ -76,7 +70,6 @@
     font-size: var(--font-size-headline-4);
     line-height: var(--line-height-headline-4);
     letter-spacing: var(--letter-spacing);
-    color: var(--color-gray-0);
   }
 
   .text-body-1 {
@@ -84,7 +77,6 @@
     font-size: var(--font-size-body-1);
     line-height: var(--line-height-body-1);
     letter-spacing: var(--letter-spacing);
-    color: var(--color-gray-0);
   }
 
   .text-body-2 {
@@ -92,7 +84,6 @@
     font-size: var(--font-size-body-2);
     line-height: var(--line-height-body-2);
     letter-spacing: var(--letter-spacing);
-    color: var(--color-gray-0);
   }
 
   .text-body-3 {
@@ -100,6 +91,5 @@
     font-size: var(--font-size-body-3);
     line-height: var(--line-height-body-3);
     letter-spacing: var(--letter-spacing);
-    color: var(--color-gray-0);
   }
 }
