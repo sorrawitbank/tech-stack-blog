@@ -1,0 +1,19 @@
+import { Menu } from "lucide-react";
+import { NavigationButton } from "./common/Button";
+
+function NavBar() {
+  return (
+    <nav className="flex justify-between h-12 px-6 py-3 bg-brown-100 border-b border-brown-300 sm:h-20 sm:px-12 sm:py-4 lg:px-21 xl:px-30">
+      <img src="logo.svg" alt="logo" className="h-6 sm:h-11" />
+      <button className="text-brown-400 sm:hidden">
+        <Menu />
+      </button>
+      <div className="hidden sm:flex sm:gap-2">
+        <NavigationButton buttonType="Secondary" label="Log in" href="/login" />
+        <NavigationButton buttonType="Primary" label="Sign up" href="/signup" />
+      </div>
+    </nav>
+  );
+}
+
+export default NavBar;
