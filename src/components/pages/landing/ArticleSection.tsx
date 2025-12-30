@@ -16,7 +16,7 @@ function ArticleSection() {
       <h3 id="articles-title" className="p-4 sm:px-12 text-headline-3">
         Latest articles
       </h3>
-      <div className="flex flex-col gap-4 p-4 text-brown-400 bg-brown-200 sm:px-12 lg:flex-row lg:justify-between lg:items-center lg:gap-0 lg:px-6 lg:rounded-[16px]">
+      <div className="flex flex-col gap-4 p-4 text-brown-400 bg-brown-200 sm:px-12 lg:flex-row lg:justify-between lg:items-center lg:gap-0 lg:px-6 lg:rounded-2xl">
         <div className="hidden lg:block">
           <CategoryTab categories={categories} />
         </div>
