@@ -25,7 +25,7 @@ function HeroSection() {
       <img
         src="https://avatars.githubusercontent.com/u/198432307"
         alt="author image"
-        className="w-full max-w-[500px] h-[470px] object-cover rounded-2xl lg:w-[calc(100*386/1200*1%)] lg:h-[400px] xl:h-[529px]"
+        className="w-full max-w-[500px] h-[470px] object-cover rounded-2xl lg:w-[calc(100%*386/1200)] lg:h-[400px] xl:h-[529px]"
       />
       <div className="flex flex-col gap-3 lg:flex-1">
         <div className="flex flex-col gap-1">
