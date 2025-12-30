@@ -1,5 +1,6 @@
 import NavBar from "./components/NavBar";
 import HeroSection from "./components/pages/landing/HeroSection";
+import ArticleSection from "./components/pages/landing/ArticleSection";
 import Footer from "./components/Footer";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <NavBar />
       <main className="lg:flex lg:flex-col lg:gap-20 lg:px-10 lg:pt-15 lg:pb-30 xl:px-30">
         <HeroSection />
+        <ArticleSection />
       </main>
       <Footer />
     </>
