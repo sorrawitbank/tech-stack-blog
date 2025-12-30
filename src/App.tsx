@@ -1,7 +1,7 @@
-import NavBar from "./components/NavBar";
+import NavBar from "./components/layout/NavBar";
 import HeroSection from "./components/pages/landing/HeroSection";
 import ArticleSection from "./components/pages/landing/ArticleSection";
-import Footer from "./components/Footer";
+import Footer from "./components/layout/Footer";
 
 function App() {
   return (

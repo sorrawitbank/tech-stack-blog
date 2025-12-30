@@ -1,5 +1,5 @@
 import { Menu } from "lucide-react";
-import { NavigationButton } from "./common/Button";
+import { NavigationButton } from "../common/Button";
 
 function NavBar() {
   return (

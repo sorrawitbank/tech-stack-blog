@@ -1,5 +1,5 @@
 import { Linkedin, Github } from "lucide-react";
-import { NavigationButton } from "./common/Button";
+import { NavigationButton } from "../common/Button";
 
 function Footer() {
   return (
