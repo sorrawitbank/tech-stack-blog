@@ -19,10 +19,10 @@ function ArticleSection() {
       aria-labelledby="articles-title"
       className="flex flex-col lg:gap-12"
     >
-      <div>
+      <div className="lg:flex lg:flex-col lg:gap-8">
         <h3
           id="articles-title"
-          className="p-4 text-headline-3 text-brown-600 sm:px-12"
+          className="p-4 text-headline-3 text-brown-600 sm:px-12 lg:p-0"
         >
           Latest articles
         </h3>
