@@ -29,8 +29,8 @@ function HeroSection() {
       />
       <div className="flex flex-col gap-3 lg:flex-1">
         <div className="flex flex-col gap-1">
-          <p className="text-body-3 text-brown-400">- Author</p>
-          <p className="text-headline-3 text-brown-500">Sorrawit A.</p>
+          <span className="text-body-3 text-brown-400">- Author</span>
+          <span className="text-headline-3 text-brown-500">Sorrawit A.</span>
         </div>
         <p className="text-body-1 text-brown-400">
           I am passionate about data science and modern web development. I enjoy

@@ -39,7 +39,7 @@ function ArticleSection() {
             <Search className="absolute right-3 top-1/2 -translate-y-1/2 size-5 text-brown-600 pointer-events-none" />
           </div>
           <div className="flex flex-col gap-1 lg:hidden">
-            <p className="text-body-1">Category</p>
+            <span className="text-body-1">Category</span>
             <CategorySelector categories={categories} />
           </div>
         </div>
