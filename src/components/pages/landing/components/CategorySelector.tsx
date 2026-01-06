@@ -15,14 +15,14 @@ interface Props {
 function CategorySelector(props: Props) {
   return (
     <Select defaultValue={props.categories[0]}>
-      <SelectTrigger className="w-full h-12! text-body-1 bg-white">
+      <SelectTrigger className="w-full h-12! text-body-1 bg-white hover:cursor-pointer">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel className="text-brown-600">Category</SelectLabel>
           {props.categories.map((category) => (
-            <SelectItem value={category} className="text-brown-400">
+            <SelectItem value={category} className="text-brown-400 hover:text-brown-500! hover:cursor-pointer">
               {category}
             </SelectItem>
           ))}
