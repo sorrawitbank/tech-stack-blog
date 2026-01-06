@@ -46,7 +46,7 @@ function ArticleSection() {
       </div>
       <div className="flex flex-col items-center gap-12 px-4 pt-6 pb-13 sm:px-12 lg:gap-20 lg:p-0">
         <ArticleGrid />
-        <NavigationButton buttonType="Text" label="View more" />
+        <NavigationButton variant="text" label="View more" />
       </div>
     </section>
   );
