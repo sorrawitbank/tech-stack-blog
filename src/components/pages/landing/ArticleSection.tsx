@@ -1,8 +1,8 @@
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import CategoryTab from "./components/CategoryTab";
+import BlogGrid from "./components/BlogGrid";
 import CategorySelector from "./components/CategorySelector";
-import ArticleGrid from "./components/ArticleGrid";
+import CategoryTab from "./components/CategoryTab";
 import { NavigationButton } from "@/components/common/Button";
 
 const categories: string[] = [
@@ -45,7 +45,7 @@ function ArticleSection() {
         </div>
       </div>
       <div className="flex flex-col items-center gap-12 px-4 pt-6 pb-13 sm:px-12 lg:gap-20 lg:p-0">
-        <ArticleGrid />
+        <BlogGrid />
         <NavigationButton variant="text" label="View more" />
       </div>
     </section>

@@ -1,6 +1,6 @@
 import BlogCard from "./BlogCard";
 
-function ArticleGrid() {
+function BlogGrid() {
   return (
     <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-x-5 2xl:grid-cols-3">
       <BlogCard
@@ -61,4 +61,4 @@ function ArticleGrid() {
   );
 }
 
-export default ArticleGrid;
+export default BlogGrid;
