@@ -37,7 +37,7 @@ function BlogCard(props: CardProps) {
         <div className="flex items-center gap-2">
           <img
             src="https://avatars.githubusercontent.com/u/198432307"
-            alt="author image"
+            alt="Author"
             className="size-6 rounded-full"
           />
           <span className="text-body-2 text-brown-500">{props.author}</span>
