@@ -22,7 +22,11 @@ function CategorySelector(props: Props) {
         <SelectGroup>
           <SelectLabel className="text-brown-600">Category</SelectLabel>
           {props.categories.map((category) => (
-            <SelectItem value={category} className="text-brown-400 hover:text-brown-500! hover:cursor-pointer">
+            <SelectItem
+              key={category}
+              value={category}
+              className="text-brown-400 hover:text-brown-500! hover:cursor-pointer"
+            >
               {category}
             </SelectItem>
           ))}
