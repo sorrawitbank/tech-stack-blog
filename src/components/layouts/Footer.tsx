@@ -20,7 +20,7 @@ function Footer() {
           </a>
         </div>
       </div>
-      <NavigationButton variant="text" label="Home page" />
+      <NavigationButton variant="text">Home page</NavigationButton>
     </footer>
   );
 }

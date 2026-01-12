@@ -1,4 +1,4 @@
-import type { JSX } from "react/jsx-runtime";
+import React from "react";
 
 type ButtonVariant = "primary" | "secondary" | "text";
 
@@ -7,7 +7,7 @@ interface NavigationProps {
    * Variant of button - "primary", "secondary", or "text" only
    */
   variant: ButtonVariant;
-  label: string | JSX.Element;
+  children: React.ReactNode;
   href?: string;
 }
 
@@ -22,7 +22,7 @@ const styles: Record<ButtonVariant, string> = {
 export function NavigationButton(props: NavigationProps) {
   return (
     <a href={props.href} className={styles[props.variant]}>
-      {props.label}
+      {props.children}
     </a>
   );
 }

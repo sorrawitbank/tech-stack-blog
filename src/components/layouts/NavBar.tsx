@@ -9,8 +9,12 @@ function NavBar() {
         <Menu />
       </button>
       <div className="hidden sm:flex sm:gap-2">
-        <NavigationButton variant="secondary" label="Log in" href="/login" />
-        <NavigationButton variant="primary" label="Sign up" href="/signup" />
+        <NavigationButton variant="secondary" href="/login">
+          Log in
+        </NavigationButton>
+        <NavigationButton variant="primary" href="/signup">
+          Sign up
+        </NavigationButton>
       </div>
     </nav>
   );
