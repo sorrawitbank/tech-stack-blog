@@ -4,11 +4,11 @@ interface Props {
   categories: string[];
 }
 
-function CategoryTab(props: Props) {
+function CategoryTab({ categories }: Props) {
   return (
-    <Tabs defaultValue={props.categories[0]}>
+    <Tabs defaultValue={categories[0]}>
       <TabsList className="gap-2 bg-brown-200">
-        {props.categories.map((category) => (
+        {categories.map((category) => (
           <TabsTrigger
             key={category}
             value={category}

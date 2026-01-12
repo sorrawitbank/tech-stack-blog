@@ -12,16 +12,16 @@ interface Props {
   categories: string[];
 }
 
-function CategorySelector(props: Props) {
+function CategorySelector({ categories }: Props) {
   return (
-    <Select defaultValue={props.categories[0]}>
+    <Select defaultValue={categories[0]}>
       <SelectTrigger className="w-full h-12! text-body-1 bg-white hover:cursor-pointer">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel className="text-brown-600">Category</SelectLabel>
-          {props.categories.map((category) => (
+          {categories.map((category) => (
             <SelectItem
               key={category}
               value={category}

@@ -19,10 +19,10 @@ const styles: Record<ButtonVariant, string> = {
   text: "flex gap-1.5 text-body-1 underline text-brown-600 transition-colors duration-200 cursor-pointer hover:text-brown-400 active:text-brown-500 disabled:opacity-40",
 };
 
-export function NavigationButton(props: NavigationProps) {
+export function NavigationButton({ variant, children, href }: NavigationProps) {
   return (
-    <a href={props.href} className={styles[props.variant]}>
-      {props.children}
+    <a href={href} className={styles[variant]}>
+      {children}
     </a>
   );
 }
