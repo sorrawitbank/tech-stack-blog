@@ -227,4 +227,8 @@
   body {
     @apply bg-background text-foreground;
   }
+  body[data-scroll-locked] {
+    overflow-y: scroll !important;
+    margin-right: 0 !important;
+  }
 }
