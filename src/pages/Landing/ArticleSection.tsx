@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import BlogGrid from "./components/BlogGrid";
 import CategorySelector from "./components/CategorySelector";
 import CategoryTab from "./components/CategoryTab";
+import { Input } from "@/components/ui/input";
 import { NavigationButton } from "@/components/common/Button";
 
 const categories: string[] = [
