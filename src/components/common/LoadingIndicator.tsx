@@ -4,8 +4,13 @@ import { cn } from "@/lib/utils";
 
 function LoadingIndicator({ className }: { className?: string }) {
   return (
-    <div className="flex flex-col items-center gap-3 text-brown-500">
-      <Spinner className={cn("size-10 lg:size-12", className)} />
+    <div
+      className={cn(
+        "flex flex-col items-center gap-1 text-brown-500 lg:gap-3",
+        className
+      )}
+    >
+      <Spinner className="size-10 lg:size-12" />
       <span className="text-body-1">Loading...</span>
     </div>
   );

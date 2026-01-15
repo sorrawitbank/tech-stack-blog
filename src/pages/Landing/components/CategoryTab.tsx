@@ -2,15 +2,15 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface Props {
   categories: string[];
-  value?: string;
-  onValueChange?: (value: string) => void;
+  value: string;
+  onValueChange: (value: string) => void;
 }
 
-function CategoryTab({ categories, value, onValueChange }: Props) {
+function CategoryTab(props: Props) {
   return (
-    <Tabs value={value} onValueChange={onValueChange}>
+    <Tabs value={props.value} onValueChange={props.onValueChange}>
       <TabsList className="gap-2 h-12 py-0 bg-brown-200">
-        {categories.map((category) => (
+        {props.categories.map((category) => (
           <TabsTrigger
             key={category}
             value={category}

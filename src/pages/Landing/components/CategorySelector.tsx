@@ -10,20 +10,20 @@ import {
 
 interface Props {
   categories: string[];
-  value?: string;
-  onValueChange?: (value: string) => void;
+  value: string;
+  onValueChange: (value: string) => void;
 }
 
-function CategorySelector({ categories, value, onValueChange }: Props) {
+function CategorySelector(props: Props) {
   return (
-    <Select value={value} onValueChange={onValueChange}>
+    <Select value={props.value} onValueChange={props.onValueChange}>
       <SelectTrigger className="w-full h-12! text-body-1 bg-white hover:cursor-pointer">
         <SelectValue />
       </SelectTrigger>
       <SelectContent position="popper">
         <SelectGroup>
           <SelectLabel className="text-brown-600">Category</SelectLabel>
-          {categories.map((category) => (
+          {props.categories.map((category) => (
             <SelectItem
               key={category}
               value={category}

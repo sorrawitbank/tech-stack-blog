@@ -1,17 +1,11 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
-import BlogGrid from "./components/BlogGrid";
 import CategorySelector from "./components/CategorySelector";
 import CategoryTab from "./components/CategoryTab";
+import PostGrid from "./components/PostGrid";
 import { Input } from "@/components/ui/input";
-import { NavigationButton } from "@/components/common/Button";
 
-const categories: string[] = [
-  "Highlight",
-  "Software Dev",
-  "Data Sci",
-  "General",
-];
+const categories: string[] = ["Highlight", "Cat", "General", "Inspiration"];
 
 function ArticleSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("Highlight");
@@ -55,10 +49,7 @@ function ArticleSection() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center gap-12 px-4 pt-6 pb-13 sm:px-12 lg:gap-20 lg:p-0">
-        <BlogGrid />
-        <NavigationButton variant="text">View more</NavigationButton>
-      </div>
+      <PostGrid selectedCategory={selectedCategory} />
     </section>
   );
 }

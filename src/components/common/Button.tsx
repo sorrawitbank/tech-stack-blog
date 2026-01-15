@@ -1,4 +1,5 @@
 import React from "react";
+import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "text";
 
@@ -10,6 +11,7 @@ interface ActionProps {
   children: React.ReactNode;
   disabled?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 interface NavigationProps {
@@ -19,6 +21,7 @@ interface NavigationProps {
   variant: ButtonVariant;
   children: React.ReactNode;
   href?: string;
+  className?: string;
 }
 
 const styles: Record<ButtonVariant, string> = {
@@ -34,7 +37,7 @@ export function ActionButton(props: ActionProps) {
     <button
       onClick={props.onClick}
       disabled={props.disabled}
-      className={styles[props.variant]}
+      className={cn(styles[props.variant], props.className)}
     >
       {props.children}
     </button>
@@ -43,7 +46,7 @@ export function ActionButton(props: ActionProps) {
 
 export function NavigationButton(props: NavigationProps) {
   return (
-    <a href={props.href} className={styles[props.variant]}>
+    <a href={props.href} className={cn(styles[props.variant], props.className)}>
       {props.children}
     </a>
   );
