@@ -2,6 +2,16 @@ import React from "react";
 
 type ButtonVariant = "primary" | "secondary" | "text";
 
+interface ActionProps {
+  /**
+   * Variant of button - "primary", "secondary", or "text" only
+   */
+  variant: ButtonVariant;
+  children: React.ReactNode;
+  disabled?: boolean;
+  onClick?: () => void;
+}
+
 interface NavigationProps {
   /**
    * Variant of button - "primary", "secondary", or "text" only
@@ -19,10 +29,22 @@ const styles: Record<ButtonVariant, string> = {
   text: "flex justify-center items-center gap-1.5 text-body-1 underline text-brown-600 transition-colors duration-200 cursor-pointer hover:text-brown-400 active:text-brown-500 disabled:opacity-40",
 };
 
-export function NavigationButton({ variant, children, href }: NavigationProps) {
+export function ActionButton(props: ActionProps) {
   return (
-    <a href={href} className={styles[variant]}>
-      {children}
+    <button
+      onClick={props.onClick}
+      disabled={props.disabled}
+      className={styles[props.variant]}
+    >
+      {props.children}
+    </button>
+  );
+}
+
+export function NavigationButton(props: NavigationProps) {
+  return (
+    <a href={props.href} className={styles[props.variant]}>
+      {props.children}
     </a>
   );
 }
