@@ -53,7 +53,7 @@ function PostGrid({ selectedCategory }: { selectedCategory: string }) {
   };
 
   return (
-    <div className="relative flex flex-col items-center gap-12 px-4 pt-6 pb-13 sm:px-12 lg:gap-20 lg:p-0">
+    <div className="relative flex flex-col items-center gap-12 px-4 pt-6 pb-13 sm:px-12 sm:pt-12 lg:gap-20 lg:p-0">
       {posts.length === 0 ? (
         <LoadingIndicator />
       ) : (
