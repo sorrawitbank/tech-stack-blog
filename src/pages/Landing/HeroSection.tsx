@@ -2,12 +2,12 @@ function HeroSection() {
   return (
     <section
       id="hero-section"
-      aria-labelledby="hero-title"
+      aria-labelledby="hero-label"
       className="flex flex-col items-center gap-10 px-4 py-10 sm:px-12 md:px-20 lg:flex-row lg:gap-15 lg:p-0 2xl:px-12"
     >
       <div className="flex flex-col gap-4 text-center lg:flex-1 lg:text-right">
         <h1
-          id="hero-title"
+          id="hero-label"
           className="text-headline-2 text-brown-600 xl:text-headline-1"
         >
           Stay Informed,

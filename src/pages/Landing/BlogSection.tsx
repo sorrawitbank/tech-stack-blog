@@ -7,18 +7,18 @@ import { Input } from "@/components/ui/input";
 
 const categories: string[] = ["Highlight", "Cat", "General", "Inspiration"];
 
-function ArticleSection() {
+function BlogSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("Highlight");
 
   return (
     <section
-      id="articles-section"
-      aria-labelledby="articles-title"
+      id="blog-section"
+      aria-labelledby="blog-label"
       className="flex flex-col lg:gap-12"
     >
       <div className="lg:flex lg:flex-col lg:gap-8">
         <h3
-          id="articles-title"
+          id="blog-label"
           className="p-4 text-headline-3 text-brown-600 sm:px-12 lg:p-0"
         >
           Latest articles
@@ -54,4 +54,4 @@ function ArticleSection() {
   );
 }
 
-export default ArticleSection;
+export default BlogSection;
