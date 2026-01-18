@@ -27,12 +27,12 @@ function Header() {
           <nav className="h-full">
             <ul className="flex flex-col justify-between h-full">
               <li>
-                <NavigationButton variant="secondary" href="/login">
+                <NavigationButton variant="secondary" navigateTo="/login">
                   Log in
                 </NavigationButton>
               </li>
               <li>
-                <NavigationButton variant="primary" href="/signup">
+                <NavigationButton variant="primary" navigateTo="/signup">
                   Sign up
                 </NavigationButton>
               </li>
@@ -43,12 +43,12 @@ function Header() {
       <nav className="hidden sm:block">
         <ul className="flex gap-2">
           <li>
-            <NavigationButton variant="secondary" href="/login">
+            <NavigationButton variant="secondary" navigateTo="/login">
               Log in
             </NavigationButton>
           </li>
           <li>
-            <NavigationButton variant="primary" href="/signup">
+            <NavigationButton variant="primary" navigateTo="/signup">
               Sign up
             </NavigationButton>
           </li>
