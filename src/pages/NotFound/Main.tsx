@@ -1,23 +1,18 @@
 import { CircleAlert } from "lucide-react";
 import { NavigationButton } from "@/components/common/Button";
+import FullHeightMain from "@/layouts/FullHeightMain";
 
 function Main() {
   return (
-    <main
-      aria-labelledby="page-not-found"
-      className="flex flex-col flex-1 justify-center items-center gap-6"
-    >
-      <CircleAlert className="size-12" />
-      <h3
-        id="page-not-found"
-        className="text-headline-3 text-center text-brown-600"
-      >
-        Page Not Found
+    <FullHeightMain className="flex-col gap-4 lg:gap-6">
+      <CircleAlert className="size-12 min-h-12 text-brown-600" />
+      <h3 className="text-headline-3 text-center text-brown-600">
+        Page not found
       </h3>
       <NavigationButton variant="primary" navigateTo="/">
         Go to Home page
       </NavigationButton>
-    </main>
+    </FullHeightMain>
   );
 }
 

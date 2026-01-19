@@ -6,10 +6,8 @@ function NotFound() {
   return (
     <>
       <Header />
-      <div className="flex flex-col overflow-hidden h-dvh pt-12 sm:pt-20">
-        <Main />
-        <Footer />
-      </div>
+      <Main />
+      <Footer />
     </>
   );
 }
