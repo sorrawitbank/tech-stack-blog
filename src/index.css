@@ -104,6 +104,15 @@
       letter-spacing: var(--letter-spacing);
     }
   }
+
+  .xl\:text-headline-2 {
+    @media (width >= 80rem /* 1280px */) {
+      font-weight: var(--font-weight-headline);
+      font-size: var(--font-size-headline-2);
+      line-height: var(--line-height-headline-2);
+      letter-spacing: var(--letter-spacing);
+    }
+  }
 }
 
 /* ---break---*/
@@ -231,4 +240,94 @@
     overflow-y: scroll !important;
     margin-right: 0 !important;
   }
+}
+
+/* ---break---*/
+.markdown {
+  font-weight: var(--font-weight-body);
+  font-size: var(--font-size-body-1);
+  letter-spacing: var(--letter-spacing);
+}
+
+.markdown :is(h1) {
+  font-weight: var(--font-weight-headline);
+  font-size: var(--font-size-headline-3);
+  letter-spacing: var(--letter-spacing);
+}
+
+.markdown :is(h2, h3, h4, h5, h6) {
+  font-weight: var(--font-weight-headline);
+  font-size: var(--font-size-headline-4);
+  letter-spacing: var(--letter-spacing);
+}
+
+.markdown :is(h1, h2, h3, h4, h5, h6) {
+  margin-bottom: var(--line-height-body-1); /* 24px */
+}
+
+.markdown :is(h1, h2, h3, h4, h5, h6):not(:first-child) {
+  margin-top: var(--line-height-headline-3); /* 32px */
+}
+
+.markdown :is(p):not(:first-child, :is(h1, h2, h3, h4, h5, h6) + p) {
+  margin-top: var(--line-height-body-1); /* 24px */
+}
+
+.markdown :is(ul, ol) {
+  list-style-position: outside;
+}
+
+.markdown :is(ul) {
+  list-style-type: "•";
+}
+
+.markdown :is(ol) {
+  list-style-type: decimal;
+  padding-left: 20px;
+}
+
+.markdown :is(a) {
+  text-decoration: underline;
+}
+
+.markdown :is(a):hover {
+  text-decoration: underline;
+  color: var(--color-brown-400);
+  cursor: pointer;
+}
+
+.markdown :is(ul) li {
+  margin-block: 8px;
+  padding-inline-start: 8px;
+  padding-left: 5px;
+  margin-left: 10px;
+}
+
+.markdown :is(ol) li {
+  margin-block: 8px;
+  padding-inline-start: 8px;
+  padding-left: 3px;
+  margin-left: 10px;
+}
+
+.markdown :is(blockquote) {
+  border-left: 3px solid var(--color-brown-600);
+  margin: 1.5em 10px;
+  padding-left: 10px;
+  font-style: italic;
+}
+
+.markdown :is(hr) {
+  border: none;
+  border-top: 2.5px solid var(--color-brown-300);
+  margin: 1.5em 0;
+  width: 30%;
+}
+
+.markdown :is(img) {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2em 0;
+  border-radius: 12px;
 }
