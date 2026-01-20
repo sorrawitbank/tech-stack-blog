@@ -1,8 +1,14 @@
 import ReactMarkdown from "react-markdown";
+import { cn } from "@/lib/utils";
 
-function AuthorCard() {
+function AuthorCard({ className }: { className?: string }) {
   return (
-    <article className="flex flex-col gap-5 p-6 bg-brown-200 rounded-2xl">
+    <article
+      className={cn(
+        "flex flex-col gap-5 p-6 bg-brown-200 rounded-2xl",
+        className
+      )}
+    >
       <div className="flex items-center gap-3">
         <img
           src="https://avatars.githubusercontent.com/u/198432307"

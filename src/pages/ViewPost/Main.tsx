@@ -41,9 +41,7 @@ function Main() {
       />
       <div className="flex justify-between gap-8 md:px-12 md:pt-8 lg:p-0 xl:gap-20">
         <ArticleSection />
-        <div className="hidden flex-1 min-w-[305px] h-fit md:sticky md:block md:top-28 2xl:min-w-100">
-          <AuthorCard />
-        </div>
+        <AuthorCard className="hidden flex-1 min-w-[305px] h-fit md:sticky md:flex md:top-28 2xl:min-w-100" />
       </div>
     </StandardMain>
   );

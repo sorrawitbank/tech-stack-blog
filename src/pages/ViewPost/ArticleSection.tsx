@@ -32,9 +32,7 @@ function ArticleSection() {
       <div className="markdown text-brown-500">
         <ReactMarkdown>{post.content}</ReactMarkdown>
       </div>
-      <div className="md:hidden">
-        <AuthorCard />
-      </div>
+      <AuthorCard className="md:hidden" />
     </section>
   );
 }
