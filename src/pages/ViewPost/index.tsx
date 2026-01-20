@@ -1,12 +1,15 @@
 import Main from "./Main";
 import Footer from "@/layouts/Footer";
 import Header from "@/layouts/Header";
+import { PostProvider } from "@/contexts/postContext";
 
 function ViewPost() {
   return (
     <>
       <Header />
-      <Main />
+      <PostProvider>
+        <Main />
+      </PostProvider>
       <Footer />
     </>
   );

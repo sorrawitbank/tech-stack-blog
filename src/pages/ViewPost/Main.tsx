@@ -1,25 +1,51 @@
+import { useContext } from "react";
+import { TriangleAlert } from "lucide-react";
 import ArticleSection from "./ArticleSection";
 import AuthorCard from "./components/AuthorCard";
+import LoadingIndicator from "@/components/common/LoadingIndicator";
+import FullHeightMain from "@/layouts/FullHeightMain";
+import StandardMain from "@/layouts/StandardMain";
+import { NavigationButton } from "@/components/common/Button";
+import { PostContext } from "@/contexts/postContext";
 
 function Main() {
+  const { post, isLoading, error } = useContext(PostContext);
+
+  if (isLoading)
+    return (
+      <FullHeightMain>
+        <LoadingIndicator />
+      </FullHeightMain>
+    );
+
+  if (error || post === null) {
+    return (
+      <FullHeightMain className="flex-col gap-4 lg:gap-6">
+        <TriangleAlert className="size-12 min-h-12 text-brown-600" />
+        <h3 className="text-headline-3 text-center text-brown-600">
+          {error || "Failed to fetch post"}
+        </h3>
+        <NavigationButton variant="primary" navigateTo="/">
+          Go to Home page
+        </NavigationButton>
+      </FullHeightMain>
+    );
+  }
+
   return (
-    <main className="pt-12 sm:pt-20 lg:flex lg:flex-col lg:items-center lg:gap-12 lg:px-12 lg:pt-35 lg:pb-30 xl:px-30">
+    <StandardMain className="lg:items-center lg:gap-12">
       <img
-        src={
-          "https://res.cloudinary.com/dcbpjtd1r/image/upload/v1728449771/my-blog-post/gsutzgam24abrvgee9r4.jpg"
-        }
-        alt="Cat"
+        src={post.imgSrc}
+        alt={post.imgAlt}
         className="aspect-375/184 w-full max-w-7xl max-h-150 text-brown-500 object-cover lg:aspect-1200/587 lg:rounded-2xl"
       />
-      <div className="md:px-12 md:pt-8 lg:p-0">
-        <div className="flex justify-between gap-8 xl:gap-20">
-          <ArticleSection />
-          <div className="hidden flex-1 min-w-[305px] h-fit md:sticky md:block md:top-28 lg:p-0 2xl:min-w-100">
-            <AuthorCard />
-          </div>
+      <div className="flex justify-between gap-8 md:px-12 md:pt-8 lg:p-0 xl:gap-20">
+        <ArticleSection />
+        <div className="hidden flex-1 min-w-[305px] h-fit md:sticky md:block md:top-28 2xl:min-w-100">
+          <AuthorCard />
         </div>
       </div>
-    </main>
+    </StandardMain>
   );
 }
 
