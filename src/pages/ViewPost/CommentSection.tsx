@@ -1,4 +1,5 @@
 import CommentList from "./components/CommentList";
+import CreateAccountDialog from "./components/CreateAccountDialog";
 import { ActionButton } from "@/components/common/Button";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
@@ -19,11 +20,13 @@ function CommentSection() {
           >
             Comment
           </FieldLabel>
-          <Textarea
-            id="comment"
-            placeholder="What are your thoughts?"
-            className="min-h-25.5 bg-white placeholder:text-brown-400"
-          />
+          <CreateAccountDialog>
+            <Textarea
+              id="comment"
+              placeholder="What are your thoughts?"
+              className="min-h-25.5 bg-white placeholder:text-brown-400"
+            />
+          </CreateAccountDialog>
         </Field>
         <ActionButton variant="primary" className="w-fit">
           Send
