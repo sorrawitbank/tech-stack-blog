@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { TriangleAlert } from "lucide-react";
 import ArticleSection from "./ArticleSection";
+import CommentSection from "./CommentSection";
 import ShareSection from "./ShareSection";
 import AuthorCard from "./components/AuthorCard";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
@@ -40,10 +41,11 @@ function Main() {
         alt={post.imgAlt}
         className="aspect-375/184 w-full max-w-7xl max-h-150 text-brown-500 object-cover lg:aspect-1200/587 lg:rounded-2xl"
       />
-      <div className="flex justify-between gap-8 md:px-12 md:pt-8 lg:p-0 xl:gap-20">
+      <div className="flex justify-between gap-8 md:px-12 md:pt-8 lg:p-0 xl:gap-20 2xl:gap-32">
         <div className="flex flex-col md:gap-12">
           <ArticleSection />
           <ShareSection />
+          <CommentSection />
         </div>
         <AuthorCard className="hidden flex-1 min-w-[305px] h-fit md:sticky md:flex md:top-28 2xl:min-w-100" />
       </div>
