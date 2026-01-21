@@ -1,6 +1,7 @@
 import type { Post } from "@/types/post";
 import { format } from "date-fns";
 import CategoryTag from "@/components/common/CategoryTag";
+import { Separator } from "@/components/ui/separator";
 
 function PostCard({ post }: { post: Post }) {
   return (
@@ -24,11 +25,11 @@ function PostCard({ post }: { post: Post }) {
           <img
             src="https://avatars.githubusercontent.com/u/198432307"
             alt="Author"
-            className="size-6 text-brown-500 rounded-full"
+            className="size-6 text-brown-500 object-cover rounded-full"
           />
           <span className="text-body-2 text-brown-500">{post.author}</span>
         </div>
-        <hr className="h-4.5 border-l border-brown-300" />
+        <Separator orientation="vertical" className="h-4.5! bg-brown-300" />
         <span className="text-body-2 text-brown-400">
           {format(post.date, "dd MMMM yyyy")}
         </span>

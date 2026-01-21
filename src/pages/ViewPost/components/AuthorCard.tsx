@@ -1,5 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
 
 function AuthorCard({ className }: { className?: string }) {
   return (
@@ -13,14 +14,14 @@ function AuthorCard({ className }: { className?: string }) {
         <img
           src="https://avatars.githubusercontent.com/u/198432307"
           alt="Author"
-          className="size-11 text-brown-500 rounded-full"
+          className="size-11 text-brown-500 object-cover rounded-full"
         />
         <div className="flex flex-col">
           <span className="text-body-3 text-brown-400">Author</span>
           <span className="text-headline-4 text-brown-500">Sorrawit A.</span>
         </div>
       </div>
-      <hr className="border-t border-brown-300" />
+      <Separator className="bg-brown-300" />
       <div className="markdown text-brown-400">
         <ReactMarkdown>
           {
