@@ -1,12 +1,31 @@
 import { useContext } from "react";
 import { Copy, Facebook, Linkedin, Smile, Twitter } from "lucide-react";
+import { toast } from "sonner";
 import CreateAccountDialog from "./components/CreateAccountDialog";
 import { ActionButton } from "@/components/common/Button";
 import { PostContext } from "@/contexts/postContext";
 
+const handleCopyLink = () => {
+  navigator.clipboard.writeText(window.location.href);
+  toast.success("Copied!", {
+    description: "This article has been copied to your clipboard",
+    position: "bottom-right",
+    style: {
+      padding: "16px",
+      backgroundColor: "var(--color-brand-green)",
+    },
+    classNames: {
+      icon: "text-white size-8!",
+      title: "text-headline-4 text-white!",
+      description: "text-body-2 text-white!",
+    },
+  });
+};
+
 function ShareSection() {
   const { post } = useContext(PostContext);
   if (post === null) return;
+
   return (
     <section
       id="share-section"
@@ -20,23 +39,39 @@ function ShareSection() {
         </ActionButton>
       </CreateAccountDialog>
       <div className="flex gap-2 sm:justify-between md:flex-col md:justify-start md:gap-6 lg:flex-row lg:justify-between xl:justify-start xl:gap-3">
-        <ActionButton variant="secondary" className="px-7 sm:px-10">
+        <ActionButton
+          variant="secondary"
+          onClick={handleCopyLink}
+          className="px-7 sm:px-10"
+        >
           <Copy />
           Copy link
         </ActionButton>
         <ul className="flex gap-2 sm:gap-3 md:justify-around lg:justify-start">
-          <li className="p-2.5 text-white bg-brown-500 rounded-full cursor-pointer hover:bg-brown-400 active:bg-brown-600">
-            <a>
+          <li className="p-2.5 text-white bg-brown-600 rounded-full cursor-pointer hover:bg-brown-400 active:bg-brown-500">
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Facebook className="size-7" />
             </a>
           </li>
-          <li className="p-2.5 text-white bg-brown-500 rounded-full cursor-pointer hover:bg-brown-400 active:bg-brown-600">
-            <a>
+          <li className="p-2.5 text-white bg-brown-600 rounded-full cursor-pointer hover:bg-brown-400 active:bg-brown-500">
+            <a
+              href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Linkedin className="size-7" />
             </a>
           </li>
-          <li className="p-2.5 text-white bg-brown-500 rounded-full cursor-pointer hover:bg-brown-400 active:bg-brown-600">
-            <a>
+          <li className="p-2.5 text-white bg-brown-600 rounded-full cursor-pointer hover:bg-brown-400 active:bg-brown-500">
+            <a
+              href={`https://twitter.com/intent/tweet?url=${window.location.href}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Twitter className="size-7" />
             </a>
           </li>

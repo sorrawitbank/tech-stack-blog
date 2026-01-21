@@ -16,11 +16,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
       icons={{
-        success: <CircleCheckIcon className="size-4" />,
-        info: <InfoIcon className="size-4" />,
-        warning: <TriangleAlertIcon className="size-4" />,
-        error: <OctagonXIcon className="size-4" />,
-        loading: <Loader2Icon className="size-4 animate-spin" />,
+        success: <CircleCheckIcon className="size-8" />,
+        info: <InfoIcon className="size-8" />,
+        warning: <TriangleAlertIcon className="size-8" />,
+        error: <OctagonXIcon className="size-8" />,
+        loading: <Loader2Icon className="size-8 animate-spin" />,
       }}
       style={
         {
