@@ -24,7 +24,7 @@ function CommentSection() {
             <Textarea
               id="comment"
               placeholder="What are your thoughts?"
-              className="min-h-25.5 bg-white placeholder:text-brown-400"
+              className="min-h-25.5 text-body-1 bg-white placeholder:text-brown-400"
             />
           </CreateAccountDialog>
         </Field>

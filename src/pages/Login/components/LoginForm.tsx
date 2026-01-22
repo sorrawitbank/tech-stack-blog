@@ -16,7 +16,7 @@ function LoginForm() {
               type="email"
               placeholder="Email"
               autoComplete="email"
-              className="h-12 bg-white placeholder:text-brown-400"
+              className="h-12 text-body-1 bg-white placeholder:text-brown-400"
             />
           </Field>
           <Field className="gap-1">
@@ -27,7 +27,7 @@ function LoginForm() {
               id="password"
               type="password"
               placeholder="Password"
-              className="h-12 bg-white placeholder:text-brown-400"
+              className="h-12 text-body-1 bg-white placeholder:text-brown-400"
             />
           </Field>
         </FieldGroup>

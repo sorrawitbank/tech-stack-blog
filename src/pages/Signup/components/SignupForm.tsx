@@ -16,7 +16,7 @@ function SignupForm() {
               type="text"
               placeholder="Full name"
               autoComplete="name"
-              className="h-12 bg-white placeholder:text-brown-400"
+              className="h-12 text-body-1 bg-white placeholder:text-brown-400"
             />
           </Field>
           <Field className="gap-1">
@@ -28,7 +28,7 @@ function SignupForm() {
               type="text"
               placeholder="Username"
               autoComplete="username"
-              className="h-12 bg-white placeholder:text-brown-400 selection:bg-amber-600!"
+              className="h-12 text-body-1 bg-white placeholder:text-brown-400"
             />
           </Field>
           <Field className="gap-1">
@@ -40,7 +40,7 @@ function SignupForm() {
               type="email"
               placeholder="Email"
               autoComplete="email"
-              className="h-12 bg-white placeholder:text-brown-400"
+              className="h-12 text-body-1 bg-white placeholder:text-brown-400"
             />
           </Field>
           <Field className="gap-1">
@@ -51,7 +51,7 @@ function SignupForm() {
               id="password"
               type="password"
               placeholder="Password"
-              className="h-12 bg-white placeholder:text-brown-400"
+              className="h-12 text-body-1 bg-white placeholder:text-brown-400"
             />
           </Field>
         </FieldGroup>

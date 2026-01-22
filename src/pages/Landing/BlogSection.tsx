@@ -35,7 +35,7 @@ function BlogSection() {
             <Input
               type="search"
               placeholder="Search"
-              className="h-12 text-body-1 bg-white [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
+              className="h-12 text-body-1 bg-white placeholder:text-brown-400 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
             />
             <Search className="absolute right-3 top-1/2 -translate-y-1/2 size-5 text-brown-600 pointer-events-none" />
           </div>
