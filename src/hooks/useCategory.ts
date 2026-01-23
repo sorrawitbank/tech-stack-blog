@@ -1,11 +1,11 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 function useCategory() {
   const [category, setCategory] = useState<string>("Highlight");
 
-  const handleSelectCategory = useCallback((category: string) => {
+  const handleSelectCategory = (category: string) => {
     setCategory(category);
-  }, []);
+  };
 
   return { category, handleSelectCategory };
 }

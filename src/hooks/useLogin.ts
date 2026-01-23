@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useRef } from "react";
 import useValidateForm, { type Refs } from "./useValidateForm";
 
 function useuseLogin() {
@@ -9,14 +9,11 @@ function useuseLogin() {
     password: useRef<HTMLInputElement>(null),
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
-    (event) => {
-      event.preventDefault();
-      if (!validateFields(refs)) return;
-      // Send Data to Database
-    },
-    []
-  );
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    if (!validateFields(refs)) return;
+    // Send Data to Database
+  };
 
   return { refs, errors, handleSubmit };
 }

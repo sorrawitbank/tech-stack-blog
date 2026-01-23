@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import validateEmail from "@/utils/validateEmail";
 import validatePassword from "@/utils/validatePassword";
 import validateName from "@/utils/validateName";
@@ -11,7 +11,7 @@ export type Refs = Partial<
 >;
 type Validations = Record<
   (typeof keys)[number],
-  (arg0: string) => string | null
+  (value: string) => string | null
 >;
 type Errors = Partial<Record<(typeof keys)[number], string>>;
 
@@ -25,7 +25,7 @@ const validations: Validations = {
 function useValidateForm() {
   const [errors, setErrors] = useState<Errors>({});
 
-  const validateFields = useCallback((refs: Refs) => {
+  const validateFields = (refs: Refs) => {
     const newErrors: Errors = {};
     for (const key of keys) {
       const ref = refs[key];
@@ -38,7 +38,7 @@ function useValidateForm() {
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  }, []);
+  };
 
   return { errors, validateFields };
 }

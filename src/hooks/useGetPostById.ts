@@ -1,5 +1,5 @@
 import type { Post } from "@/types/post";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AxiosError } from "axios";
 import { fetchPostById } from "@/services/postApi";
 import { toPost } from "@/utils/post";
@@ -10,14 +10,19 @@ function useGetPostById(postId: number) {
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    fetchPost();
+    const controller = new AbortController();
+    fetch(controller);
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
-  const fetchPost = useCallback(async () => {
+  const fetch = async (controller: AbortController) => {
     if (isLoading) return;
     setIsLoading(true);
     try {
-      const data = await fetchPostById(postId);
+      const data = await fetchPostById(postId, controller);
       const mappedPost: Post = toPost(data);
       setPost(mappedPost);
     } catch (err) {
@@ -32,7 +37,7 @@ function useGetPostById(postId: number) {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  };
 
   return { post, isLoading, error };
 }

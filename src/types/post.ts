@@ -28,7 +28,7 @@ export interface PostsParams {
   page?: number;
   limit?: number;
   category?: string;
-  keyword?: string | null;
+  keyword?: string;
 }
 
 export interface PostsResponse {
@@ -37,5 +37,6 @@ export interface PostsResponse {
   currentPage: number;
   limit: number;
   posts: PostApi[];
-  nextPage: number;
+  nextPage?: number;
+  previousPage?: number;
 }
