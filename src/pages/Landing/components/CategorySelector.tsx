@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Select,
   SelectContent,
@@ -7,23 +8,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { CategoryContext } from "@/contexts/CategoryContext";
 
-interface Props {
-  categories: string[];
-  value: string;
-  onValueChange: (value: string) => void;
-}
+function CategorySelector() {
+  const { category, categories, handleSelectCategory } =
+    useContext(CategoryContext);
 
-function CategorySelector(props: Props) {
   return (
-    <Select value={props.value} onValueChange={props.onValueChange}>
+    <Select value={category} onValueChange={handleSelectCategory}>
       <SelectTrigger className="w-full h-12! text-body-1 bg-white hover:cursor-pointer">
         <SelectValue />
       </SelectTrigger>
       <SelectContent position="popper">
         <SelectGroup>
           <SelectLabel className="text-brown-600">Category</SelectLabel>
-          {props.categories.map((category) => (
+          {categories.map((category) => (
             <SelectItem
               key={category}
               value={category}

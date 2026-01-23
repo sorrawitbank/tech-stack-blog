@@ -1,15 +1,10 @@
-import { useState } from "react";
 import { Search } from "lucide-react";
 import CategorySelector from "./components/CategorySelector";
 import CategoryTab from "./components/CategoryTab";
 import PostGrid from "./components/PostGrid";
 import { Input } from "@/components/ui/input";
 
-const categories: string[] = ["Highlight", "Cat", "General", "Inspiration"];
-
 function BlogSection() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("Highlight");
-
   return (
     <section
       id="blog-section"
@@ -25,11 +20,7 @@ function BlogSection() {
         </h3>
         <div className="flex flex-col gap-4 p-4 text-brown-400 bg-brown-200 sm:px-12 lg:flex-row lg:justify-between lg:items-center lg:gap-0 lg:px-6 lg:rounded-2xl">
           <div className="hidden lg:block">
-            <CategoryTab
-              categories={categories}
-              value={selectedCategory}
-              onValueChange={setSelectedCategory}
-            />
+            <CategoryTab />
           </div>
           <div className="relative lg:w-[31.25%]">
             <Input
@@ -41,15 +32,11 @@ function BlogSection() {
           </div>
           <div className="flex flex-col gap-1 lg:hidden">
             <span className="text-body-1">Category</span>
-            <CategorySelector
-              categories={categories}
-              value={selectedCategory}
-              onValueChange={setSelectedCategory}
-            />
+            <CategorySelector />
           </div>
         </div>
       </div>
-      <PostGrid selectedCategory={selectedCategory} />
+      <PostGrid />
     </section>
   );
 }

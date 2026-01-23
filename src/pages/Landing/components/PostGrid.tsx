@@ -1,24 +1,25 @@
 import type { Post, PostsResponse } from "@/types/post";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import PostCard from "./PostCard";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
 import { ActionButton } from "@/components/common/Button";
+import { CategoryContext } from "@/contexts/CategoryContext";
 import { mapToPost } from "@/utils/post";
-import { cn } from "@/lib/utils";
 
-function PostGrid({ selectedCategory }: { selectedCategory: string }) {
+function PostGrid() {
   const [page, setPage] = useState<number>(1);
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(false);
+  const { category } = useContext(CategoryContext);
 
   // Callback when change category
   useEffect(() => {
     setPosts([]);
     setPage(1);
     fetchPosts(1);
-  }, [selectedCategory]);
+  }, [category]);
 
   // Callback when load more posts
   useEffect(() => {
@@ -35,14 +36,13 @@ function PostGrid({ selectedCategory }: { selectedCategory: string }) {
         {
           params: {
             page: pageToFetch,
-            category:
-              selectedCategory === "Highlight" ? null : selectedCategory,
+            category: category === "Highlight" ? null : category,
           },
         }
       );
-      const mapped: Post[] = mapToPost(response.data.posts);
+      const mappedPosts: Post[] = mapToPost(response.data.posts);
       setHasMore(response.data.currentPage < response.data.totalPages);
-      setPosts((prev) => [...prev, ...mapped]);
+      setPosts((prev) => [...prev, ...mappedPosts]);
     } finally {
       setIsLoading(false);
     }
@@ -55,7 +55,7 @@ function PostGrid({ selectedCategory }: { selectedCategory: string }) {
   return (
     <div className="relative flex flex-col items-center gap-12 px-4 pt-6 pb-13 sm:px-12 sm:pt-12 lg:gap-20 lg:p-0">
       {posts.length === 0 ? (
-        <LoadingIndicator />
+        <LoadingIndicator className="mb-[calc(100svh-36rem)] sm:mb-[calc(100svh-40rem)] lg:mb-[calc(100svh-41rem)]" />
       ) : (
         <>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-x-5 2xl:grid-cols-3">
@@ -73,12 +73,9 @@ function PostGrid({ selectedCategory }: { selectedCategory: string }) {
               View more
             </ActionButton>
           )}
-          <LoadingIndicator
-            className={cn(
-              isLoading ? "visible" : "invisible",
-              "absolute bottom-9 lg:-bottom-5"
-            )}
-          />
+          {isLoading && (
+            <LoadingIndicator className="absolute bottom-9 lg:-bottom-5" />
+          )}
         </>
       )}
     </div>

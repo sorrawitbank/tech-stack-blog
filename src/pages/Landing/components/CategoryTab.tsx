@@ -1,16 +1,15 @@
+import { useContext } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CategoryContext } from "@/contexts/CategoryContext";
 
-interface Props {
-  categories: string[];
-  value: string;
-  onValueChange: (value: string) => void;
-}
+function CategoryTab() {
+  const { category, categories, handleSelectCategory } =
+    useContext(CategoryContext);
 
-function CategoryTab(props: Props) {
   return (
-    <Tabs value={props.value} onValueChange={props.onValueChange}>
+    <Tabs value={category} onValueChange={handleSelectCategory}>
       <TabsList className="gap-2 h-12 py-0 bg-brown-200">
-        {props.categories.map((category) => (
+        {categories.map((category) => (
           <TabsTrigger
             key={category}
             value={category}
