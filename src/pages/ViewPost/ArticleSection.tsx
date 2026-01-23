@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import ReactMarkdown from "react-markdown";
 import AuthorCard from "./components/AuthorCard";
 import CategoryTag from "@/components/common/CategoryTag";
-import { PostContext } from "@/contexts/postContext";
+import { PostContext } from "@/contexts/PostContext";
 
 function ArticleSection() {
   const { post } = useContext(PostContext);

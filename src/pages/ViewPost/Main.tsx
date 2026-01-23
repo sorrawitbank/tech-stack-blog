@@ -8,7 +8,7 @@ import LoadingIndicator from "@/components/common/LoadingIndicator";
 import FullHeightMain from "@/layouts/FullHeightMain";
 import StandardMain from "@/layouts/StandardMain";
 import { NavigationButton } from "@/components/common/Button";
-import { PostContext } from "@/contexts/postContext";
+import { PostContext } from "@/contexts/PostContext";
 
 function Main() {
   const { post, isLoading, error } = useContext(PostContext);

@@ -3,7 +3,7 @@ import { Copy, Facebook, Linkedin, Smile, Twitter } from "lucide-react";
 import { toast } from "sonner";
 import CreateAccountDialog from "./components/CreateAccountDialog";
 import { ActionButton } from "@/components/common/Button";
-import { PostContext } from "@/contexts/postContext";
+import { PostContext } from "@/contexts/PostContext";
 
 const handleCopyLink = () => {
   navigator.clipboard.writeText(window.location.href);
