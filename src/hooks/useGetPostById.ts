@@ -1,9 +1,10 @@
-import type { Post, ApiPost } from "@/types/post";
-import { useEffect, useState } from "react";
-import axios, { AxiosError } from "axios";
+import type { Post } from "@/types/post";
+import { useCallback, useEffect, useState } from "react";
+import { AxiosError } from "axios";
+import { fetchPostById } from "@/services/postApi";
 import { toPost } from "@/utils/post";
 
-function useGetPost(postId: number) {
+function useGetPostById(postId: number) {
   const [post, setPost] = useState<Post | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -12,14 +13,12 @@ function useGetPost(postId: number) {
     fetchPost();
   }, []);
 
-  const fetchPost = async () => {
+  const fetchPost = useCallback(async () => {
     if (isLoading) return;
     setIsLoading(true);
     try {
-      const response = await axios.get<ApiPost>(
-        `https://blog-post-project-api.vercel.app/posts/${postId}`
-      );
-      const mappedPost: Post = toPost(response.data);
+      const data = await fetchPostById(postId);
+      const mappedPost: Post = toPost(data);
       setPost(mappedPost);
     } catch (err) {
       // Get error message from response data if available
@@ -33,9 +32,9 @@ function useGetPost(postId: number) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   return { post, isLoading, error };
 }
 
-export default useGetPost;
+export default useGetPostById;

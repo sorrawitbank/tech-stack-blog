@@ -11,7 +11,7 @@ export interface Post {
   content: string;
 }
 
-export interface ApiPost {
+export interface PostApi {
   readonly id: number;
   image: string;
   imageAlt?: string;
@@ -24,10 +24,18 @@ export interface ApiPost {
   content: string;
 }
 
+export interface PostsParams {
+  page?: number;
+  limit?: number;
+  category?: string;
+  keyword?: string | null;
+}
+
 export interface PostsResponse {
   totalPosts: number;
   totalPages: number;
   currentPage: number;
   limit: number;
-  posts: ApiPost[];
+  posts: PostApi[];
+  nextPage: number;
 }
