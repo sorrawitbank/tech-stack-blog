@@ -25,10 +25,10 @@ export interface PostApi {
 }
 
 export interface PostsParams {
-  page?: number;
-  limit?: number;
-  category?: string;
-  keyword?: string;
+  page: number;
+  limit: number;
+  category: string;
+  keyword: string;
 }
 
 export interface PostsResponse {

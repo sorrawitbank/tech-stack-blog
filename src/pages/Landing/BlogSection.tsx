@@ -1,8 +1,7 @@
-import { Search } from "lucide-react";
 import CategorySelector from "./components/CategorySelector";
 import CategoryTab from "./components/CategoryTab";
 import PostGrid from "./components/PostGrid";
-import { Input } from "@/components/ui/input";
+import SearchBox from "./components/SearchBox";
 
 function BlogSection() {
   return (
@@ -22,14 +21,7 @@ function BlogSection() {
           <div className="hidden lg:block">
             <CategoryTab />
           </div>
-          <div className="relative lg:w-[31.25%]">
-            <Input
-              type="search"
-              placeholder="Search"
-              className="h-12 text-body-1 bg-white placeholder:text-brown-400 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
-            />
-            <Search className="absolute right-3 top-1/2 -translate-y-1/2 size-5 text-brown-600 pointer-events-none" />
-          </div>
+          <SearchBox />
           <div className="flex flex-col gap-1 lg:hidden">
             <span className="text-body-1">Category</span>
             <CategorySelector />

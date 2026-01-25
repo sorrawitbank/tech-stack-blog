@@ -1,0 +1,62 @@
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import debounceFunction from "debounce-fn";
+import useGetPosts from "./useGetPosts";
+import { CategoryContext } from "@/contexts/CategoryContext";
+
+function useSearchPosts() {
+  const navigate = useNavigate();
+  const [keyword, setKeyword] = useState<string>("");
+  const [value, setValue] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { category } = useContext(CategoryContext);
+  const { posts, clearPosts } = useGetPosts({
+    category,
+    keyword,
+    requireKeyword: true,
+    fetchOnCategoryChange: false,
+  });
+
+  useEffect(() => {
+    setKeyword("");
+  }, [category]);
+
+  useEffect(() => {
+    if (keyword) return;
+    clearPosts();
+  }, [keyword]);
+
+  const debouncedSetKeyword = useMemo(() => {
+    return debounceFunction(setKeyword, { wait: 500 });
+  }, []);
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const value = event.target.value;
+    setValue(value);
+    debouncedSetKeyword(value.trim());
+  };
+
+  const handleFocus = () => {
+    setIsOpen(true);
+  };
+
+  const handleBlur = () => {
+    setIsOpen(false);
+  };
+
+  const handleNavigate = (postId: number) => {
+    navigate(`/post/${postId}`);
+  };
+
+  return {
+    value,
+    posts,
+    isOpen,
+    handleChange,
+    handleFocus,
+    handleBlur,
+    handleNavigate,
+  };
+}
+
+export default useSearchPosts;
