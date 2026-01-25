@@ -1,18 +1,25 @@
 import type { PostApi, PostsParams, PostsResponse } from "@/types/post";
 import axios from "axios";
 
+interface FetchPostsParams extends PostsParams {
+  controller: AbortController;
+}
+
 const BASE_URL = "https://blog-post-project-api.vercel.app/posts";
 
-export async function fetchPosts(
-  params: PostsParams,
-  controller: AbortController
-) {
+export async function fetchPosts({
+  page,
+  limit,
+  category,
+  keyword,
+  controller,
+}: FetchPostsParams) {
   const response = await axios.get<PostsResponse>(BASE_URL, {
     params: {
-      page: params.page === 1 ? null : params.page,
-      limit: params.limit === 6 ? null : params.limit,
-      category: params.category === "Highlight" ? null : params.category,
-      keyword: params.keyword ? params.keyword : null,
+      page: page === 1 ? null : page,
+      limit: limit === 6 ? null : limit,
+      category: category === "Highlight" ? null : category,
+      keyword: keyword ? keyword : null,
     },
     signal: controller.signal,
   });

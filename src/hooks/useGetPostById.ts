@@ -1,7 +1,7 @@
 import type { Post } from "@/types/post";
 import { useEffect, useState } from "react";
 import { AxiosError } from "axios";
-import { fetchPostById } from "@/services/postApi";
+import { fetchPostById } from "@/services/postService";
 import { toPost } from "@/utils/post";
 
 function useGetPostById(postId: number) {
