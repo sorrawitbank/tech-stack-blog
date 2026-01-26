@@ -1,24 +1,16 @@
 import { useContext } from "react";
 import { Copy, Facebook, Linkedin, Smile, Twitter } from "lucide-react";
-import { toast } from "sonner";
 import CreateAccountDialog from "./components/CreateAccountDialog";
 import { ActionButton } from "@/components/common/Button";
 import { PostContext } from "@/contexts/PostContext";
+import sonner from "@/utils/sonner";
 
 const handleCopyLink = () => {
   navigator.clipboard.writeText(window.location.href);
-  toast.success("Copied!", {
+  sonner({
+    variant: "success",
+    message: "Copied!",
     description: "This article has been copied to your clipboard",
-    position: "bottom-right",
-    style: {
-      padding: "16px",
-      backgroundColor: "var(--color-brand-green)",
-    },
-    classNames: {
-      icon: "text-white size-8!",
-      title: "text-headline-4 text-white!",
-      description: "text-body-2 text-white!",
-    },
   });
 };
 
