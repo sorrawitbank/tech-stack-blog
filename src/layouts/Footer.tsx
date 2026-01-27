@@ -8,7 +8,12 @@ function Footer() {
         <span className="text-body-1 text-brown-500">Get in touch</span>
         <ul className="flex gap-4">
           <li>
-            <a className="text-brown-500 hover:text-brown-400 active:text-brown-600">
+            <a
+              href="https://www.linkedin.com/in/sorrawit-amdaeng"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brown-500 hover:text-brown-400 active:text-brown-600"
+            >
               <Linkedin />
             </a>
           </li>

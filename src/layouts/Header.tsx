@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { NavigationButton } from "@/components/common/Button";
 import {
@@ -8,9 +9,16 @@ import {
 import { cn } from "@/lib/utils";
 
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <header className="fixed top-0 left-0 z-50 flex justify-between items-center w-full h-12 px-6 py-3 bg-brown-100 border-b border-brown-300 sm:h-20 sm:px-12 sm:py-4 xl:px-30">
-      <img src="/logo.svg" alt="Logo" className="h-6 text-brown-500 sm:h-11" />
+      <img
+        src="/logo.svg"
+        alt="Logo"
+        onClick={() => navigate("/")}
+        className="h-6 text-brown-500 cursor-pointer sm:h-11"
+      />
       <DropdownMenu>
         <DropdownMenuTrigger className="text-brown-400 outline-none hover:text-brown-500 focus:text-brown-500 data-[state=open]:text-brown-500 sm:hidden">
           <Menu className="cursor-pointer" />
