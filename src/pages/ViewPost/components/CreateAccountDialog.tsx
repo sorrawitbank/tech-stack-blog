@@ -1,3 +1,4 @@
+import React from "react";
 import { X } from "lucide-react";
 import { NavigationButton } from "@/components/common/Button";
 import {
@@ -16,7 +17,7 @@ function CreateAccountDialog({ children }: { children?: React.ReactNode }) {
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent className="flex flex-col gap-6 px-4 pt-4 pb-10 bg-brown-100 border-0 rounded-2xl sm:max-w-120! md:px-6 xl:max-w-155!">
         <AlertDialogHeader>
-          <AlertDialogCancel className="self-end">
+          <AlertDialogCancel className="self-end rounded-full cursor-pointer hover:bg-brown-300">
             <X />
           </AlertDialogCancel>
         </AlertDialogHeader>
@@ -26,11 +27,7 @@ function CreateAccountDialog({ children }: { children?: React.ReactNode }) {
               Create an account to continue
             </h2>
           </AlertDialogTitle>
-          <NavigationButton
-            variant="primary"
-            navigateTo="/signup"
-            className="w-fit"
-          >
+          <NavigationButton variant="primary" navigateTo="/signup">
             Create account
           </NavigationButton>
           <div className="flex justify-center gap-3">
