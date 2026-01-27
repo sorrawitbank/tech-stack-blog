@@ -1,3 +1,5 @@
+import ReactMarkdown from "react-markdown";
+
 function HeroSection() {
   return (
     <section
@@ -30,18 +32,15 @@ function HeroSection() {
       <div className="flex flex-col gap-3 lg:flex-1">
         <div className="flex flex-col gap-1">
           <span className="text-body-3 text-brown-400">- Author</span>
-          <span className="text-headline-3 text-brown-500">Sorrawit A.</span>
+          <h3 className="text-headline-3 text-brown-500">Sorrawit A.</h3>
         </div>
-        <p className="text-body-1 text-brown-400">
-          I am passionate about data science and modern web development. I enjoy
-          sharing practical insights, lessons learned, and experiences from
-          building real-world projects across different technology stacks.
-          <br />
-          <br />
-          When I’m not coding, I spend time exploring new tools, experimenting
-          with ideas, and continuously learning to improve both my technical
-          skills and problem-solving mindset.
-        </p>
+        <div className="markdown text-brown-400">
+          <ReactMarkdown>
+            {
+              "I am passionate about data science and modern web development. I enjoy sharing practical insights, lessons learned, and experiences from building real-world projects across different technology stacks.\n\nWhen I’m not coding, I spend time exploring new tools, experimentingwith ideas, and continuously learning to improve both my technical skills and problem-solving mindset."
+            }
+          </ReactMarkdown>
+        </div>
       </div>
     </section>
   );
