@@ -11,15 +11,14 @@ function useGetPostById(postId: number) {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch(controller);
+    getPost(controller);
 
     return () => {
       controller.abort();
     };
   }, []);
 
-  const fetch = async (controller: AbortController) => {
-    if (isLoading) return;
+  const getPost = async (controller: AbortController) => {
     setIsLoading(true);
     try {
       const data = await fetchPostById(postId, controller);

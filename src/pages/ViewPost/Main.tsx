@@ -20,7 +20,7 @@ function Main() {
       </FullHeightMain>
     );
 
-  if (error || post === null) {
+  if (error || post === null)
     return (
       <FullHeightMain className="flex-col gap-4 lg:gap-6">
         <TriangleAlert className="size-12 min-h-12 text-brown-600" />
@@ -32,7 +32,6 @@ function Main() {
         </NavigationButton>
       </FullHeightMain>
     );
-  }
 
   return (
     <StandardMain className="lg:items-center lg:gap-12">
