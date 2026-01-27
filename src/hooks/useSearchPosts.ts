@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import debounceFunction from "debounce-fn";
 import useGetPosts from "./useGetPosts";
 import { CategoryContext } from "@/contexts/CategoryContext";
+import sonner from "@/utils/sonner";
 
 function useSearchPosts() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function useSearchPosts() {
   const [value, setValue] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { category } = useContext(CategoryContext);
-  const { posts, clearPosts } = useGetPosts({
+  const { posts, error, clearPosts } = useGetPosts({
     category,
     keyword,
     requireKeyword: true,
@@ -26,8 +27,13 @@ function useSearchPosts() {
     clearPosts();
   }, [keyword]);
 
+  useEffect(() => {
+    if (!error) return;
+    sonner({ variant: "error", message: "Error!", description: error });
+  }, [error]);
+
   const debouncedSetKeyword = useMemo(() => {
-    return debounceFunction(setKeyword, { wait: 500 });
+    return debounceFunction(setKeyword, { wait: 600 });
   }, []);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {

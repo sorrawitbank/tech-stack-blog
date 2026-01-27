@@ -18,6 +18,7 @@ function useGetPosts({
   fetchOnCategoryChange = true,
 }: Params) {
   const isFirstRender = useRef<boolean>(true);
+  const prevPage = useRef<number>(1);
   const [data, setData] = useState<PostsResponse>({
     totalPosts: 0,
     totalPages: 0,
@@ -31,7 +32,8 @@ function useGetPosts({
 
   // This effect will not run on the first render.
   useEffect(() => {
-    if (isFirstRender.current) return;
+    // Skip loading if page is 1, or page didn't increase
+    if (page === 1 || page <= prevPage.current || isFirstRender.current) return;
     const controller = new AbortController();
     getPosts(controller);
 
@@ -42,7 +44,7 @@ function useGetPosts({
 
   // This effect will not run on the first render.
   useEffect(() => {
-    if (isFirstRender.current || !fetchOnCategoryChange) return;
+    if (!fetchOnCategoryChange || isFirstRender.current) return;
     const controller = new AbortController();
     getPosts(controller, 1);
 
@@ -50,6 +52,10 @@ function useGetPosts({
       controller.abort();
     };
   }, [category]);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, [posts]);
 
   useEffect(() => {
     isFirstRender.current = false;
@@ -66,7 +72,7 @@ function useGetPosts({
     controller: AbortController,
     pageToFetch: number = page
   ) => {
-    if (isLoading) return;
+    setError("");
     setIsLoading(true);
     try {
       const data = await fetchPosts({
@@ -79,17 +85,16 @@ function useGetPosts({
       const mappedPosts: Post[] = mapToPost(data.posts);
       setData(data);
       setPosts(mappedPosts);
+      prevPage.current = pageToFetch;
     } catch (err) {
-      // Get error message from response data if available
-      if (err instanceof AxiosError) {
-        setError(err.response?.data?.error || err.message);
-      } else if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Failed to fetch post");
+      if (err instanceof Error && err.message !== "canceled") {
+        if (err instanceof AxiosError) {
+          setError(err.response?.data?.error || err.message);
+        } else {
+          setError(err.message || "Failed to fetch posts");
+        }
+        setIsLoading(false);
       }
-    } finally {
-      setIsLoading(false);
     }
   };
 
