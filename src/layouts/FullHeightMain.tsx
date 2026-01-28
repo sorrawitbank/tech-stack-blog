@@ -12,7 +12,7 @@ function FullHeightMain(props: Props) {
       className={cn(
         // Calculate full viewport height minus footer height (152px mobile, 144px desktop)
         // Add padding-top to offset fixed header position
-        "flex justify-center items-center h-[calc(100dvh-9.5rem)] pt-12 sm:h-[calc(100dvh-9rem)] sm:pt-20",
+        "flex justify-center items-center h-[calc(max(20rem,100dvh-9.5rem))] pt-12 sm:h-[calc(max(20rem,100dvh-9rem))] sm:pt-20",
         props.className
       )}
     >
