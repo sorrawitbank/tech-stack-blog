@@ -1,5 +1,4 @@
 import { Spinner } from "../ui/spinner";
-
 import { cn } from "@/lib/utils";
 
 function LoadingIndicator({ className }: { className?: string }) {

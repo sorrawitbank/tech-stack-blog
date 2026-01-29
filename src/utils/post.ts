@@ -1,21 +1,21 @@
-import type { ApiPost, Post } from "@/types/post";
+import type { Post, PostApi } from "@/types/post";
 import { parseISO } from "date-fns";
 
-export function toPost(apiPost: ApiPost): Post {
+export function toPost(postApi: PostApi): Post {
   return {
-    id: apiPost.id,
-    imgSrc: apiPost.image,
-    imgAlt: apiPost.imageAlt ?? "",
-    category: apiPost.category,
-    title: apiPost.title,
-    description: apiPost.description,
-    author: apiPost.author,
-    date: parseISO(apiPost.date),
-    likes: apiPost.likes,
-    content: apiPost.content,
+    id: postApi.id,
+    imgSrc: postApi.image,
+    imgAlt: postApi.imageAlt ?? "",
+    category: postApi.category,
+    title: postApi.title,
+    description: postApi.description,
+    author: postApi.author,
+    date: parseISO(postApi.date),
+    likes: postApi.likes,
+    content: postApi.content,
   };
 }
 
-export function mapToPost(apiPosts: ApiPost[]): Post[] {
-  return apiPosts.map(toPost);
+export function mapToPost(postApis: PostApi[]): Post[] {
+  return postApis.map(toPost);
 }

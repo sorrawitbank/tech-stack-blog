@@ -1,40 +1,45 @@
+import { useContext } from "react";
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectLabel,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { CategoryContext } from "@/contexts/CategoryContext";
+import { cn } from "@/lib/utils";
 
-interface Props {
-  categories: string[];
-  value: string;
-  onValueChange: (value: string) => void;
-}
+function CategorySelector({ className }: { className?: string }) {
+  const { category, categories, handleSelectCategory } =
+    useContext(CategoryContext);
 
-function CategorySelector(props: Props) {
   return (
-    <Select value={props.value} onValueChange={props.onValueChange}>
-      <SelectTrigger className="w-full h-12! text-body-1 bg-white hover:cursor-pointer">
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent position="popper">
-        <SelectGroup>
-          <SelectLabel className="text-brown-600">Category</SelectLabel>
-          {props.categories.map((category) => (
-            <SelectItem
-              key={category}
-              value={category}
-              className="text-brown-400 hover:text-brown-500! hover:cursor-pointer"
-            >
-              {category}
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+    <div className={cn("flex flex-col gap-1 text-brown-400", className)}>
+      <span className="text-body-1">Category</span>
+      <Select value={category} onValueChange={handleSelectCategory}>
+        <SelectTrigger className="w-full h-12! text-body-1 bg-white hover:cursor-pointer">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent position="popper">
+          <SelectGroup>
+            <SelectLabel className="text-brown-600">Category</SelectLabel>
+            <SelectSeparator className="bg-brown-300" />
+            {categories.map((category) => (
+              <SelectItem
+                key={category}
+                value={category}
+                className="text-brown-400 hover:text-brown-500! hover:cursor-pointer"
+              >
+                {category}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
   );
 }
 

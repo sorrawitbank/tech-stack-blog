@@ -1,87 +1,71 @@
-import type { Post, PostsResponse } from "@/types/post";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { CircleAlert, TriangleAlert } from "lucide-react";
 import PostCard from "./PostCard";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
 import { ActionButton } from "@/components/common/Button";
-import { mapToPost } from "@/utils/post";
-import { cn } from "@/lib/utils";
+import usePaginatedPosts from "@/hooks/usePaginatedPosts";
 
-function PostGrid({ selectedCategory }: { selectedCategory: string }) {
-  const [page, setPage] = useState<number>(1);
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [hasMore, setHasMore] = useState<boolean>(false);
+function PostGrid() {
+  const {
+    paginatedPosts,
+    hasMore,
+    isLoading,
+    isPaginationLoading,
+    error,
+    handleLoadMore,
+  } = usePaginatedPosts();
 
-  // Callback when change category
-  useEffect(() => {
-    setPosts([]);
-    setPage(1);
-    fetchPosts(1);
-  }, [selectedCategory]);
-
-  // Callback when load more posts
-  useEffect(() => {
-    if (page === 1) return;
-    fetchPosts(page);
-  }, [page]);
-
-  const fetchPosts = async (pageToFetch: number) => {
-    if (isLoading) return;
-    setIsLoading(true);
-    try {
-      const response = await axios.get<PostsResponse>(
-        "https://blog-post-project-api.vercel.app/posts",
-        {
-          params: {
-            page: pageToFetch,
-            category:
-              selectedCategory === "Highlight" ? null : selectedCategory,
-          },
-        }
+  if (paginatedPosts.length === 0) {
+    if (isLoading)
+      return (
+        <LoadingIndicator className="mb-[calc(max(0px,100svh-36rem))] sm:mb-[calc(max(0px,100svh-40rem))] lg:mb-[calc(max(0px,100svh-41rem))]" />
       );
-      const mapped: Post[] = mapToPost(response.data.posts);
-      setHasMore(response.data.currentPage < response.data.totalPages);
-      setPosts((prev) => [...prev, ...mapped]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
-  const handleLoadMore = () => {
-    setPage((prev) => prev + 1);
-  };
+    if (error)
+      return (
+        <div className="flex flex-col items-center gap-2 mb-[calc(max(0px,100svh-37rem))] sm:mb-[calc(max(0px,100svh-41rem))]">
+          <TriangleAlert className="size-12 min-h-12 text-brown-600" />
+          <h4 className="text-headline-4 text-center text-brown-600">
+            {error}
+          </h4>
+        </div>
+      );
+
+    return (
+      <div className="flex flex-col items-center gap-2 mb-[calc(max(0px,100svh-37rem-28px))] sm:mb-[calc(max(0px,100svh-41rem-28px))]">
+        <CircleAlert className="size-12 min-h-12 text-brown-600" />
+        <div className="flex flex-col gap-1">
+          <h4 className="text-headline-4 text-center text-brown-600">
+            No posts found.
+          </h4>
+          <p className="text-body-1 text-center text-brown-400">
+            Browse other categories to discover more.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="relative flex flex-col items-center gap-12 px-4 pt-6 pb-13 sm:px-12 lg:gap-20 lg:p-0">
-      {posts.length === 0 ? (
-        <LoadingIndicator />
-      ) : (
-        <>
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-x-5 2xl:grid-cols-3">
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-          {hasMore && (
-            <ActionButton
-              variant="text"
-              disabled={isLoading}
-              onClick={handleLoadMore}
-              className={isLoading ? "invisible" : "visible"}
-            >
-              View more
-            </ActionButton>
-          )}
-          <LoadingIndicator
-            className={cn(
-              isLoading ? "visible" : "invisible",
-              "absolute bottom-9 lg:-bottom-5"
-            )}
-          />
-        </>
+    <>
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-x-5 2xl:grid-cols-3">
+        {paginatedPosts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </div>
+      {hasMore && (
+        <ActionButton
+          variant="text"
+          onClick={handleLoadMore}
+          disabled={isPaginationLoading}
+          className={isPaginationLoading ? "invisible" : "visible"}
+        >
+          View more
+        </ActionButton>
       )}
-    </div>
+      {isPaginationLoading && (
+        <LoadingIndicator className="absolute bottom-9 lg:-bottom-5" />
+      )}
+    </>
   );
 }
 
