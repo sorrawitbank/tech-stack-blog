@@ -17,15 +17,10 @@ function BlogSection() {
         >
           Latest articles
         </h3>
-        <div className="flex flex-col gap-4 p-4 text-brown-400 bg-brown-200 sm:px-12 lg:flex-row lg:justify-between lg:items-center lg:gap-0 lg:px-6 lg:rounded-2xl">
-          <div className="hidden lg:block">
-            <CategoryTab />
-          </div>
+        <div className="flex flex-col gap-4 p-4 bg-brown-200 sm:px-12 lg:flex-row lg:justify-between lg:items-center lg:px-6 lg:py-3.25 lg:rounded-2xl">
+          <CategoryTab className="hidden lg:block" />
           <SearchBox />
-          <div className="flex flex-col gap-1 lg:hidden">
-            <span className="text-body-1">Category</span>
-            <CategorySelector />
-          </div>
+          <CategorySelector className="lg:hidden" />
         </div>
       </div>
       <div className="relative flex flex-col items-center gap-12 px-4 pt-6 pb-13 sm:px-12 sm:pt-12 lg:gap-20 lg:p-0">
