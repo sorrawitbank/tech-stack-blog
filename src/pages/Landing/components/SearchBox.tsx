@@ -19,7 +19,7 @@ function SearchBox() {
   } = useSearchPosts();
 
   return (
-    <div className="relative lg:w-[31.25%]">
+    <div className="relative lg:min-w-[31.25%]">
       <Popover modal={false} open={isOpen && posts.length !== 0}>
         <PopoverTrigger asChild>
           <Input
