@@ -17,12 +17,12 @@ function PostGrid() {
   if (paginatedPosts.length === 0) {
     if (isLoading)
       return (
-        <LoadingIndicator className="mb-[calc(max(0px,100svh-36rem))] sm:mb-[calc(max(0px,100svh-40rem))] lg:mb-[calc(max(0px,100svh-41rem))]" />
+        <LoadingIndicator className="mb-[calc(max(0px,100dvh-36rem))] sm:mb-[calc(max(0px,100dvh-40rem))] lg:mb-[calc(max(0px,100dvh-41rem))]" />
       );
 
     if (error)
       return (
-        <div className="flex flex-col items-center gap-2 mb-[calc(max(0px,100svh-37rem))] sm:mb-[calc(max(0px,100svh-41rem))]">
+        <div className="flex flex-col items-center gap-2 mb-[calc(max(0px,100dvh-37rem))] sm:mb-[calc(max(0px,100dvh-41rem))]">
           <TriangleAlert className="size-12 min-h-12 text-brown-600" />
           <h4 className="text-headline-4 text-center text-brown-600">
             {error}
@@ -31,7 +31,7 @@ function PostGrid() {
       );
 
     return (
-      <div className="flex flex-col items-center gap-2 mb-[calc(max(0px,100svh-37rem-28px))] sm:mb-[calc(max(0px,100svh-41rem-28px))]">
+      <div className="flex flex-col items-center gap-2 mb-[calc(max(0px,100dvh-37rem-28px))] sm:mb-[calc(max(0px,100dvh-41rem-28px))]">
         <CircleAlert className="size-12 min-h-12 text-brown-600" />
         <div className="flex flex-col gap-1">
           <h4 className="text-headline-4 text-center text-brown-600">
