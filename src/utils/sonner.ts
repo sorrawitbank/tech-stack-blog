@@ -15,6 +15,8 @@ function sonner(params: Params) {
         style: {
           padding: "16px",
           backgroundColor: "var(--color-brand-green)",
+          backdropFilter: "blur(20px)",
+          border: "0px",
         },
         classNames: {
           icon: "text-white size-8!",
@@ -30,6 +32,8 @@ function sonner(params: Params) {
         style: {
           padding: "16px",
           backgroundColor: "var(--color-brand-red)",
+          backdropFilter: "blur(20px)",
+          border: "0px",
         },
         classNames: {
           icon: "text-white size-8!",
