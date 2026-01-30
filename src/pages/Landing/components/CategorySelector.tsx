@@ -10,14 +10,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CategoryContext } from "@/contexts/CategoryContext";
-import { cn } from "@/lib/utils";
 
-function CategorySelector({ className }: { className?: string }) {
+function CategorySelector() {
   const { category, categories, handleSelectCategory } =
     useContext(CategoryContext);
 
   return (
-    <div className={cn("flex flex-col gap-1 text-brown-400", className)}>
+    <div className="flex flex-col gap-1 text-brown-400">
       <span className="text-body-1">Category</span>
       <Select value={category} onValueChange={handleSelectCategory}>
         <SelectTrigger className="w-full h-12! text-body-1 bg-white hover:cursor-pointer">

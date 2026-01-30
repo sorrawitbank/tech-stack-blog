@@ -3,10 +3,12 @@ import { format } from "date-fns";
 import ReactMarkdown from "react-markdown";
 import AuthorCard from "./components/AuthorCard";
 import CategoryTag from "@/components/common/CategoryTag";
+import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import { PostContext } from "@/contexts/PostContext";
 
 function ArticleSection() {
   const { post } = useContext(PostContext);
+  const { isLarge, isXLarge } = useContext(MediaQueryContext);
   if (post === null) return;
 
   return (
@@ -24,7 +26,10 @@ function ArticleSection() {
         </div>
         <h2
           id="article-label"
-          className="text-headline-3 text-brown-600 xl:text-headline-2"
+          className={
+            (isXLarge ? "text-headline-2" : "text-headline-3") +
+            " text-brown-600"
+          }
         >
           {post.title}
         </h2>
@@ -32,7 +37,7 @@ function ArticleSection() {
       <div className="markdown text-brown-500">
         <ReactMarkdown>{post.content}</ReactMarkdown>
       </div>
-      <AuthorCard className="lg:hidden" />
+      {!isLarge && <AuthorCard />}
     </section>
   );
 }

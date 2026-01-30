@@ -8,10 +8,12 @@ import LoadingIndicator from "@/components/common/LoadingIndicator";
 import FullHeightMain from "@/layouts/FullHeightMain";
 import StandardMain from "@/layouts/StandardMain";
 import { NavigationButton } from "@/components/common/Button";
+import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import { PostContext } from "@/contexts/PostContext";
 
 function Main() {
   const { post, isLoading, error } = useContext(PostContext);
+  const { isLarge } = useContext(MediaQueryContext);
 
   if (isLoading)
     return (
@@ -46,7 +48,9 @@ function Main() {
           <ShareSection />
           <CommentSection />
         </div>
-        <AuthorCard className="sticky hidden flex-1 min-w-[305px] h-fit lg:flex lg:top-28 2xl:min-w-100" />
+        {isLarge && (
+          <AuthorCard className="sticky flex-1 min-w-[305px] h-fit lg:top-28 2xl:min-w-100" />
+        )}
       </div>
     </StandardMain>
   );

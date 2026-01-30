@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { X } from "lucide-react";
 import { NavigationButton } from "@/components/common/Button";
 import {
@@ -10,8 +10,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 
 function CreateAccountDialog({ children }: { children?: React.ReactNode }) {
+  const { isXLarge } = useContext(MediaQueryContext);
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
@@ -23,7 +26,12 @@ function CreateAccountDialog({ children }: { children?: React.ReactNode }) {
         </AlertDialogHeader>
         <div className="flex flex-col items-center gap-4 xl:gap-10">
           <AlertDialogTitle asChild>
-            <h2 className="text-headline-3 text-center text-brown-600 xl:text-headline-2">
+            <h2
+              className={
+                (isXLarge ? "text-headline-2" : "text-headline-3") +
+                " text-center text-brown-600"
+              }
+            >
               Create an account to continue
             </h2>
           </AlertDialogTitle>
