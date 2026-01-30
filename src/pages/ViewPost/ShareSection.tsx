@@ -22,7 +22,7 @@ function ShareSection() {
     <section
       id="share-section"
       aria-label="Share"
-      className="flex flex-col gap-6 p-4 bg-brown-200 sm:px-12 md:px-6 md:rounded-2xl xl:flex-row xl:justify-between"
+      className="flex flex-col gap-6 p-4 bg-brown-200 sm:px-12 lg:rounded-2xl xl:flex-row xl:justify-between"
     >
       <CreateAccountDialog>
         <ActionButton variant="secondary">
@@ -30,7 +30,7 @@ function ShareSection() {
           {post.likes}
         </ActionButton>
       </CreateAccountDialog>
-      <div className="flex gap-2 sm:justify-between md:flex-col md:justify-start md:gap-6 lg:flex-row lg:justify-between xl:justify-start xl:gap-3">
+      <div className="flex gap-2 sm:justify-between lg:flex-row lg:justify-between xl:justify-start xl:gap-3">
         <ActionButton
           variant="secondary"
           onClick={handleCopyLink}

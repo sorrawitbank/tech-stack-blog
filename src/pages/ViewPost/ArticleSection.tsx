@@ -13,7 +13,7 @@ function ArticleSection() {
     <section
       id="article-section"
       aria-labelledby="article-label"
-      className="flex flex-col gap-6 px-4 pt-6 pb-10 sm:px-12 sm:pt-8 md:p-0"
+      className="flex flex-col gap-6 px-4 pt-6 pb-10 sm:px-12 sm:pt-8 lg:p-0"
     >
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-4">
@@ -32,7 +32,7 @@ function ArticleSection() {
       <div className="markdown text-brown-500">
         <ReactMarkdown>{post.content}</ReactMarkdown>
       </div>
-      <AuthorCard className="md:hidden" />
+      <AuthorCard className="lg:hidden" />
     </section>
   );
 }
