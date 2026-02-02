@@ -10,10 +10,13 @@ import StandardMain from "@/layouts/StandardMain";
 import { NavigationButton } from "@/components/common/Button";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import { PostContext } from "@/contexts/PostContext";
+import { ScrollContext } from "@/contexts/ScrollContext";
+import { cn } from "@/lib/utils";
 
 function Main() {
-  const { post, isLoading, error } = useContext(PostContext);
   const { isLarge } = useContext(MediaQueryContext);
+  const { post, isLoading, error } = useContext(PostContext);
+  const { scrollDirection } = useContext(ScrollContext);
 
   if (isLoading)
     return (
@@ -49,7 +52,13 @@ function Main() {
           <CommentSection />
         </div>
         {isLarge && (
-          <AuthorCard className="sticky flex-1 min-w-[305px] h-fit lg:top-28 2xl:min-w-100" />
+          <AuthorCard
+            className={cn(
+              "sticky flex-1 min-w-[305px] h-fit 2xl:min-w-100",
+              "transition-discrete duration-300 ease-in-out",
+              scrollDirection === "down" ? "top-8" : "top-28"
+            )}
+          />
         )}
       </div>
     </StandardMain>

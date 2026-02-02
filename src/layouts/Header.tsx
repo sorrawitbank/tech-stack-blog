@@ -8,14 +8,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
+import { ScrollContext } from "@/contexts/ScrollContext";
 import { cn } from "@/lib/utils";
 
 function Header() {
   const navigate = useNavigate();
   const { isSmall } = useContext(MediaQueryContext);
+  const { scrollDirection } = useContext(ScrollContext);
 
   return (
-    <header className="fixed top-0 left-0 z-50 flex justify-between items-center w-full h-12 px-6 py-3 bg-brown-100 border-b border-brown-300 sm:h-20 sm:px-12 sm:py-4 xl:px-30">
+    <header
+      className={cn(
+        "fixed top-0 left-0 z-50 flex justify-between items-center w-full h-12 px-6 py-3 bg-brown-100 border-b border-brown-300 sm:h-20 sm:px-12 sm:py-4 xl:px-30",
+        "transition-transform duration-300 ease-in-out",
+        scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
+      )}
+    >
       <img
         src="/logo.svg"
         alt="Logo"
