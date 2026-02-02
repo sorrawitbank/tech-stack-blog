@@ -5,8 +5,8 @@ function useuseLogin() {
   const { errors, validateFields } = useValidateForm();
 
   const refs: Refs = {
-    email: useRef<HTMLInputElement>(null),
-    password: useRef<HTMLInputElement>(null),
+    email: useRef<HTMLInputElement>(document.createElement("input")),
+    password: useRef<HTMLInputElement>(document.createElement("input")),
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
