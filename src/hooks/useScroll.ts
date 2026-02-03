@@ -4,20 +4,24 @@ export type Direction = "up" | "down";
 
 function useScroll() {
   const [scrollDirection, setScrollDirection] = useState<Direction>("up");
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
+    setScrollY(lastScrollY);
 
     const updateScrollDirection = () => {
-      const scrollY = window.pageYOffset;
-      const direction = scrollY > lastScrollY ? "down" : "up";
+      const currentScrollY = window.pageYOffset;
+      const direction = currentScrollY > lastScrollY ? "down" : "up";
+      setScrollY(currentScrollY);
       if (
         direction !== scrollDirection &&
-        (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)
+        (currentScrollY - lastScrollY > 10 ||
+          currentScrollY - lastScrollY < -10)
       ) {
         setScrollDirection(direction);
       }
-      lastScrollY = scrollY > 0 ? scrollY : 0;
+      lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
     };
     window.addEventListener("scroll", updateScrollDirection);
     return () => {
@@ -25,7 +29,7 @@ function useScroll() {
     };
   }, [scrollDirection]);
 
-  return { scrollDirection };
+  return { scrollDirection, scrollY };
 }
 
 export default useScroll;

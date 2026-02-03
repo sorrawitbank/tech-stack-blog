@@ -21,7 +21,9 @@ function Header() {
       className={cn(
         "fixed top-0 left-0 z-50 flex justify-between items-center w-full h-12 px-6 py-3 bg-brown-100 border-b border-brown-300 sm:h-20 sm:px-12 sm:py-4 xl:px-30",
         "transition-transform duration-300 ease-in-out",
-        scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
+        scrollDirection === "down" && scrollY > 60
+          ? "-translate-y-full"
+          : "translate-y-0"
       )}
     >
       <img
