@@ -7,6 +7,8 @@ import ViewPost from "./pages/ViewPost";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/MemberManagement/Profile";
+import ResetPassword from "./pages/MemberManagement/ResetPassword";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Route path="/post/:postId" element={<ViewPost />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Toaster />
