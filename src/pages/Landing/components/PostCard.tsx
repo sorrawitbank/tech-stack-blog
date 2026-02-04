@@ -1,7 +1,9 @@
 import type { Post } from "@/types/post";
 import { useNavigate } from "react-router-dom";
+import { User } from "lucide-react";
 import { format } from "date-fns";
 import CategoryTag from "@/components/common/CategoryTag";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 
 function PostCard({ post }: { post: Post }) {
@@ -35,11 +37,16 @@ function PostCard({ post }: { post: Post }) {
       </div>
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <img
-            src="https://avatars.githubusercontent.com/u/198432307"
-            alt="Author"
-            className="size-6 text-brown-500 object-cover rounded-full"
-          />
+          <Avatar className="size-6">
+            <AvatarImage
+              src="https://avatars.githubusercontent.com/u/198432307"
+              alt="Author"
+              className="text-brown-500 object-cover"
+            />
+            <AvatarFallback className="bg-brown-300">
+              <User className="size-3/5 text-brown-400" />
+            </AvatarFallback>
+          </Avatar>
           <span className="text-body-2 text-brown-500">{post.author}</span>
         </div>
         <Separator orientation="vertical" className="h-4.5! bg-brown-300" />

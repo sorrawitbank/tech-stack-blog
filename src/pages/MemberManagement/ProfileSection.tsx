@@ -1,5 +1,7 @@
 import type { MemberPage } from "./MemberLayout";
 import { useContext } from "react";
+import { User } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 
@@ -11,11 +13,16 @@ function ProfileSection({ page }: { page: MemberPage }) {
       className="flex items-center gap-3 px-4 py-6 lg:p-0"
     >
       {/* //TODO: change it so that it can get user from database */}
-      <img
-        src="https://static.bangkokpost.com/media/content/20240913/c1_2865088.jpg"
-        alt="Moodeng ja"
-        className="size-10 text-brown-500 object-cover rounded-full lg:size-15"
-      />
+      <Avatar className="size-10 lg:size-15">
+        <AvatarImage
+          src="https://static.bangkokpost.com/media/content/20240913/c1_2865088.jpg"
+          alt="Moodeng ja"
+          className="text-brown-500 object-cover"
+        />
+        <AvatarFallback className="bg-brown-400">
+          <User className="size-3/5 text-white" />
+        </AvatarFallback>
+      </Avatar>
       <div className="flex items-center gap-4">
         <h3
           className={
