@@ -34,7 +34,7 @@ function usePaginatedPosts() {
     if (!error) return;
     setIsPaginationLoading(false);
     setPage((prev) => prev - 1);
-    sonner({ variant: "error", message: "Error!", description: error });
+    sonner.error({ message: "Error!", description: error });
   }, [error]);
 
   const handleLoadMore = () => {

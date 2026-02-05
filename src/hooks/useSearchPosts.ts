@@ -29,7 +29,7 @@ function useSearchPosts() {
 
   useEffect(() => {
     if (!error) return;
-    sonner({ variant: "error", message: "Error!", description: error });
+    sonner.error({ message: "Error!", description: error });
   }, [error]);
 
   const debouncedSetKeyword = useMemo(() => {

@@ -7,8 +7,7 @@ import sonner from "@/utils/sonner";
 
 const handleCopyLink = () => {
   navigator.clipboard.writeText(window.location.href);
-  sonner({
-    variant: "success",
+  sonner.success({
     message: "Copied!",
     description: "This article has been copied to your clipboard",
   });
