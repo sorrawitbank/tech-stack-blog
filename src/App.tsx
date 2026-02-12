@@ -7,8 +7,8 @@ import ViewPost from "./pages/ViewPost";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
-import Profile from "./pages/MemberManagement/Profile";
-import ResetPassword from "./pages/MemberManagement/ResetPassword";
+import Profile from "./pages/Member/Profile";
+import ResetPassword from "./pages/Member/ResetPassword";
 
 function App() {
   return (

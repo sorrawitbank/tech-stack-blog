@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { RotateCw, User } from "lucide-react";
 import ProfileSection from "./ProfileSection";
@@ -6,6 +7,15 @@ import Header from "@/layouts/Header";
 import { cn } from "@/lib/utils";
 
 export type MemberPage = "profile" | "reset-password";
+
+const pageDetails: Record<MemberPage, { text: string; icon: React.ReactNode }> =
+  {
+    profile: { text: "Profile", icon: <User /> },
+    "reset-password": {
+      text: "Reset password",
+      icon: <RotateCw className="size-5.5 rotate-135" />,
+    },
+  };
 
 interface Props {
   page: MemberPage;
@@ -25,34 +35,25 @@ function MemberLayout(props: Props) {
             <aside className="md:w-49">
               <nav>
                 <ul className="flex md:flex-col">
-                  <li className="cursor-pointer">
-                    <Link
-                      to="/profile"
-                      className={cn(
-                        "flex gap-3 px-4 py-3",
-                        props.page === "profile"
-                          ? "text-brown-500"
-                          : "text-brown-400"
-                      )}
+                  {Object.entries(pageDetails).map(([page, detail]) => (
+                    <li
+                      key={page}
+                      className="md:rounded-md hover:bg-brown-200"
                     >
-                      <User />
-                      <span className="text-body-1">Profile</span>
-                    </Link>
-                  </li>
-                  <li className="cursor-pointer">
-                    <Link
-                      to="/reset-password"
-                      className={cn(
-                        "flex items-center gap-3 px-4 py-3",
-                        props.page === "reset-password"
-                          ? "text-brown-500"
-                          : "text-brown-400"
-                      )}
-                    >
-                      <RotateCw className="size-5.5 rotate-135" />
-                      <span className="text-body-1">Reset password</span>
-                    </Link>
-                  </li>
+                      <Link
+                        to={`/${page}`}
+                        className={cn(
+                          "flex gap-3 px-4 py-3",
+                          props.page === page
+                            ? "text-brown-500"
+                            : "text-brown-400"
+                        )}
+                      >
+                        {detail.icon}
+                        <span className="text-body-1">{detail.text}</span>
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </nav>
             </aside>
