@@ -1,12 +1,11 @@
 import type { MemberPage } from "./MemberLayout";
-import { useContext } from "react";
 import { User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 
 function ProfileSection({ page }: { page: MemberPage }) {
-  const { isLarge } = useContext(MediaQueryContext);
+  const { isLarge } = useMediaQueryContext();
   return (
     <section
       aria-label="Profile"

@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { TriangleAlert } from "lucide-react";
 import ArticleSection from "./ArticleSection";
 import CommentSection from "./CommentSection";
@@ -8,15 +7,15 @@ import LoadingIndicator from "@/components/common/LoadingIndicator";
 import FullHeightMain from "@/layouts/FullHeightMain";
 import StandardMain from "@/layouts/StandardMain";
 import { NavigationButton } from "@/components/common/Button";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
-import { PostContext } from "@/contexts/PostContext";
-import { ScrollContext } from "@/contexts/ScrollContext";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
+import { usePostContext } from "@/contexts/PostContext";
+import { useScrollContext } from "@/contexts/ScrollContext";
 import { cn } from "@/lib/utils";
 
 function Main() {
-  const { isLarge } = useContext(MediaQueryContext);
-  const { post, isLoading, error } = useContext(PostContext);
-  const { scrollDirection } = useContext(ScrollContext);
+  const { isLarge } = useMediaQueryContext();
+  const { post, isLoading, error } = usePostContext();
+  const { scrollDirection } = useScrollContext();
 
   if (isLoading)
     return (

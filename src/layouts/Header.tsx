@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { NavigationButton } from "@/components/common/Button";
@@ -7,14 +6,14 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
-import { ScrollContext } from "@/contexts/ScrollContext";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
+import { useScrollContext } from "@/contexts/ScrollContext";
 import { cn } from "@/lib/utils";
 
 function Header() {
   const navigate = useNavigate();
-  const { isSmall } = useContext(MediaQueryContext);
-  const { scrollDirection } = useContext(ScrollContext);
+  const { isSmall } = useMediaQueryContext();
+  const { scrollDirection, scrollY } = useScrollContext();
 
   return (
     <header

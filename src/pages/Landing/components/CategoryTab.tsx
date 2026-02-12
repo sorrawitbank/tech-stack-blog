@@ -1,11 +1,9 @@
-import { useContext } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CategoryContext } from "@/contexts/CategoryContext";
+import { useCategoryContext } from "@/contexts/CategoryContext";
 
 function CategoryTab() {
-  const { category, categories, handleSelectCategory } =
-    useContext(CategoryContext);
+  const { category, categories, handleSelectCategory } = useCategoryContext();
 
   return (
     <Tabs

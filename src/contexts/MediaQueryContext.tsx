@@ -1,7 +1,7 @@
-import { createContext } from "react";
+import React, { createContext, useContext } from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
-export const MediaQueryContext = createContext({
+const MediaQueryContext = createContext({
   isSmall: false,
   isMedium: false,
   isLarge: false,
@@ -23,4 +23,8 @@ export function MediaQueryProvider({
       {children}
     </MediaQueryContext.Provider>
   );
+}
+
+export function useMediaQueryContext() {
+  return useContext(MediaQueryContext);
 }

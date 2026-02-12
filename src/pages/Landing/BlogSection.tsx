@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import CategorySelector from "./components/CategorySelector";
 import CategoryTab from "./components/CategoryTab";
 import PostGrid from "./components/PostGrid";
 import SearchBox from "./components/SearchBox";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 
 function BlogSection() {
-  const { isLarge } = useContext(MediaQueryContext);
+  const { isLarge } = useMediaQueryContext();
 
   return (
     <section

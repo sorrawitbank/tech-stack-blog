@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import ReactMarkdown from "react-markdown";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 
 function HeroSection() {
-  const { isXLarge } = useContext(MediaQueryContext);
+  const { isXLarge } = useMediaQueryContext();
 
   return (
     <section

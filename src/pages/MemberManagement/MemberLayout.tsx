@@ -1,8 +1,7 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { RotateCw, User } from "lucide-react";
 import ProfileSection from "./ProfileSection";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import Header from "@/layouts/Header";
 import { cn } from "@/lib/utils";
 
@@ -14,7 +13,7 @@ interface Props {
 }
 
 function MemberLayout(props: Props) {
-  const { isMedium } = useContext(MediaQueryContext);
+  const { isMedium } = useMediaQueryContext();
 
   return (
     <>

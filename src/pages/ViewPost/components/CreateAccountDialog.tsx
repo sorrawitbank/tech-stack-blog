@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavigationButton } from "@/components/common/Button";
 import Dialog from "@/components/common/Dialog";
 import {
   AlertDialogDescription,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 
 function CreateAccountDialog({ children }: { children?: React.ReactNode }) {
-  const { isXLarge } = useContext(MediaQueryContext);
+  const { isXLarge } = useMediaQueryContext();
 
   return (
     <Dialog trigger={children}>

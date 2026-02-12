@@ -1,7 +1,7 @@
 import type { Post } from "@/types/post";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useGetPosts from "./useGetPosts";
-import { CategoryContext } from "@/contexts/CategoryContext";
+import { useCategoryContext } from "@/contexts/CategoryContext";
 import sonner from "@/utils/sonner";
 
 function usePaginatedPosts() {
@@ -10,7 +10,7 @@ function usePaginatedPosts() {
   const [hasMore, setHasMore] = useState<boolean>(false);
   const [isPaginationLoading, setIsPaginationLoading] =
     useState<boolean>(false);
-  const { category } = useContext(CategoryContext);
+  const { category } = useCategoryContext();
   const { data, posts, isLoading, error } = useGetPosts({
     page,
     category,

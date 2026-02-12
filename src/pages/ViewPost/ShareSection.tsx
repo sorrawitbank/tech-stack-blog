@@ -1,8 +1,7 @@
-import { useContext } from "react";
 import { Copy, Facebook, Linkedin, Smile, Twitter } from "lucide-react";
 import CreateAccountDialog from "./components/CreateAccountDialog";
 import { ActionButton } from "@/components/common/Button";
-import { PostContext } from "@/contexts/PostContext";
+import { usePostContext } from "@/contexts/PostContext";
 import sonner from "@/utils/sonner";
 
 const handleCopyLink = () => {
@@ -14,7 +13,7 @@ const handleCopyLink = () => {
 };
 
 function ShareSection() {
-  const { post } = useContext(PostContext);
+  const { post } = usePostContext();
   if (post === null) return;
 
   return (

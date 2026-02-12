@@ -1,14 +1,13 @@
-import { useContext } from "react";
 import { format } from "date-fns";
 import ReactMarkdown from "react-markdown";
 import AuthorCard from "./components/AuthorCard";
 import CategoryTag from "@/components/common/CategoryTag";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
-import { PostContext } from "@/contexts/PostContext";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
+import { usePostContext } from "@/contexts/PostContext";
 
 function ArticleSection() {
-  const { post } = useContext(PostContext);
-  const { isLarge, isXLarge } = useContext(MediaQueryContext);
+  const { post } = usePostContext();
+  const { isLarge, isXLarge } = useMediaQueryContext();
   if (post === null) return;
 
   return (

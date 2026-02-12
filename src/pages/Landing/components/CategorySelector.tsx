@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import {
   Select,
   SelectContent,
@@ -9,11 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CategoryContext } from "@/contexts/CategoryContext";
+import { useCategoryContext } from "@/contexts/CategoryContext";
 
 function CategorySelector() {
-  const { category, categories, handleSelectCategory } =
-    useContext(CategoryContext);
+  const { category, categories, handleSelectCategory } = useCategoryContext();
 
   return (
     <div className="flex flex-col gap-1 text-brown-400">
