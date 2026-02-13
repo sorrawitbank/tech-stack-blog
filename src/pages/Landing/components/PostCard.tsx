@@ -16,13 +16,17 @@ function PostCard({ post }: { post: Post }) {
   return (
     <article className="flex flex-col gap-4 lg:gap-6">
       <img
-        src={post.imgSrc}
-        alt={post.imgAlt}
+        src={post.image}
+        alt={post.imageAlt}
         onClick={handleNavigate}
         className="aspect-343/212 text-brown-500 object-cover rounded-2xl hover:cursor-pointer hover:shadow-[0px_0px_12px_4px_rgb(0_0_0_/0.2)] md:aspect-59/36"
       />
       <div className="flex flex-col gap-2 lg:gap-3">
-        <CategoryTag>{post.category}</CategoryTag>
+        <ul className="flex flex-wrap gap-2 sm:gap-3 md:gap-2 lg:gap-3">
+          {post.categories.map((category) => (
+            <CategoryTag key={category}>{category}</CategoryTag>
+          ))}
+        </ul>
         <div className="flex flex-col gap-2">
           <h4
             onClick={handleNavigate}
@@ -39,7 +43,7 @@ function PostCard({ post }: { post: Post }) {
         <div className="flex items-center gap-2">
           <Avatar className="size-6">
             <AvatarImage
-              src="https://avatars.githubusercontent.com/u/198432307"
+              src={post.author.profilePic}
               alt="Author"
               className="text-brown-500 object-cover"
             />
@@ -47,11 +51,11 @@ function PostCard({ post }: { post: Post }) {
               <User className="size-3/5 text-brown-400" />
             </AvatarFallback>
           </Avatar>
-          <span className="text-body-2 text-brown-500">{post.author}</span>
+          <span className="text-body-2 text-brown-500">{post.author.name}</span>
         </div>
         <Separator orientation="vertical" className="h-4.5! bg-brown-300" />
         <span className="text-body-2 text-brown-400">
-          {format(post.date, "dd MMMM yyyy")}
+          {format(post.createdAt, "dd MMMM yyyy")}
         </span>
       </div>
     </article>

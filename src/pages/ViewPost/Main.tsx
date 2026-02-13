@@ -40,8 +40,8 @@ function Main() {
   return (
     <StandardMain className="lg:items-center lg:gap-12">
       <img
-        src={post.imgSrc}
-        alt={post.imgAlt}
+        src={post.image}
+        alt={post.imageAlt}
         className="aspect-375/184 w-full max-w-7xl max-h-150 text-brown-500 object-cover lg:aspect-1200/587 lg:rounded-2xl"
       />
       <div className="flex justify-between gap-8 xl:gap-20 2xl:gap-32">

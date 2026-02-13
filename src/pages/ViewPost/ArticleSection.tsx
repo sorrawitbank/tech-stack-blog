@@ -17,12 +17,14 @@ function ArticleSection() {
       className="flex flex-col gap-6 px-4 pt-6 pb-10 sm:px-12 sm:pt-8 lg:p-0"
     >
       <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-4">
-          <CategoryTag>{post.category}</CategoryTag>
+        <ul className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          {post.categories.map((category) => (
+            <CategoryTag key={category}>{category}</CategoryTag>
+          ))}
           <span className="text-body-1 text-brown-400">
-            {format(post.date, "dd MMMM yyyy")}
+            {format(post.createdAt, "dd MMMM yyyy")}
           </span>
-        </div>
+        </ul>
         <h2
           id="article-label"
           className={
@@ -34,6 +36,7 @@ function ArticleSection() {
         </h2>
       </div>
       <div className="markdown text-brown-500">
+        <ReactMarkdown>{post.description}</ReactMarkdown>
         <ReactMarkdown>{post.content}</ReactMarkdown>
       </div>
       {!isLarge && <AuthorCard />}

@@ -86,12 +86,12 @@ function useGetPosts({
       setData(data);
       setPosts(mappedPosts);
       prevPage.current = pageToFetch;
-    } catch (err) {
-      if (err instanceof Error && err.message !== "canceled") {
-        if (err instanceof AxiosError) {
-          setError(err.response?.data?.error || err.message);
+    } catch (error) {
+      if (error instanceof Error && error.message !== "canceled") {
+        if (error instanceof AxiosError) {
+          setError(error.response?.data?.message || "Failed to fetch posts");
         } else {
-          setError(err.message || "Failed to fetch posts");
+          setError(error.message || "Failed to fetch posts");
         }
         setIsLoading(false);
       }

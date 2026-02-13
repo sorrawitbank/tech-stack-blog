@@ -24,14 +24,14 @@ function useGetPostById(postId: number) {
       const data = await fetchPostById(postId, controller);
       const mappedPost: Post = toPost(data);
       setPost(mappedPost);
-    } catch (err) {
+    } catch (error) {
       // Get error message from response data if available
-      if (err instanceof AxiosError) {
-        setError(err.response?.data?.error || err.message);
-      } else if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Failed to fetch post");
+      if (error instanceof Error) {
+        if (error instanceof AxiosError) {
+          setError(error.response?.data?.message || "Failed to fetch posts");
+        } else {
+          setError(error.message || "Failed to fetch posts");
+        }
       }
     } finally {
       setIsLoading(false);

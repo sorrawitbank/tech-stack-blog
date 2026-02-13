@@ -5,7 +5,7 @@ interface FetchPostsParams extends PostsParams {
   controller: AbortController;
 }
 
-const BASE_URL = "https://blog-post-project-api.vercel.app/posts";
+const POSTS_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/posts`;
 
 export async function fetchPosts({
   page,
@@ -14,7 +14,7 @@ export async function fetchPosts({
   keyword,
   controller,
 }: FetchPostsParams) {
-  const response = await axios.get<PostsResponse>(BASE_URL, {
+  const response = await axios.get<PostsResponse>(POSTS_BASE_URL, {
     params: {
       page: page === 1 ? null : page,
       limit: limit === 6 ? null : limit,
@@ -31,7 +31,7 @@ export async function fetchPostById(
   postId: number,
   controller: AbortController
 ) {
-  const response = await axios.get<PostApi>(`${BASE_URL}/${postId}`, {
+  const response = await axios.get<PostApi>(`${POSTS_BASE_URL}/${postId}`, {
     signal: controller.signal,
   });
 
