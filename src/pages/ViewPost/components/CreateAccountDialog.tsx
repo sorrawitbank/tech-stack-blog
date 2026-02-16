@@ -5,13 +5,15 @@ import {
   AlertDialogDescription,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { useAuthContext } from "@/contexts/AuthContext";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 
 function CreateAccountDialog({ children }: { children?: React.ReactNode }) {
+  const { isAuthenticated } = useAuthContext();
   const { isXLarge } = useMediaQueryContext();
 
   return (
-    <Dialog trigger={children}>
+    <Dialog openWhenTrigger={!isAuthenticated} trigger={children}>
       <AlertDialogTitle asChild>
         <h2
           className={

@@ -36,10 +36,7 @@ function MemberLayout(props: Props) {
               <nav>
                 <ul className="flex md:flex-col">
                   {Object.entries(pageDetails).map(([page, detail]) => (
-                    <li
-                      key={page}
-                      className="md:rounded-md hover:bg-brown-200"
-                    >
+                    <li key={page} className="md:rounded-md hover:bg-brown-200">
                       <Link
                         to={`/${page}`}
                         className={cn(

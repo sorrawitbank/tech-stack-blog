@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 function Main() {
   return (
     <main className="md:flex-1">
-      {/* //TODO: change it so that it can get user from database */}
       <form className="px-4 pt-6 pb-10 bg-brown-200 sm:p-8 md:rounded-2xl lg:p-10">
         <FieldSet className="items-start gap-6 md:gap-8 lg:gap-10">
           <FieldGroup className="gap-6 text-brown-400 lg:gap-7">
@@ -53,6 +52,7 @@ function Main() {
               />
             </Field>
           </FieldGroup>
+          {/* //TODO: Reset password */}
           <ActionButton variant="primary">Reset password</ActionButton>
         </FieldSet>
       </form>
