@@ -14,7 +14,6 @@ const handleCopyLink = () => {
 
 function ShareSection() {
   const { post } = usePostContext();
-  if (post === null) return;
 
   return (
     <section
@@ -25,7 +24,7 @@ function ShareSection() {
       <CreateAccountDialog>
         <ActionButton variant="secondary">
           <Smile />
-          {post.likes}
+          {post!.likes}
         </ActionButton>
       </CreateAccountDialog>
       <div className="flex gap-2 sm:justify-between lg:flex-row lg:justify-between xl:justify-start xl:gap-3">

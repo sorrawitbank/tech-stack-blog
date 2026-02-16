@@ -1,11 +1,12 @@
 import type { Post, PostApi } from "@/types/post";
 import { parseISO } from "date-fns";
 import { mapToComment } from "./comment";
+import { toUser } from "./user";
 
 export function toPost(postApi: PostApi): Post {
   return {
     id: postApi.id,
-    author: postApi.author,
+    author: toUser(postApi.author),
     image: postApi.image,
     imageAlt: postApi.imageAlt ?? "",
     categories: postApi.categories,
