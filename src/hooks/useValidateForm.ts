@@ -6,8 +6,10 @@ import validateUsername from "@/utils/validateUsername";
 
 type Keys = "name" | "username" | "email" | "password";
 
-export type Refs = Partial<Record<Keys, React.RefObject<HTMLInputElement>>>;
+export type Refs = Record<Keys, React.RefObject<HTMLInputElement>>;
+
 type Validations = Record<Keys, (value: string) => string | null>;
+
 type Errors = Partial<Record<Keys, string>>;
 
 const validations: Validations = {
@@ -20,7 +22,7 @@ const validations: Validations = {
 function useValidateForm() {
   const [errors, setErrors] = useState<Errors>({});
 
-  const validateFields = (refs: Refs) => {
+  const validateFields = (refs: Partial<Refs>) => {
     const newErrors: Errors = {};
     for (const [key, ref] of Object.entries(refs)) {
       const error = validations[key as Keys](ref.current.value);
