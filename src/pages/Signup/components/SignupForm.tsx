@@ -10,11 +10,11 @@ import { Input } from "@/components/ui/input";
 import useSignup from "@/hooks/useSignup";
 import { cn } from "@/lib/utils";
 
-function SignupForm() {
-  const { refs, errors, handleSubmit } = useSignup();
+type Props = Omit<ReturnType<typeof useSignup>, "isSuccess">;
 
+function SignupForm(props: Props) {
   return (
-    <form className="w-full" onSubmit={handleSubmit}>
+    <form className="w-full" onSubmit={props.handleSubmit}>
       <FieldSet className="items-center gap-6 lg:gap-10">
         <FieldGroup className="gap-6 text-brown-400 lg:gap-7">
           <Field className="gap-1">
@@ -24,15 +24,16 @@ function SignupForm() {
             <Input
               id="name"
               type="text"
-              ref={refs.name}
+              ref={props.refs.name}
               placeholder="Full name"
               autoComplete="name"
+              disabled={props.isLoading}
               className={cn(
                 "h-12 text-body-1 bg-white placeholder:text-brown-400",
-                errors.name && "border-brand-red"
+                props.errors.name && "border-brand-red"
               )}
             />
-            <FieldError>{errors.name}</FieldError>
+            <FieldError>{props.errors.name}</FieldError>
           </Field>
           <Field className="gap-1">
             <FieldLabel htmlFor="username" className="text-body-1">
@@ -41,15 +42,16 @@ function SignupForm() {
             <Input
               id="username"
               type="text"
-              ref={refs.username}
+              ref={props.refs.username}
               placeholder="Username"
               autoComplete="username"
+              disabled={props.isLoading}
               className={cn(
                 "h-12 text-body-1 bg-white placeholder:text-brown-400",
-                errors.username && "border-brand-red"
+                props.errors.username && "border-brand-red"
               )}
             />
-            <FieldError>{errors.username}</FieldError>
+            <FieldError>{props.errors.username}</FieldError>
           </Field>
           <Field className="gap-1">
             <FieldLabel htmlFor="email" className="text-body-1">
@@ -58,15 +60,16 @@ function SignupForm() {
             <Input
               id="email"
               type="email"
-              ref={refs.email}
+              ref={props.refs.email}
               placeholder="Email"
               autoComplete="email"
+              disabled={props.isLoading}
               className={cn(
                 "h-12 text-body-1 bg-white placeholder:text-brown-400",
-                errors.email && "border-brand-red"
+                props.errors.email && "border-brand-red"
               )}
             />
-            <FieldError>{errors.email}</FieldError>
+            <FieldError>{props.errors.email}</FieldError>
           </Field>
           <Field className="gap-1">
             <FieldLabel htmlFor="password" className="text-body-1">
@@ -75,17 +78,20 @@ function SignupForm() {
             <Input
               id="password"
               type="password"
-              ref={refs.password}
+              ref={props.refs.password}
               placeholder="Password"
+              disabled={props.isLoading}
               className={cn(
                 "h-12 text-body-1 bg-white placeholder:text-brown-400",
-                errors.password && "border-brand-red"
+                props.errors.password && "border-brand-red"
               )}
             />
-            <FieldError>{errors.password}</FieldError>
+            <FieldError>{props.errors.password}</FieldError>
           </Field>
         </FieldGroup>
-        <ActionButton variant="primary">Sign up</ActionButton>
+        <ActionButton variant="primary" disabled={props.isLoading}>
+          Sign up
+        </ActionButton>
       </FieldSet>
     </form>
   );

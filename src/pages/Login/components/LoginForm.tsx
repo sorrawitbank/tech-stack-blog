@@ -11,7 +11,7 @@ import useLogin from "@/hooks/useLogin";
 import { cn } from "@/lib/utils";
 
 function LoginForm() {
-  const { refs, errors, handleSubmit } = useLogin();
+  const { refs, isLoading, errors, handleSubmit } = useLogin();
 
   return (
     <form className="w-full" onSubmit={handleSubmit}>
@@ -27,6 +27,7 @@ function LoginForm() {
               ref={refs.email}
               placeholder="Email"
               autoComplete="email"
+              disabled={isLoading}
               className={cn(
                 "h-12 text-body-1 bg-white placeholder:text-brown-400",
                 errors.email && "border-brand-red"
@@ -43,6 +44,7 @@ function LoginForm() {
               type="password"
               ref={refs.password}
               placeholder="Password"
+              disabled={isLoading}
               className={cn(
                 "h-12 text-body-1 bg-white placeholder:text-brown-400",
                 errors.password && "border-brand-red"
@@ -51,7 +53,9 @@ function LoginForm() {
             <FieldError>{errors.password}</FieldError>
           </Field>
         </FieldGroup>
-        <ActionButton variant="primary">Log in</ActionButton>
+        <ActionButton variant="primary" disabled={isLoading}>
+          Log in
+        </ActionButton>
       </FieldSet>
     </form>
   );
