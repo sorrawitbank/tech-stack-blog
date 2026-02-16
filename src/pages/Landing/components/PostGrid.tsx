@@ -35,7 +35,7 @@ function PostGrid() {
         <CircleAlert className="size-12 min-h-12 text-brown-600" />
         <div className="flex flex-col gap-1">
           <h4 className="text-headline-4 text-center text-brown-600">
-            No posts found.
+            No posts found
           </h4>
           <p className="text-body-1 text-center text-brown-400">
             Browse other categories to discover more.

@@ -1,6 +1,5 @@
 import type { Post } from "@/types/post";
 import { useNavigate } from "react-router-dom";
-import { User } from "lucide-react";
 import { format } from "date-fns";
 import CategoryTag from "@/components/common/CategoryTag";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -48,7 +47,9 @@ function PostCard({ post }: { post: Post }) {
               className="text-brown-500 object-cover"
             />
             <AvatarFallback className="bg-brown-300">
-              <User className="size-3/5 text-brown-400" />
+              <span className="text-body-2 text-brown-400">
+                {post.author.name[0]}
+              </span>
             </AvatarFallback>
           </Avatar>
           <span className="text-body-2 text-brown-500">{post.author.name}</span>
