@@ -28,7 +28,7 @@ function useGetPosts({
   });
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
 
   // This effect will not run on the first render.
   useEffect(() => {
@@ -72,7 +72,7 @@ function useGetPosts({
     controller: AbortController,
     pageToFetch: number = page
   ) => {
-    setError("");
+    setError(null);
     setIsLoading(true);
     try {
       const data = await fetchPosts({
