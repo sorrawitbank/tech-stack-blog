@@ -1,18 +1,18 @@
 import type { Post } from "@/types/post";
+import React, { createContext, useContext } from "react";
 import { useParams } from "react-router-dom";
-import React, { createContext } from "react";
 import useGetPostById from "@/hooks/useGetPostById";
 
 interface PostContextType {
   post: Post | null;
   isLoading: boolean;
-  error: string;
+  error: string | null;
 }
 
-export const PostContext = createContext<PostContextType>({
+const PostContext = createContext<PostContextType>({
   post: null,
   isLoading: false,
-  error: "",
+  error: null,
 });
 
 export function PostProvider({ children }: { children?: React.ReactNode }) {
@@ -24,4 +24,8 @@ export function PostProvider({ children }: { children?: React.ReactNode }) {
       {children}
     </PostContext.Provider>
   );
+}
+
+export function usePostContext() {
+  return useContext(PostContext);
 }

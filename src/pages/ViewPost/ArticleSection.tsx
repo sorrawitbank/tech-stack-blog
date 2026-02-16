@@ -1,38 +1,44 @@
-import { useContext } from "react";
 import { format } from "date-fns";
 import ReactMarkdown from "react-markdown";
 import AuthorCard from "./components/AuthorCard";
 import CategoryTag from "@/components/common/CategoryTag";
-import { PostContext } from "@/contexts/PostContext";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
+import { usePostContext } from "@/contexts/PostContext";
 
 function ArticleSection() {
-  const { post } = useContext(PostContext);
-  if (post === null) return;
+  const { post } = usePostContext();
+  const { isLarge, isXLarge } = useMediaQueryContext();
 
   return (
     <section
       id="article-section"
       aria-labelledby="article-label"
-      className="flex flex-col gap-6 px-4 pt-6 pb-10 sm:px-12 sm:pt-8 md:p-0"
+      className="flex flex-col gap-6 px-4 pt-6 pb-10 sm:px-12 sm:pt-8 lg:p-0"
     >
       <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-4">
-          <CategoryTag>{post.category}</CategoryTag>
+        <ul className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          {post!.categories.map((category) => (
+            <CategoryTag key={category}>{category}</CategoryTag>
+          ))}
           <span className="text-body-1 text-brown-400">
-            {format(post.date, "dd MMMM yyyy")}
+            {format(post!.createdAt, "dd MMMM yyyy")}
           </span>
-        </div>
+        </ul>
         <h2
           id="article-label"
-          className="text-headline-3 text-brown-600 xl:text-headline-2"
+          className={
+            (isXLarge ? "text-headline-2" : "text-headline-3") +
+            " text-brown-600"
+          }
         >
-          {post.title}
+          {post!.title}
         </h2>
       </div>
       <div className="markdown text-brown-500">
-        <ReactMarkdown>{post.content}</ReactMarkdown>
+        <ReactMarkdown>{post!.description}</ReactMarkdown>
+        <ReactMarkdown>{post!.content}</ReactMarkdown>
       </div>
-      <AuthorCard className="md:hidden" />
+      {!isLarge && <AuthorCard />}
     </section>
   );
 }

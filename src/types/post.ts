@@ -1,27 +1,34 @@
+import type { Comment, CommentApi } from "./comment";
+import type { User, UserApi } from "./user";
+
 export interface Post {
   readonly id: number;
-  imgSrc: string;
-  imgAlt: string;
-  category: string;
+  author: User;
+  image: string;
+  imageAlt: string;
+  categories: string[];
   title: string;
   description: string;
-  author: string;
-  date: Date;
-  likes: number;
   content: string;
+  status: string;
+  createdAt: Date;
+  likes: number;
+  comments: Comment[];
 }
 
 export interface PostApi {
   readonly id: number;
+  author: UserApi;
   image: string;
   imageAlt?: string;
-  category: string;
+  categories: string[];
   title: string;
   description: string;
-  author: string;
-  date: string;
-  likes: number;
   content: string;
+  status: string;
+  createdAt: string;
+  likes?: number;
+  comments?: CommentApi[];
 }
 
 export interface PostsParams {
@@ -37,6 +44,4 @@ export interface PostsResponse {
   currentPage: number;
   limit: number;
   posts: PostApi[];
-  nextPage?: number;
-  previousPage?: number;
 }

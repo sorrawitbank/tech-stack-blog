@@ -1,6 +1,8 @@
 import ReactMarkdown from "react-markdown";
-import { cn } from "@/lib/utils";
+import { User } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 function AuthorCard({ className }: { className?: string }) {
   return (
@@ -11,11 +13,16 @@ function AuthorCard({ className }: { className?: string }) {
       )}
     >
       <div className="flex items-center gap-3">
-        <img
-          src="https://avatars.githubusercontent.com/u/198432307"
-          alt="Author"
-          className="size-11 text-brown-500 object-cover rounded-full"
-        />
+        <Avatar className="size-11">
+          <AvatarImage
+            src="https://avatars.githubusercontent.com/u/198432307"
+            alt="Author"
+            className="text-brown-500 object-cover"
+          />
+          <AvatarFallback className="bg-brown-300">
+            <User className="size-3/5 text-brown-400" />
+          </AvatarFallback>
+        </Avatar>
         <div className="flex flex-col">
           <span className="text-body-3 text-brown-400">Author</span>
           <span className="text-headline-4 text-brown-500">Sorrawit A.</span>

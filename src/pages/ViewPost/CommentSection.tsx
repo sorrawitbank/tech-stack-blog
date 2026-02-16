@@ -9,7 +9,7 @@ function CommentSection() {
     <section
       id="comment-section"
       aria-labelledby="comment-label"
-      className="flex flex-col gap-11 px-4 pt-6 pb-12.5 sm:px-12 sm:pt-8 md:p-0 lg:gap-12"
+      className="flex flex-col gap-11 px-4 pt-6 pb-12.5 sm:px-12 sm:pt-8 lg:gap-12 lg:p-0"
     >
       <form className="flex flex-col gap-3 sm:items-end md:gap-2">
         <Field className="flex flex-col gap-1 text-brown-400">

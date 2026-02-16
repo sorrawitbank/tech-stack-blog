@@ -28,7 +28,7 @@ function useGetPosts({
   });
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
 
   // This effect will not run on the first render.
   useEffect(() => {
@@ -72,7 +72,7 @@ function useGetPosts({
     controller: AbortController,
     pageToFetch: number = page
   ) => {
-    setError("");
+    setError(null);
     setIsLoading(true);
     try {
       const data = await fetchPosts({
@@ -86,12 +86,12 @@ function useGetPosts({
       setData(data);
       setPosts(mappedPosts);
       prevPage.current = pageToFetch;
-    } catch (err) {
-      if (err instanceof Error && err.message !== "canceled") {
-        if (err instanceof AxiosError) {
-          setError(err.response?.data?.error || err.message);
+    } catch (error) {
+      if (error instanceof Error && error.message !== "canceled") {
+        if (error instanceof AxiosError) {
+          setError(error.response?.data?.message || "Failed to fetch posts");
         } else {
-          setError(err.message || "Failed to fetch posts");
+          setError(error.message || "Failed to fetch posts");
         }
         setIsLoading(false);
       }

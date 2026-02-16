@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import {
   Select,
   SelectContent,
@@ -9,15 +8,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CategoryContext } from "@/contexts/CategoryContext";
-import { cn } from "@/lib/utils";
+import { useCategoryContext } from "@/contexts/CategoryContext";
 
-function CategorySelector({ className }: { className?: string }) {
-  const { category, categories, handleSelectCategory } =
-    useContext(CategoryContext);
+function CategorySelector() {
+  const { category, categories, handleSelectCategory } = useCategoryContext();
 
   return (
-    <div className={cn("flex flex-col gap-1 text-brown-400", className)}>
+    <div className="flex flex-col gap-1 text-brown-400">
       <span className="text-body-1">Category</span>
       <Select value={category} onValueChange={handleSelectCategory}>
         <SelectTrigger className="w-full h-12! text-body-1 bg-white hover:cursor-pointer">

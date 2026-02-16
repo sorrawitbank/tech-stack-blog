@@ -4,16 +4,13 @@ import validatePassword from "@/utils/validatePassword";
 import validateName from "@/utils/validateName";
 import validateUsername from "@/utils/validateUsername";
 
-const keys = ["name", "username", "email", "password"] as const;
+type Keys = "name" | "username" | "email" | "password";
 
-export type Refs = Partial<
-  Record<(typeof keys)[number], React.RefObject<HTMLInputElement | null>>
->;
-type Validations = Record<
-  (typeof keys)[number],
-  (value: string) => string | null
->;
-type Errors = Partial<Record<(typeof keys)[number], string>>;
+export type Refs = Record<Keys, React.RefObject<HTMLInputElement>>;
+
+type Validations = Record<Keys, (value: string) => string | null>;
+
+type Errors = Partial<Record<Keys, string>>;
 
 const validations: Validations = {
   name: validateName,
@@ -25,15 +22,12 @@ const validations: Validations = {
 function useValidateForm() {
   const [errors, setErrors] = useState<Errors>({});
 
-  const validateFields = (refs: Refs) => {
+  const validateFields = (refs: Partial<Refs>) => {
     const newErrors: Errors = {};
-    for (const key of keys) {
-      const ref = refs[key];
-      if (ref?.current) {
-        const error = validations[key](ref.current.value);
-        if (error) {
-          newErrors[key] = error;
-        }
+    for (const [key, ref] of Object.entries(refs)) {
+      const error = validations[key as Keys](ref.current.value);
+      if (error) {
+        newErrors[key as Keys] = error;
       }
     }
     setErrors(newErrors);

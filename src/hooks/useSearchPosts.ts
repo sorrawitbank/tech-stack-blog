@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import debounceFunction from "debounce-fn";
 import useGetPosts from "./useGetPosts";
-import { CategoryContext } from "@/contexts/CategoryContext";
+import { useCategoryContext } from "@/contexts/CategoryContext";
 import sonner from "@/utils/sonner";
 
 function useSearchPosts() {
@@ -10,7 +10,7 @@ function useSearchPosts() {
   const [keyword, setKeyword] = useState<string>("");
   const [value, setValue] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { category } = useContext(CategoryContext);
+  const { category } = useCategoryContext();
   const { posts, error, clearPosts } = useGetPosts({
     category,
     keyword,
@@ -29,7 +29,7 @@ function useSearchPosts() {
 
   useEffect(() => {
     if (!error) return;
-    sonner({ variant: "error", message: "Error!", description: error });
+    sonner.error({ message: "Error!", description: error });
   }, [error]);
 
   const debouncedSetKeyword = useMemo(() => {

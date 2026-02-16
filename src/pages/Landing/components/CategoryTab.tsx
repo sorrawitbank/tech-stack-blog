@@ -1,18 +1,15 @@
-import { useContext } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CategoryContext } from "@/contexts/CategoryContext";
-import { cn } from "@/lib/utils";
+import { useCategoryContext } from "@/contexts/CategoryContext";
 
-function CategoryTab({ className }: { className?: string }) {
-  const { category, categories, handleSelectCategory } =
-    useContext(CategoryContext);
+function CategoryTab() {
+  const { category, categories, handleSelectCategory } = useCategoryContext();
 
   return (
     <Tabs
       value={category}
       onValueChange={handleSelectCategory}
-      className={cn("overflow-x-hidden", className)}
+      className="overflow-x-hidden"
     >
       <ScrollArea>
         <TabsList className="gap-2 h-full bg-brown-200">
