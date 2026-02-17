@@ -29,9 +29,12 @@ function Main() {
       <Separator className="bg-brown-300" />
       <form>
         <FieldSet className="items-start gap-6 md:gap-8 lg:gap-10">
-          <FieldGroup className="gap-6 text-brown-400 lg:gap-7">
+          <FieldGroup className="gap-6 lg:gap-7">
             <Field className="gap-1">
-              <FieldLabel htmlFor="name" className="style-body-1">
+              <FieldLabel
+                htmlFor="name"
+                className="style-body-1 text-brown-400"
+              >
                 Name
               </FieldLabel>
               <Input
@@ -41,12 +44,15 @@ function Main() {
                 autoComplete="name"
                 defaultValue={user!.name}
                 className={cn(
-                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
                 )}
               />
             </Field>
             <Field className="gap-1">
-              <FieldLabel htmlFor="username" className="style-body-1">
+              <FieldLabel
+                htmlFor="username"
+                className="style-body-1 text-brown-400"
+              >
                 Username
               </FieldLabel>
               <Input
@@ -56,12 +62,15 @@ function Main() {
                 autoComplete="username"
                 defaultValue={user!.username}
                 className={cn(
-                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
                 )}
               />
             </Field>
             <Field className="gap-1 opacity-40">
-              <FieldLabel htmlFor="email" className="style-body-1">
+              <FieldLabel
+                htmlFor="email"
+                className="style-body-1 text-brown-400"
+              >
                 Email
               </FieldLabel>
               <Input
@@ -72,7 +81,7 @@ function Main() {
                 defaultValue={user!.email}
                 disabled={true}
                 className={cn(
-                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
                 )}
               />
             </Field>

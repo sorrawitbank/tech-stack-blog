@@ -16,9 +16,9 @@ function SignupForm(props: Props) {
   return (
     <form className="w-full" onSubmit={props.handleSubmit}>
       <FieldSet className="items-center gap-6 lg:gap-10">
-        <FieldGroup className="gap-6 text-brown-400 lg:gap-7">
+        <FieldGroup className="gap-6 lg:gap-7">
           <Field className="gap-1">
-            <FieldLabel htmlFor="name" className="style-body-1">
+            <FieldLabel htmlFor="name" className="style-body-1 text-brown-400">
               Name
             </FieldLabel>
             <Input
@@ -29,14 +29,17 @@ function SignupForm(props: Props) {
               autoComplete="name"
               disabled={props.isLoading}
               className={cn(
-                "h-12 style-body-1 bg-white placeholder:text-brown-400",
+                "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
                 props.errors.name && "border-brand-red"
               )}
             />
             <FieldError>{props.errors.name}</FieldError>
           </Field>
           <Field className="gap-1">
-            <FieldLabel htmlFor="username" className="style-body-1">
+            <FieldLabel
+              htmlFor="username"
+              className="style-body-1 text-brown-400"
+            >
               Username
             </FieldLabel>
             <Input
@@ -47,14 +50,14 @@ function SignupForm(props: Props) {
               autoComplete="username"
               disabled={props.isLoading}
               className={cn(
-                "h-12 style-body-1 bg-white placeholder:text-brown-400",
+                "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
                 props.errors.username && "border-brand-red"
               )}
             />
             <FieldError>{props.errors.username}</FieldError>
           </Field>
           <Field className="gap-1">
-            <FieldLabel htmlFor="email" className="style-body-1">
+            <FieldLabel htmlFor="email" className="style-body-1 text-brown-400">
               Email
             </FieldLabel>
             <Input
@@ -65,14 +68,17 @@ function SignupForm(props: Props) {
               autoComplete="email"
               disabled={props.isLoading}
               className={cn(
-                "h-12 style-body-1 bg-white placeholder:text-brown-400",
+                "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
                 props.errors.email && "border-brand-red"
               )}
             />
             <FieldError>{props.errors.email}</FieldError>
           </Field>
           <Field className="gap-1">
-            <FieldLabel htmlFor="password" className="style-body-1">
+            <FieldLabel
+              htmlFor="password"
+              className="style-body-1 text-brown-400"
+            >
               Password
             </FieldLabel>
             <Input
@@ -82,7 +88,7 @@ function SignupForm(props: Props) {
               placeholder="Password"
               disabled={props.isLoading}
               className={cn(
-                "h-12 style-body-1 bg-white placeholder:text-brown-400",
+                "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
                 props.errors.password && "border-brand-red"
               )}
             />

@@ -8,9 +8,12 @@ function Main() {
     <main className="md:flex-1">
       <form className="px-4 pt-6 pb-10 bg-brown-200 sm:p-8 md:rounded-2xl lg:p-10">
         <FieldSet className="items-start gap-6 md:gap-8 lg:gap-10">
-          <FieldGroup className="gap-6 text-brown-400 lg:gap-7">
+          <FieldGroup className="gap-6 lg:gap-7">
             <Field className="gap-1">
-              <FieldLabel htmlFor="current-password" className="style-body-1">
+              <FieldLabel
+                htmlFor="current-password"
+                className="style-body-1 text-brown-400"
+              >
                 Current password
               </FieldLabel>
               <Input
@@ -18,12 +21,15 @@ function Main() {
                 type="password"
                 placeholder="Current password"
                 className={cn(
-                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
                 )}
               />
             </Field>
             <Field className="gap-1">
-              <FieldLabel htmlFor="new-password" className="style-body-1">
+              <FieldLabel
+                htmlFor="new-password"
+                className="style-body-1 text-brown-400"
+              >
                 New password
               </FieldLabel>
               <Input
@@ -31,14 +37,14 @@ function Main() {
                 type="password"
                 placeholder="New password"
                 className={cn(
-                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
                 )}
               />
             </Field>
             <Field className="gap-1">
               <FieldLabel
                 htmlFor="confirm-new-password"
-                className="style-body-1"
+                className="style-body-1 text-brown-400"
               >
                 Confirm new password
               </FieldLabel>
@@ -47,7 +53,7 @@ function Main() {
                 type="password"
                 placeholder="Confirm new password"
                 className={cn(
-                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
                 )}
               />
             </Field>
