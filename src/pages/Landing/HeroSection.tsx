@@ -1,5 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
+import { cn } from "@/lib/utils";
 
 function HeroSection() {
   const { isXLarge } = useMediaQueryContext();
@@ -13,14 +14,14 @@ function HeroSection() {
       <div className="flex flex-col gap-4 text-center lg:flex-1 lg:text-right">
         <h1
           id="hero-label"
-          className={
-            (isXLarge ? "text-headline-1" : "text-headline-2") +
-            " text-brown-600"
-          }
+          className={cn(
+            "text-brown-600",
+            isXLarge ? "style-headline-1" : "style-headline-2"
+          )}
         >
           Stay Informed,{isXLarge ? <br /> : " "}Stay Inspired
         </h1>
-        <p className="text-body-1 text-brown-400">
+        <p className="style-body-1 text-brown-400">
           Discover a World of Knowledge at Your Fingertips. Your Daily Dose of
           Inspiration and Information.
         </p>
@@ -32,8 +33,8 @@ function HeroSection() {
       />
       <div className="flex flex-col gap-3 lg:flex-1">
         <div className="flex flex-col gap-1">
-          <span className="text-body-3 text-brown-400">- Author</span>
-          <h3 className="text-headline-3 text-brown-500">Sorrawit A.</h3>
+          <span className="style-body-3 text-brown-400">- Author</span>
+          <h3 className="style-headline-3 text-brown-500">Sorrawit A.</h3>
         </div>
         <div className="markdown text-brown-400">
           <ReactMarkdown>

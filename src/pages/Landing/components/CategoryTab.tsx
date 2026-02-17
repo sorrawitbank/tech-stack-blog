@@ -19,7 +19,7 @@ function CategoryTab() {
               value={category}
               className="h-12 px-5 text-brown-400 border-0 rounded-lg hover:bg-brown-300 hover:cursor-pointer data-[state=active]:text-brown-500 data-[state=active]:bg-brown-300"
             >
-              <span className="text-body-1">{category}</span>
+              <span className="style-body-1">{category}</span>
             </TabsTrigger>
           ))}
         </TabsList>

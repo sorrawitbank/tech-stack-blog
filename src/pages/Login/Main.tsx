@@ -12,13 +12,13 @@ function Main() {
       >
         <h2
           id="login-label"
-          className="text-headline-2 text-brown-600 text-center"
+          className="style-headline-2 text-brown-600 text-center"
         >
           Log in
         </h2>
         <LoginForm />
         <div className="flex gap-3">
-          <span className="text-body-1 text-brown-400">
+          <span className="style-body-1 text-brown-400">
             Don’t have any account?
           </span>
           <NavigationButton variant="text" navigateTo="/signup">

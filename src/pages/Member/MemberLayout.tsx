@@ -47,7 +47,7 @@ function MemberLayout(props: Props) {
                         )}
                       >
                         {detail.icon}
-                        <span className="text-body-1">{detail.text}</span>
+                        <span className="style-body-1">{detail.text}</span>
                       </Link>
                     </li>
                   ))}

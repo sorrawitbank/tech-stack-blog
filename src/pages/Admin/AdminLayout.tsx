@@ -67,7 +67,7 @@ function AdminLayout(props: Props) {
                   className="size-11 text-brown-500 md:size-15"
                 />
                 <DrawerTitle className="text-brand-orange" asChild>
-                  <h4 className="text-headline-4 text-brand-orange">
+                  <h4 className="style-headline-4 text-brand-orange">
                     Admin panel
                   </h4>
                 </DrawerTitle>
@@ -95,7 +95,7 @@ function AdminLayout(props: Props) {
                               )}
                             >
                               {detail.icon}
-                              <span className="text-body-1">{detail.text}</span>
+                              <span className="style-body-1">{detail.text}</span>
                             </Link>
                           </li>
                         ))}
@@ -109,14 +109,14 @@ function AdminLayout(props: Props) {
                             className="flex gap-3 px-6 py-5 text-brown-400 sm:px-12 md:px-6"
                           >
                             <SquareArrowOutUpRight />
-                            <span className="text-body-1">hh. website</span>
+                            <span className="style-body-1">hh. website</span>
                           </Link>
                         </li>
                         <Separator className="bg-brown-300" />
                         <li className="mb-4 hover:bg-brown-300">
                           <button className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6">
                             <LogOut />
-                            <span className="text-body-1">Log out</span>
+                            <span className="style-body-1">Log out</span>
                           </button>
                         </li>
                       </ul>
@@ -127,14 +127,14 @@ function AdminLayout(props: Props) {
             </DrawerContent>
           </Drawer>
           {isSmall && (
-            <h3 className="text-headline-3 text-brown-600">
+            <h3 className="style-headline-3 text-brown-600">
               {pageDetails[props.page].text}
             </h3>
           )}
         </header>
       )}
       {!isSmall && (
-        <h3 className="px-6 py-3 text-headline-3 text-brown-600">
+        <h3 className="px-6 py-3 style-headline-3 text-brown-600">
           {pageDetails[props.page].text}
         </h3>
       )}
@@ -146,7 +146,7 @@ function AdminLayout(props: Props) {
               alt="Logo"
               className="size-15 text-brown-500"
             />
-            <h4 className="text-headline-4 text-brand-orange">Admin panel</h4>
+            <h4 className="style-headline-4 text-brand-orange">Admin panel</h4>
           </div>
           <ScrollArea className="h-[calc(100dvh-14.25rem)]">
             <nav className="flex flex-col justify-between gap-16 h-full">
@@ -169,7 +169,7 @@ function AdminLayout(props: Props) {
                       )}
                     >
                       {detail.icon}
-                      <span className="text-body-1">{detail.text}</span>
+                      <span className="style-body-1">{detail.text}</span>
                     </Link>
                   </li>
                 ))}
@@ -181,14 +181,14 @@ function AdminLayout(props: Props) {
                     className="flex gap-3 px-6 py-5 text-brown-400 sm:px-12 md:px-6"
                   >
                     <SquareArrowOutUpRight />
-                    <span className="text-body-1">hh. website</span>
+                    <span className="style-body-1">hh. website</span>
                   </Link>
                 </li>
                 <Separator className="bg-brown-300" />
                 <li className="mb-4 hover:bg-brown-300">
                   <button className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6">
                     <LogOut />
-                    <span className="text-body-1">Log out</span>
+                    <span className="style-body-1">Log out</span>
                   </button>
                 </li>
               </ul>

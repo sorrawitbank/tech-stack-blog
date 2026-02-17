@@ -4,6 +4,7 @@ import StandardMain from "@/layouts/StandardMain";
 import { NavigationButton } from "@/components/common/Button";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import useSignup from "@/hooks/useSignup";
+import { cn } from "@/lib/utils";
 
 function Main() {
   const { isLarge } = useMediaQueryContext();
@@ -22,10 +23,10 @@ function Main() {
           </div>
           <h2
             id="signup-label"
-            className={
-              (isLarge ? "text-headline-2" : "text-headline-3") +
-              " text-brown-600 text-center"
-            }
+            className={cn(
+              "text-brown-600 text-center",
+              isLarge ? "style-headline-2" : "style-headline-3"
+            )}
           >
             Registration success
           </h2>
@@ -41,7 +42,7 @@ function Main() {
         >
           <h2
             id="signup-label"
-            className="text-headline-2 text-brown-600 text-center"
+            className="style-headline-2 text-brown-600 text-center"
           >
             Sign up
           </h2>
@@ -52,7 +53,7 @@ function Main() {
             handleSubmit={handleSubmit}
           />
           <div className="flex gap-3">
-            <span className="text-body-1 text-brown-400">
+            <span className="style-body-1 text-brown-400">
               Already have an account?
             </span>
             <NavigationButton variant="text" navigateTo="/login">

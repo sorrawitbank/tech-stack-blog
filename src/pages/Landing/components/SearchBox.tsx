@@ -43,7 +43,7 @@ function SearchBox() {
               onClick={() => handleNavigate(post.id)}
               className="p-2 rounded-sm cursor-pointer hover:bg-brown-200"
             >
-              <span className="text-body-1 text-brown-600 line-clamp-2">
+              <span className="style-body-1 text-brown-600 line-clamp-2">
                 {post.title}
               </span>
             </div>

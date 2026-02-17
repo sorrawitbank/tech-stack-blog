@@ -10,7 +10,7 @@ function LoadingIndicator({ className }: { className?: string }) {
       )}
     >
       <Spinner className="size-10 lg:size-12" />
-      <span className="text-body-1">Loading...</span>
+      <span className="style-body-1">Loading...</span>
     </div>
   );
 }

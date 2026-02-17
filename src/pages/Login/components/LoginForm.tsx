@@ -18,7 +18,7 @@ function LoginForm() {
       <FieldSet className="items-center gap-6 lg:gap-10">
         <FieldGroup className="gap-6 text-brown-400 lg:gap-7">
           <Field className="gap-1">
-            <FieldLabel htmlFor="email" className="text-body-1">
+            <FieldLabel htmlFor="email" className="style-body-1">
               Email
             </FieldLabel>
             <Input
@@ -29,14 +29,14 @@ function LoginForm() {
               autoComplete="email"
               disabled={isLoading}
               className={cn(
-                "h-12 text-body-1 bg-white placeholder:text-brown-400",
+                "h-12 style-body-1 bg-white placeholder:text-brown-400",
                 errors.email && "border-brand-red"
               )}
             />
             <FieldError>{errors.email}</FieldError>
           </Field>
           <Field className="gap-1">
-            <FieldLabel htmlFor="password" className="text-body-1">
+            <FieldLabel htmlFor="password" className="style-body-1">
               Password
             </FieldLabel>
             <Input
@@ -46,7 +46,7 @@ function LoginForm() {
               placeholder="Password"
               disabled={isLoading}
               className={cn(
-                "h-12 text-body-1 bg-white placeholder:text-brown-400",
+                "h-12 style-body-1 bg-white placeholder:text-brown-400",
                 errors.password && "border-brand-red"
               )}
             />

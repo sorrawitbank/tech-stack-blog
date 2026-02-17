@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 function Main() {
   const { user } = useAuthContext();
 
+  // TODO: change it so that it can upload file
   return (
     <main className="flex flex-col gap-6 px-4 pt-6 pb-10 bg-brown-200 sm:p-8 md:flex-1 md:rounded-2xl lg:gap-10 lg:p-10">
       <div className="flex flex-col items-center gap-6 lg:flex-row">
@@ -26,12 +27,11 @@ function Main() {
         <ActionButton variant="secondary">Upload profile picture</ActionButton>
       </div>
       <Separator className="bg-brown-300" />
-      {/* //TODO: change it so that it can upload file */}
       <form>
         <FieldSet className="items-start gap-6 md:gap-8 lg:gap-10">
           <FieldGroup className="gap-6 text-brown-400 lg:gap-7">
             <Field className="gap-1">
-              <FieldLabel htmlFor="name" className="text-body-1">
+              <FieldLabel htmlFor="name" className="style-body-1">
                 Name
               </FieldLabel>
               <Input
@@ -41,12 +41,12 @@ function Main() {
                 autoComplete="name"
                 defaultValue={user!.name}
                 className={cn(
-                  "h-12 text-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
                 )}
               />
             </Field>
             <Field className="gap-1">
-              <FieldLabel htmlFor="username" className="text-body-1">
+              <FieldLabel htmlFor="username" className="style-body-1">
                 Username
               </FieldLabel>
               <Input
@@ -56,12 +56,12 @@ function Main() {
                 autoComplete="username"
                 defaultValue={user!.username}
                 className={cn(
-                  "h-12 text-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
                 )}
               />
             </Field>
             <Field className="gap-1 opacity-40">
-              <FieldLabel htmlFor="email" className="text-body-1">
+              <FieldLabel htmlFor="email" className="style-body-1">
                 Email
               </FieldLabel>
               <Input
@@ -72,7 +72,7 @@ function Main() {
                 defaultValue={user!.email}
                 disabled={true}
                 className={cn(
-                  "h-12 text-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
                 )}
               />
             </Field>

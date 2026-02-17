@@ -24,8 +24,8 @@ function AuthorCard({ className }: { className?: string }) {
           </AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
-          <span className="text-body-3 text-brown-400">Author</span>
-          <span className="text-headline-4 text-brown-500">Sorrawit A.</span>
+          <span className="style-body-3 text-brown-400">Author</span>
+          <span className="style-headline-4 text-brown-500">Sorrawit A.</span>
         </div>
       </div>
       <Separator className="bg-brown-300" />

@@ -29,11 +29,11 @@ function PostCard({ post }: { post: Post }) {
         <div className="flex flex-col gap-2">
           <h4
             onClick={handleNavigate}
-            className="text-headline-4 text-brown-600 hover:text-brown-500 hover:underline hover:underline-offset-2 hover:cursor-pointer active:text-brown-600"
+            className="style-headline-4 text-brown-600 hover:text-brown-500 hover:underline hover:underline-offset-2 hover:cursor-pointer active:text-brown-600"
           >
             {post.title}
           </h4>
-          <p className="text-body-2 text-brown-400 line-clamp-2">
+          <p className="style-body-2 text-brown-400 line-clamp-2">
             {post.description}
           </p>
         </div>
@@ -47,15 +47,15 @@ function PostCard({ post }: { post: Post }) {
               className="text-brown-500 object-cover"
             />
             <AvatarFallback className="bg-brown-300">
-              <span className="text-body-2 text-brown-400">
+              <span className="style-body-2 text-brown-400">
                 {post.author.name[0]}
               </span>
             </AvatarFallback>
           </Avatar>
-          <span className="text-body-2 text-brown-500">{post.author.name}</span>
+          <span className="style-body-2 text-brown-500">{post.author.name}</span>
         </div>
         <Separator orientation="vertical" className="h-4.5! bg-brown-300" />
-        <span className="text-body-2 text-brown-400">
+        <span className="style-body-2 text-brown-400">
           {format(post.createdAt, "dd MMMM yyyy")}
         </span>
       </div>

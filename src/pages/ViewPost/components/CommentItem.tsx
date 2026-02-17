@@ -25,15 +25,15 @@ function CommentItem(props: Props) {
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <span className="text-headline-4 text-brown-500">
+            <span className="style-headline-4 text-brown-500">
               {props.comment.user.name}
             </span>
-            <span className="text-body-3 text-brown-400">
+            <span className="style-body-3 text-brown-400">
               {format(props.comment.createdAt, "dd MMMM yyyy 'at' kk:mm")}
             </span>
           </div>
         </div>
-        <p className="text-body-1 text-brown-400">
+        <p className="style-body-1 text-brown-400">
           {props.comment.commentText}
         </p>
       </article>

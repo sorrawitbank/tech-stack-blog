@@ -55,7 +55,7 @@ function Header() {
                 <User className="size-3/5 text-brown-400" />
               </AvatarFallback>
             </Avatar>
-            <span className="text-body-1 text-brown-500">{user!.name}</span>
+            <span className="style-body-1 text-brown-500">{user!.name}</span>
             <DropdownMenu>
               <DropdownMenuTrigger className="text-brown-400">
                 <ChevronDown className="size-4 cursor-pointer" />
@@ -71,7 +71,7 @@ function Header() {
                       className="flex gap-3 px-4 py-3 hover:bg-brown-200"
                     >
                       <User className="text-brown-400" />
-                      <span className="text-body-1 text-brown-500">
+                      <span className="style-body-1 text-brown-500">
                         Profile
                       </span>
                     </Link>
@@ -84,7 +84,7 @@ function Header() {
                       className="flex gap-3 px-4 py-3 hover:bg-brown-200"
                     >
                       <RotateCw className="text-brown-400 rotate-135" />
-                      <span className="text-body-1 text-brown-500">
+                      <span className="style-body-1 text-brown-500">
                         Reset password
                       </span>
                     </Link>
@@ -96,7 +96,7 @@ function Header() {
                         className="flex gap-3 px-4 py-3 hover:bg-brown-200"
                       >
                         <SquareArrowOutUpRight className="text-brown-400" />
-                        <span className="text-body-1 text-brown-500">
+                        <span className="style-body-1 text-brown-500">
                           Admin panel
                         </span>
                       </Link>
@@ -109,7 +109,7 @@ function Header() {
                       className="flex gap-3 w-full px-4 py-3 cursor-pointer hover:bg-brown-200"
                     >
                       <LogOut className="text-brown-400" />
-                      <span className="text-body-1 text-brown-500">
+                      <span className="style-body-1 text-brown-500">
                         Log out
                       </span>
                     </button>
@@ -162,7 +162,7 @@ function Header() {
                       <User className="size-3/5 text-brown-400" />
                     </AvatarFallback>
                   </Avatar>
-                  <span className="text-body-1 text-brown-500 line-clamp-1">
+                  <span className="style-body-1 text-brown-500 line-clamp-1">
                     {user!.name}
                   </span>
                 </div>
@@ -174,7 +174,7 @@ function Header() {
                         className="flex gap-3 px-4 py-3 rounded-lg hover:bg-brown-200"
                       >
                         <User className="text-brown-400" />
-                        <span className="text-body-1 text-brown-500">
+                        <span className="style-body-1 text-brown-500">
                           Profile
                         </span>
                       </Link>
@@ -187,7 +187,7 @@ function Header() {
                         className="flex gap-3 px-4 py-3 rounded-lg hover:bg-brown-200"
                       >
                         <RotateCw className="text-brown-400 rotate-135" />
-                        <span className="text-body-1 text-brown-500">
+                        <span className="style-body-1 text-brown-500">
                           Reset password
                         </span>
                       </Link>
@@ -199,7 +199,7 @@ function Header() {
                           className="flex gap-3 px-4 py-3 rounded-lg hover:bg-brown-200"
                         >
                           <SquareArrowOutUpRight className="text-brown-400" />
-                          <span className="text-body-1 text-brown-500">
+                          <span className="style-body-1 text-brown-500">
                             Admin panel
                           </span>
                         </Link>
@@ -212,7 +212,7 @@ function Header() {
                     className="flex gap-3 px-4 py-3 rounded-lg cursor-pointer hover:bg-brown-200"
                   >
                     <LogOut className="text-brown-400" />
-                    <span className="text-body-1 text-brown-500">Log out</span>
+                    <span className="style-body-1 text-brown-500">Log out</span>
                   </button>
                 </nav>
               </div>

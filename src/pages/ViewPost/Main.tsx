@@ -28,7 +28,7 @@ function Main() {
     return (
       <FullHeightMain className="flex-col gap-4 lg:gap-6">
         <TriangleAlert className="size-12 min-h-12 text-brown-600" />
-        <h3 className="text-headline-3 text-center text-brown-600">
+        <h3 className="style-headline-3 text-center text-brown-600">
           {error || "Failed to fetch post"}
         </h3>
         <NavigationButton variant="primary" navigateTo="/">

@@ -10,7 +10,7 @@ function Main() {
         <FieldSet className="items-start gap-6 md:gap-8 lg:gap-10">
           <FieldGroup className="gap-6 text-brown-400 lg:gap-7">
             <Field className="gap-1">
-              <FieldLabel htmlFor="current-password" className="text-body-1">
+              <FieldLabel htmlFor="current-password" className="style-body-1">
                 Current password
               </FieldLabel>
               <Input
@@ -18,12 +18,12 @@ function Main() {
                 type="password"
                 placeholder="Current password"
                 className={cn(
-                  "h-12 text-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
                 )}
               />
             </Field>
             <Field className="gap-1">
-              <FieldLabel htmlFor="new-password" className="text-body-1">
+              <FieldLabel htmlFor="new-password" className="style-body-1">
                 New password
               </FieldLabel>
               <Input
@@ -31,14 +31,14 @@ function Main() {
                 type="password"
                 placeholder="New password"
                 className={cn(
-                  "h-12 text-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
                 )}
               />
             </Field>
             <Field className="gap-1">
               <FieldLabel
                 htmlFor="confirm-new-password"
-                className="text-body-1"
+                className="style-body-1"
               >
                 Confirm new password
               </FieldLabel>
@@ -47,7 +47,7 @@ function Main() {
                 type="password"
                 placeholder="Confirm new password"
                 className={cn(
-                  "h-12 text-body-1 bg-white text-brown-500 placeholder:text-brown-500"
+                  "h-12 style-body-1 bg-white text-brown-500 placeholder:text-brown-500"
                 )}
               />
             </Field>

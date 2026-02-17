@@ -47,49 +47,49 @@
 
 /* Typography Utility Classes */
 @layer utilities {
-  .text-headline-1 {
+  .style-headline-1 {
     font-weight: var(--font-weight-headline);
     font-size: var(--font-size-headline-1);
     line-height: var(--line-height-headline-1);
     letter-spacing: var(--letter-spacing);
   }
 
-  .text-headline-2 {
+  .style-headline-2 {
     font-weight: var(--font-weight-headline);
     font-size: var(--font-size-headline-2);
     line-height: var(--line-height-headline-2);
     letter-spacing: var(--letter-spacing);
   }
 
-  .text-headline-3 {
+  .style-headline-3 {
     font-weight: var(--font-weight-headline);
     font-size: var(--font-size-headline-3);
     line-height: var(--line-height-headline-3);
     letter-spacing: var(--letter-spacing);
   }
 
-  .text-headline-4 {
+  .style-headline-4 {
     font-weight: var(--font-weight-headline);
     font-size: var(--font-size-headline-4);
     line-height: var(--line-height-headline-4);
     letter-spacing: var(--letter-spacing);
   }
 
-  .text-body-1 {
+  .style-body-1 {
     font-weight: var(--font-weight-body);
     font-size: var(--font-size-body-1);
     line-height: var(--line-height-body-1);
     letter-spacing: var(--letter-spacing);
   }
 
-  .text-body-2 {
+  .style-body-2 {
     font-weight: var(--font-weight-body);
     font-size: var(--font-size-body-2);
     line-height: var(--line-height-body-2);
     letter-spacing: var(--letter-spacing);
   }
 
-  .text-body-3 {
+  .style-body-3 {
     font-weight: var(--font-weight-body);
     font-size: var(--font-size-body-3);
     line-height: var(--line-height-body-3);

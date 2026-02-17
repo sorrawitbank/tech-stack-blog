@@ -15,9 +15,9 @@ function CategorySelector() {
 
   return (
     <div className="flex flex-col gap-1 text-brown-400">
-      <span className="text-body-1">Category</span>
+      <span className="style-body-1">Category</span>
       <Select value={category} onValueChange={handleSelectCategory}>
-        <SelectTrigger className="w-full h-12! text-body-1 bg-white hover:cursor-pointer">
+        <SelectTrigger className="w-full h-12! style-body-1 bg-white hover:cursor-pointer">
           <SelectValue />
         </SelectTrigger>
         <SelectContent position="popper">
