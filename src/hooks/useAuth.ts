@@ -25,7 +25,6 @@ function useAuth() {
       setIsGetUserLoading(false);
       return;
     }
-
     setIsGetUserLoading(true);
     try {
       const response = await fetchUser();
@@ -66,7 +65,7 @@ function useAuth() {
     }
   };
 
-  const login = async (data: LoginData) => {
+  const login = async (data: LoginData, requiredAdmin: boolean) => {
     setError(null);
     setIsLoading(true);
     try {
@@ -74,7 +73,9 @@ function useAuth() {
       const token = response.data.accessToken;
       localStorage.setItem("token", token);
       await getUser();
-      navigate("/");
+      if (requiredAdmin && user?.role !== "admin") {
+        throw new Error("You must be an administrator to access this page");
+      }
     } catch (error) {
       // Get error message from response data if available
       if (error instanceof Error) {

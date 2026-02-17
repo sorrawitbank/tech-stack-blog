@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { useAuthContext } from "@/contexts/AuthContext";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import { cn } from "@/lib/utils";
 
@@ -49,6 +50,7 @@ interface Props {
 }
 
 function AdminLayout(props: Props) {
+  const { logout } = useAuthContext();
   const { isSmall, isMedium, isLarge } = useMediaQueryContext();
 
   return (
@@ -95,7 +97,9 @@ function AdminLayout(props: Props) {
                               )}
                             >
                               {detail.icon}
-                              <span className="style-body-1">{detail.text}</span>
+                              <span className="style-body-1">
+                                {detail.text}
+                              </span>
                             </Link>
                           </li>
                         ))}
@@ -114,7 +118,10 @@ function AdminLayout(props: Props) {
                         </li>
                         <Separator className="bg-brown-300" />
                         <li className="mb-4 hover:bg-brown-300">
-                          <button className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6">
+                          <button
+                            onClick={logout}
+                            className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6"
+                          >
                             <LogOut />
                             <span className="style-body-1">Log out</span>
                           </button>
@@ -186,7 +193,10 @@ function AdminLayout(props: Props) {
                 </li>
                 <Separator className="bg-brown-300" />
                 <li className="mb-4 hover:bg-brown-300">
-                  <button className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6">
+                  <button
+                    onClick={logout}
+                    className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6"
+                  >
                     <LogOut />
                     <span className="style-body-1">Log out</span>
                   </button>

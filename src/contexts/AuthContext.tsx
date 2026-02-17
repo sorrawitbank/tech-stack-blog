@@ -10,7 +10,7 @@ interface AuthContextType {
   isGetUserLoading: boolean | null;
   error: string | null;
   register: (data: RegisterData) => Promise<boolean>;
-  login: (data: LoginData) => Promise<void>;
+  login: (data: LoginData, requiredAdmin: boolean) => Promise<void>;
   logout: () => void;
 }
 
@@ -20,8 +20,8 @@ const AuthContext = createContext<AuthContextType>({
   isLoading: false,
   isGetUserLoading: null,
   error: null,
-  register: async (data: RegisterData) => false,
-  login: async (data: LoginData) => {},
+  register: async () => false,
+  login: async () => {},
   logout: () => {},
 });
 

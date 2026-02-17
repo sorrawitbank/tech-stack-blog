@@ -5,7 +5,7 @@ import { fetchPosts } from "@/services/postService";
 import { mapToPost } from "@/utils/post";
 
 interface Params extends Partial<PostsParams> {
-  requireKeyword?: boolean;
+  requiredKeyword?: boolean;
   fetchOnCategoryChange?: boolean;
 }
 
@@ -14,17 +14,16 @@ function useGetPosts({
   limit = 6,
   category = "Highlight",
   keyword = "",
-  requireKeyword = false,
+  requiredKeyword = false,
   fetchOnCategoryChange = true,
 }: Params) {
   const isFirstRender = useRef<boolean>(true);
   const prevPage = useRef<number>(1);
-  const [data, setData] = useState<PostsResponse>({
+  const [data, setData] = useState<Omit<PostsResponse, "posts">>({
     totalPosts: 0,
     totalPages: 0,
     currentPage: 0,
     limit: limit,
-    posts: [],
   });
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -59,7 +58,7 @@ function useGetPosts({
 
   useEffect(() => {
     isFirstRender.current = false;
-    if (requireKeyword && !keyword) return;
+    if (requiredKeyword && !keyword) return;
     const controller = new AbortController();
     getPosts(controller);
 

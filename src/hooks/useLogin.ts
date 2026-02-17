@@ -3,7 +3,7 @@ import useValidateForm, { type Refs } from "./useValidateForm";
 import { useAuthContext } from "@/contexts/AuthContext";
 import sonner from "@/utils/sonner";
 
-function useLogin() {
+function useLogin(requiredAdmin: boolean = false) {
   const isFirstRender = useRef<boolean>(true);
   const { isLoading, error, login } = useAuthContext();
   const { errors, validateFields } = useValidateForm();
@@ -31,10 +31,13 @@ function useLogin() {
   ) => {
     event.preventDefault();
     if (!validateFields(refs)) return;
-    await login({
-      email: refs.email.current.value,
-      password: refs.password.current.value,
-    });
+    await login(
+      {
+        email: refs.email.current.value,
+        password: refs.password.current.value,
+      },
+      requiredAdmin
+    );
   };
 
   return { refs, isLoading, errors, handleSubmit };
