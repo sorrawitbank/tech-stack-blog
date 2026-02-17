@@ -3,7 +3,7 @@ import StandardMain from "@/layouts/StandardMain";
 
 function AdminLogin() {
   return (
-    <StandardMain>
+    <StandardMain className="pb-12 sm:pb-20">
       <section
         id="admin-login-section"
         aria-labelledby="admin-login-label"
@@ -11,7 +11,10 @@ function AdminLogin() {
       >
         <div className="flex flex-col items-center gap-2">
           <h4 className="style-headline-4 text-brand-orange">Admin panel</h4>
-          <h2 id="admin-login-label" className="style-headline-2 text-brown-600">
+          <h2
+            id="admin-login-label"
+            className="style-headline-2 text-brown-600"
+          >
             Log in
           </h2>
         </div>

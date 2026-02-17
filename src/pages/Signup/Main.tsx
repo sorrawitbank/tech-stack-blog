@@ -11,7 +11,7 @@ function Main() {
   const { refs, isSuccess, isLoading, errors, handleSubmit } = useSignup();
 
   return (
-    <StandardMain>
+    <StandardMain className="pb-12 sm:pb-20">
       {isSuccess ? (
         <section
           id="signup-section"

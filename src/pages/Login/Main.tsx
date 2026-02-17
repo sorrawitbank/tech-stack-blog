@@ -4,7 +4,7 @@ import { NavigationButton } from "@/components/common/Button";
 
 function Main() {
   return (
-    <StandardMain>
+    <StandardMain className="pb-12 sm:pb-20">
       <section
         id="login-section"
         aria-labelledby="login-label"
