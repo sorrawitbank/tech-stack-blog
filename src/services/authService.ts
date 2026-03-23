@@ -1,4 +1,9 @@
-import type { LoginData, LoginResponse, RegisterData } from "@/types/auth";
+import type {
+  LoginData,
+  LoginResponse,
+  RegisterData,
+  ResetPassword,
+} from "@/types/auth";
 import type { UserApi } from "@/types/user";
 import axios from "axios";
 
@@ -14,4 +19,8 @@ export async function toLogin(data: LoginData) {
 
 export async function toRegister(data: RegisterData) {
   await axios.post(`${AUTH_BASE_URL}/register`, data);
+}
+
+export async function resetPassword(data: ResetPassword) {
+  await axios.put(`${AUTH_BASE_URL}/reset-password`, data);
 }

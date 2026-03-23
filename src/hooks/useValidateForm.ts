@@ -4,7 +4,7 @@ import validatePassword from "@/utils/validatePassword";
 import validateName from "@/utils/validateName";
 import validateUsername from "@/utils/validateUsername";
 
-type Keys = "name" | "username" | "email" | "password";
+type Keys = "name" | "username" | "email" | "password" | "newPassword";
 
 export type Refs = Record<Keys, React.RefObject<HTMLInputElement>>;
 
@@ -17,6 +17,7 @@ const validations: Validations = {
   username: validateUsername,
   email: validateEmail,
   password: validatePassword,
+  newPassword: validatePassword,
 };
 
 function useValidateForm() {

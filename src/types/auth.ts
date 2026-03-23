@@ -11,3 +11,8 @@ export interface RegisterData extends LoginData {
   name: string;
   username: string;
 }
+
+export interface ResetPassword {
+  oldPassword: string;
+  newPassword: string;
+}
