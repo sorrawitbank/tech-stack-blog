@@ -15,7 +15,7 @@ function LoginForm() {
 
   return (
     <form className="w-full" onSubmit={handleSubmit}>
-      <FieldSet className="items-center gap-6 lg:gap-10">
+      <FieldSet disabled={isLoading} className="items-center gap-6 lg:gap-10">
         <FieldGroup className="gap-6 lg:gap-7">
           <Field className="gap-1">
             <FieldLabel htmlFor="email" className="style-body-1 text-brown-400">
@@ -27,7 +27,6 @@ function LoginForm() {
               ref={refs.email}
               placeholder="Email"
               autoComplete="email"
-              disabled={isLoading}
               className={cn(
                 "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
                 errors.email && "border-brand-red"
@@ -47,7 +46,6 @@ function LoginForm() {
               type="password"
               ref={refs.password}
               placeholder="Password"
-              disabled={isLoading}
               className={cn(
                 "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
                 errors.password && "border-brand-red"
@@ -56,9 +54,7 @@ function LoginForm() {
             <FieldError>{errors.password}</FieldError>
           </Field>
         </FieldGroup>
-        <ActionButton variant="primary" disabled={isLoading}>
-          Log in
-        </ActionButton>
+        <ActionButton variant="primary">Log in</ActionButton>
       </FieldSet>
     </form>
   );
