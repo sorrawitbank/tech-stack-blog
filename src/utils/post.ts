@@ -8,7 +8,7 @@ export function toPost(postApi: PostApi): Post {
     id: postApi.id,
     author: toUser(postApi.author),
     image: postApi.image,
-    imageAlt: postApi.imageAlt ?? "",
+    imageAlt: postApi.imageAlt ?? postApi.title,
     categories: postApi.categories,
     title: postApi.title,
     description: postApi.description,

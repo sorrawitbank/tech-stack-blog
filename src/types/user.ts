@@ -5,7 +5,7 @@ export interface User {
   email: string;
   username: string;
   name: string;
-  profilePic: string;
+  profilePic: string | null;
   role: Role;
 }
 
@@ -14,6 +14,6 @@ export interface UserApi {
   email: string;
   username: string;
   name: string;
-  profilePic?: string;
+  profilePic: string | null;
   role: Role;
 }

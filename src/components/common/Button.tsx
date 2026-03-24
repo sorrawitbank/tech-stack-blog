@@ -40,7 +40,11 @@ export function ActionButton(props: ActionButtonProps) {
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}
-      className={cn(variants[props.variant], props.className)}
+      className={cn(
+        variants[props.variant],
+        "disabled:cursor-not-allowed",
+        props.className
+      )}
     >
       {props.children}
     </button>
@@ -51,7 +55,11 @@ export function NavigationButton(props: NavigationButtonProps) {
   return (
     <Link
       to={props.navigateTo}
-      className={cn(variants[props.variant], props.className)}
+      className={cn(
+        variants[props.variant],
+        "disabled:cursor-not-allowed",
+        props.className
+      )}
     >
       {props.children}
     </Link>

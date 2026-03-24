@@ -20,7 +20,7 @@ export interface PostApi {
   readonly id: number;
   author: UserApi;
   image: string;
-  imageAlt?: string;
+  imageAlt: string | null;
   categories: string[];
   title: string;
   description: string;
