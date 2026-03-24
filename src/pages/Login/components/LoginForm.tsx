@@ -54,7 +54,9 @@ function LoginForm() {
             <FieldError>{inputErrors.password}</FieldError>
           </Field>
         </FieldGroup>
-        <ActionButton variant="primary">Log in</ActionButton>
+        <ActionButton variant="primary" type="submit">
+          Log in
+        </ActionButton>
       </FieldSet>
     </form>
   );

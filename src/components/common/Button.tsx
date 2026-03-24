@@ -37,7 +37,7 @@ const variants: Record<ButtonVariant, string> = {
 export function ActionButton(props: ActionButtonProps) {
   return (
     <button
-      type={props.type}
+      type={props.type ?? "button"}
       onClick={props.onClick}
       disabled={props.disabled}
       className={cn(

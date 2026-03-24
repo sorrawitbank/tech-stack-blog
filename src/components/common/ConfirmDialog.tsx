@@ -35,7 +35,6 @@ function ConfirmDialog(props: Props) {
         <AlertDialogCancel asChild>
           <ActionButton
             variant="secondary"
-            type="button"
             onClick={props.onCancel}
           >
             {props.cancelText ?? "Cancel"}
@@ -44,7 +43,6 @@ function ConfirmDialog(props: Props) {
         <AlertDialogAction asChild>
           <ActionButton
             variant="primary"
-            type="button"
             onClick={props.onConfirm}
           >
             {props.confirmText ?? "Confirm"}

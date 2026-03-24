@@ -31,7 +31,7 @@ function Main() {
       <form onSubmit={handleSubmit}>
         <FieldSet
           disabled={isLoading}
-          className="items-start gap-6 md:gap-8 lg:gap-0"
+          className="items-start gap-6 sm:gap-8 lg:gap-0"
         >
           {isLarge && (
             <>

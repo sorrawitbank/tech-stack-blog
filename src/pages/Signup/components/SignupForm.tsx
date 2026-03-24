@@ -94,7 +94,9 @@ function SignupForm(props: Props) {
             <FieldError>{props.inputErrors.password}</FieldError>
           </Field>
         </FieldGroup>
-        <ActionButton variant="primary">Sign up</ActionButton>
+        <ActionButton variant="primary" type="submit">
+          Sign up
+        </ActionButton>
       </FieldSet>
     </form>
   );
