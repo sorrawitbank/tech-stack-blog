@@ -21,7 +21,7 @@ function useGetPostById(postId: number) {
   const getPost = async (controller: AbortController) => {
     setIsLoading(true);
     try {
-      const data = await fetchPostById(postId, controller);
+      const data = await fetchPostById({ postId, controller });
       const mappedPost: Post = toPost(data);
       setPost(mappedPost);
     } catch (error) {

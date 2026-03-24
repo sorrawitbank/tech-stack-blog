@@ -21,13 +21,16 @@ export async function fetchPosts(params: FetchPostsParams) {
   return response.data;
 }
 
-export async function fetchPostById(
-  postId: number,
-  controller: AbortController
-) {
-  const response = await axios.get<PostApi>(`${POSTS_BASE_URL}/${postId}`, {
-    signal: controller.signal,
-  });
+export async function fetchPostById(params: {
+  postId: number;
+  controller: AbortController;
+}) {
+  const response = await axios.get<PostApi>(
+    `${POSTS_BASE_URL}/${params.postId}`,
+    {
+      signal: params.controller.signal,
+    }
+  );
 
   return response.data;
 }
