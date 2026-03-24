@@ -105,7 +105,7 @@ function Header() {
                   <Separator className="bg-brown-300" />
                   <li>
                     <button
-                      onClick={logout}
+                      onClick={() => logout()}
                       className="flex gap-3 w-full px-4 py-3 cursor-pointer hover:bg-brown-200"
                     >
                       <LogOut className="text-brown-400" />
@@ -208,7 +208,7 @@ function Header() {
                   </ul>
                   <Separator className="bg-brown-300" />
                   <button
-                    onClick={logout}
+                    onClick={() => logout()}
                     className="flex gap-3 px-4 py-3 rounded-lg cursor-pointer hover:bg-brown-200"
                   >
                     <LogOut className="text-brown-400" />

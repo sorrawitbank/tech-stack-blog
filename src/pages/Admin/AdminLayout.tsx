@@ -119,7 +119,7 @@ function AdminLayout(props: Props) {
                         <Separator className="bg-brown-300" />
                         <li className="mb-4 hover:bg-brown-300">
                           <button
-                            onClick={logout}
+                            onClick={() => logout()}
                             className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6"
                           >
                             <LogOut />
@@ -194,7 +194,7 @@ function AdminLayout(props: Props) {
                 <Separator className="bg-brown-300" />
                 <li className="mb-4 hover:bg-brown-300">
                   <button
-                    onClick={logout}
+                    onClick={() => logout()}
                     className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6"
                   >
                     <LogOut />

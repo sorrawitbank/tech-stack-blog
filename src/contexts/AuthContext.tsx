@@ -11,7 +11,7 @@ interface AuthContextType {
   error: string | null;
   register: (data: RegisterData) => Promise<boolean>;
   login: (data: LoginData, requiredAdmin: boolean) => Promise<void>;
-  logout: (showMessage: boolean) => void;
+  logout: (showMessage?: boolean) => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
