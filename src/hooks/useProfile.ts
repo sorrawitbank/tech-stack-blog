@@ -1,6 +1,7 @@
 import type { Role } from "@/types/user";
 import React, { useEffect, useRef, useState } from "react";
 import { AxiosError } from "axios";
+import useConfirmDialog from "./useConfirmDialog";
 import useUploadImage from "./useUploadImage";
 import useValidateForm, { type Refs } from "./useValidateForm";
 import { updateProfile } from "@/services/userService";
@@ -18,6 +19,8 @@ function useProfile(role: Role) {
     setPictureError,
     handleImageFileChange,
   } = useUploadImage();
+  const { isConfirmDialogOpen, requestConfirm, handleConfirm, handleCancel } =
+    useConfirmDialog();
 
   const refs: Pick<Refs, "name" | "username"> = {
     name: useRef<HTMLInputElement>(document.createElement("input")),
@@ -39,6 +42,9 @@ function useProfile(role: Role) {
     setError(null);
     setPictureError(null);
     if (!validateFields(refs)) return;
+
+    const isConfirmed = await requestConfirm();
+    if (!isConfirmed) return;
 
     setIsLoading(true);
 
@@ -76,10 +82,13 @@ function useProfile(role: Role) {
     refs,
     pictureRef,
     isLoading,
+    isConfirmDialogOpen,
     errors,
     pictureError,
     previewImageUrl,
     handleImageFileChange,
+    handleConfirm,
+    handleCancel,
     handleSubmit,
   };
 }

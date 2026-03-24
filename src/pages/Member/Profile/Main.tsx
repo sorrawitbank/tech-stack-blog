@@ -1,5 +1,6 @@
 import { User } from "lucide-react";
 import { ActionButton } from "@/components/common/Button";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Field,
@@ -20,10 +21,13 @@ function Main() {
     refs,
     pictureRef,
     isLoading,
+    isConfirmDialogOpen,
     errors,
     pictureError,
     previewImageUrl,
     handleImageFileChange,
+    handleConfirm,
+    handleCancel,
     handleSubmit,
   } = useProfile("user");
 
@@ -45,7 +49,7 @@ function Main() {
             <div className="flex flex-col items-center gap-6 lg:flex-row">
               <Avatar className="size-30">
                 <AvatarImage
-                  src={(previewImageUrl || user!.profilePic) ?? undefined}
+                  src={previewImageUrl || user!.profilePic}
                   alt={user!.name}
                   className="text-brown-500 object-cover"
                 />
@@ -130,6 +134,13 @@ function Main() {
           </div>
         </FieldSet>
       </form>
+      <ConfirmDialog
+        title="Update profile"
+        content="Do you want to update your profile?"
+        open={isConfirmDialogOpen}
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+      />
     </main>
   );
 }

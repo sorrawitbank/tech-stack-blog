@@ -1,4 +1,5 @@
 import { ActionButton } from "@/components/common/Button";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 import {
   Field,
   FieldError,
@@ -15,9 +16,12 @@ function Main() {
     refs,
     confirmPasswordRef,
     isLoading,
+    isConfirmDialogOpen,
     errors,
     confirmPasswordError,
     handleSubmit,
+    handleConfirm,
+    handleCancel,
   } = useResetPassword();
 
   return (
@@ -91,6 +95,13 @@ function Main() {
           </ActionButton>
         </FieldSet>
       </form>
+      <ConfirmDialog
+        title="Reset password"
+        content="Do you want to reset your password?"
+        open={isConfirmDialogOpen}
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+      />
     </main>
   );
 }
