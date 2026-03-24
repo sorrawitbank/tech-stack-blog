@@ -1,9 +1,10 @@
+import Main from "./Main";
 import AdminLayout from "../AdminLayout";
 
 function AdminResetPassword() {
   return (
     <AdminLayout page="reset-password">
-      <h1>RP</h1>
+      <Main />
     </AdminLayout>
   );
 }

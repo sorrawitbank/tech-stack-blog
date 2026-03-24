@@ -85,7 +85,8 @@ function Main() {
                   autoComplete="name"
                   defaultValue={user!.name}
                   className={cn(
-                    "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
+                    "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                    errors.name&& "border-brand-red"
                   )}
                 />
                 <FieldError>{errors.name}</FieldError>
@@ -105,7 +106,8 @@ function Main() {
                   autoComplete="username"
                   defaultValue={user!.username}
                   className={cn(
-                    "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
+                    "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                    errors.username && "border-brand-red"
                   )}
                 />
                 <FieldError>{errors.username}</FieldError>

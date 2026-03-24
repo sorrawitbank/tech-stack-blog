@@ -8,6 +8,7 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import useResetPassword from "@/hooks/useResetPassword";
 import { cn } from "@/lib/utils";
 
@@ -23,18 +24,26 @@ function Main() {
     handleConfirm,
     handleCancel,
   } = useResetPassword();
+  const { isLarge } = useMediaQueryContext();
 
   return (
-    <main className="md:flex-1">
-      <form
-        onSubmit={handleSubmit}
-        className="px-4 pt-6 pb-10 bg-brown-200 sm:p-8 md:rounded-2xl lg:p-10"
-      >
+    <main className="flex flex-col p-4 sm:p-8 lg:flex-1 lg:p-0">
+      <form onSubmit={handleSubmit}>
         <FieldSet
           disabled={isLoading}
-          className="items-start gap-6 md:gap-8 lg:gap-10"
+          className="items-start gap-6 md:gap-8 lg:gap-0"
         >
-          <FieldGroup className="gap-6 lg:gap-7">
+          {isLarge && (
+            <>
+              <header className="flex justify-between items-center px-15 py-6 w-full border-b border-brown-300">
+                <h3 className="style-headline-3">Reset password</h3>
+                <ActionButton variant="primary" type="submit">
+                  Reset password
+                </ActionButton>
+              </header>
+            </>
+          )}
+          <FieldGroup className="lg:max-w-150 lg:px-15 lg:py-10">
             <Field className="gap-1">
               <FieldLabel
                 htmlFor="current-password"
@@ -93,9 +102,11 @@ function Main() {
               <FieldError>{confirmPasswordError}</FieldError>
             </Field>
           </FieldGroup>
-          <ActionButton variant="primary" type="submit">
-            Reset password
-          </ActionButton>
+          {!isLarge && (
+            <ActionButton variant="primary" type="submit">
+              Reset password
+            </ActionButton>
+          )}
         </FieldSet>
       </form>
       <ConfirmDialog
