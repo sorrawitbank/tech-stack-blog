@@ -3,7 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { AxiosError } from "axios";
 import useConfirmDialog from "./useConfirmDialog";
 import useUploadImage from "./useUploadImage";
-import useValidateForm, { type InputRefs } from "./useValidateForm";
+import useValidateForm, {
+  type InputRefs,
+  type TextAreaRefs,
+} from "./useValidateForm";
 import { updateAdminProfile } from "@/services/adminService";
 import { updateProfile } from "@/services/userService";
 import sonner from "@/utils/sonner";
@@ -11,7 +14,12 @@ import sonner from "@/utils/sonner";
 function useProfile(role: Role) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const { inputErrors, validateInputFields } = useValidateForm();
+  const {
+    inputErrors,
+    textareaErrors,
+    validateInputFields,
+    validateTextAreaFields,
+  } = useValidateForm();
   const {
     pictureRef,
     pictureError,
@@ -23,9 +31,13 @@ function useProfile(role: Role) {
   const { isConfirmDialogOpen, requestConfirm, handleConfirm, handleCancel } =
     useConfirmDialog();
 
-  const refs: Pick<InputRefs, "name" | "username"> = {
+  const inputRefs: Pick<InputRefs, "name" | "username"> = {
     name: useRef<HTMLInputElement>(document.createElement("input")),
     username: useRef<HTMLInputElement>(document.createElement("input")),
+  };
+
+  const textareaRefs: Pick<TextAreaRefs, "bio"> = {
+    bio: useRef<HTMLTextAreaElement>(document.createElement("textarea")),
   };
 
   useEffect(() => {
@@ -42,7 +54,10 @@ function useProfile(role: Role) {
     event.preventDefault();
     setError(null);
     setPictureError(null);
-    if (!validateInputFields(refs)) return;
+
+    const isValid =
+      validateInputFields(inputRefs) && validateTextAreaFields(textareaRefs);
+    if (!isValid) return;
 
     const isConfirmed = await requestConfirm();
     if (!isConfirmed) return;
@@ -50,9 +65,9 @@ function useProfile(role: Role) {
     setIsLoading(true);
 
     const body = {
-      name: refs.name.current.value,
-      username: refs.username.current.value,
-      bio: role === "admin" ? refs.bio.current.value : undefined,
+      name: inputRefs.name.current.value,
+      username: inputRefs.username.current.value,
+      bio: role === "admin" ? textareaRefs.bio.current.value : undefined,
     };
 
     const formData = new FormData();
@@ -85,11 +100,13 @@ function useProfile(role: Role) {
   };
 
   return {
-    refs,
+    inputRefs,
+    textareaRefs,
     pictureRef,
     isLoading,
     isConfirmDialogOpen,
     inputErrors,
+    textareaErrors,
     pictureError,
     previewImageUrl,
     handleImageFileChange,

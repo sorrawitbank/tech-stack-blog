@@ -6,6 +6,7 @@ export function toUser(userApi: UserApi): User {
     email: userApi.email,
     username: userApi.username,
     name: userApi.name,
+    bio: userApi.bio ?? "",
     profilePic: userApi.profilePic ?? undefined,
     role: userApi.role,
   };

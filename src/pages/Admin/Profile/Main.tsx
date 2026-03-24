@@ -1,0 +1,182 @@
+import { User } from "lucide-react";
+import { ActionButton } from "@/components/common/Button";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldSet,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
+import { useAuthContext } from "@/contexts/AuthContext";
+import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
+import useProfile from "@/hooks/useProfile";
+import { cn } from "@/lib/utils";
+
+function Main() {
+  const { user } = useAuthContext();
+  const {
+    inputRefs,
+    textareaRefs,
+    pictureRef,
+    isLoading,
+    isConfirmDialogOpen,
+    inputErrors,
+    textareaErrors,
+    pictureError,
+    previewImageUrl,
+    handleImageFileChange,
+    handleConfirm,
+    handleCancel,
+    handleSubmit,
+  } = useProfile("admin");
+  const { isLarge } = useMediaQueryContext();
+
+  return (
+    <main className="flex flex-col p-4 sm:p-8 lg:flex-1 lg:p-0">
+      <form onSubmit={handleSubmit}>
+        <Input
+          ref={pictureRef}
+          type="file"
+          accept=".jpg,.jpeg,.png,.webp"
+          onChange={handleImageFileChange}
+          className="hidden"
+        />
+        <FieldSet
+          disabled={isLoading}
+          className="items-start gap-6 sm:gap-8 lg:gap-0"
+        >
+          {isLarge && (
+            <>
+              <header className="flex justify-between items-center px-15 py-6 w-full border-b border-brown-300">
+                <h3 className="style-headline-3">Profile</h3>
+                <ActionButton variant="primary" type="submit">
+                  Save
+                </ActionButton>
+              </header>
+            </>
+          )}
+          <div className="flex flex-col gap-10 w-full lg:px-15 lg:py-10">
+            <Field className="gap-2">
+              <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-7">
+                <Avatar className="size-30">
+                  <AvatarImage
+                    src={previewImageUrl || user!.profilePic}
+                    alt={user!.name}
+                    className="text-brown-500 object-cover"
+                  />
+                  <AvatarFallback className="bg-brown-400">
+                    <User className="size-2/5 text-white" />
+                  </AvatarFallback>
+                </Avatar>
+                <ActionButton
+                  variant="secondary"
+                  onClick={() => pictureRef.current?.click()}
+                >
+                  Upload profile picture
+                </ActionButton>
+              </div>
+              <FieldError>{pictureError}</FieldError>
+            </Field>
+            <Separator className="bg-brown-300" />
+            <FieldGroup>
+              <Field className="gap-1 lg:max-w-120">
+                <FieldLabel
+                  htmlFor="name"
+                  className="style-body-1 text-brown-400"
+                >
+                  Name
+                </FieldLabel>
+                <Input
+                  id="name"
+                  type="text"
+                  ref={inputRefs.name}
+                  placeholder="Full name"
+                  autoComplete="name"
+                  defaultValue={user!.name}
+                  className={cn(
+                    "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                    inputErrors.name && "border-brand-red"
+                  )}
+                />
+                <FieldError>{inputErrors.name}</FieldError>
+              </Field>
+              <Field className="gap-1 lg:max-w-120">
+                <FieldLabel
+                  htmlFor="username"
+                  className="style-body-1 text-brown-400"
+                >
+                  Username
+                </FieldLabel>
+                <Input
+                  id="username"
+                  type="text"
+                  ref={inputRefs.username}
+                  placeholder="Username"
+                  autoComplete="username"
+                  defaultValue={user!.username}
+                  className={cn(
+                    "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                    inputErrors.username && "border-brand-red"
+                  )}
+                />
+                <FieldError>{inputErrors.username}</FieldError>
+              </Field>
+              <Field className="gap-1 lg:max-w-120">
+                <FieldLabel
+                  htmlFor="email"
+                  className="style-body-1 text-brown-400"
+                >
+                  Email
+                </FieldLabel>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Email"
+                  autoComplete="email"
+                  defaultValue={user!.email}
+                  className="h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
+                  disabled
+                />
+              </Field>
+              <Field className="gap-1">
+                <FieldLabel
+                  htmlFor="bio"
+                  className="style-body-1 text-brown-400"
+                >
+                  Bio (max 120 letters)
+                </FieldLabel>
+                <Textarea
+                  id="bio"
+                  ref={textareaRefs.bio}
+									defaultValue={user!.bio}
+                  placeholder="Write something about yourself"
+                  className="min-h-36 style-body-1 bg-white placeholder:text-brown-400"
+                />
+                <FieldError>{textareaErrors.bio}</FieldError>
+              </Field>
+            </FieldGroup>
+          </div>
+          {!isLarge && (
+            <ActionButton variant="primary" type="submit">
+              Save
+            </ActionButton>
+          )}
+        </FieldSet>
+      </form>
+      <ConfirmDialog
+        title="Update profile"
+        content="Do you want to update your profile?"
+        open={isConfirmDialogOpen}
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+      />
+    </main>
+  );
+}
+
+export default Main;
