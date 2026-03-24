@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 function Main() {
   const { isLarge } = useMediaQueryContext();
-  const { refs, isSuccess, isLoading, errors, handleSubmit } = useSignup();
+  const { refs, isSuccess, isLoading, inputErrors, handleSubmit } = useSignup();
 
   return (
     <StandardMain className="pb-12 sm:pb-20">
@@ -49,7 +49,7 @@ function Main() {
           <SignupForm
             refs={refs}
             isLoading={isLoading}
-            errors={errors}
+            inputErrors={inputErrors}
             handleSubmit={handleSubmit}
           />
           <div className="flex gap-3">

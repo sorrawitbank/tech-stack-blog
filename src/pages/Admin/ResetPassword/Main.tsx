@@ -18,7 +18,7 @@ function Main() {
     confirmPasswordRef,
     isLoading,
     isConfirmDialogOpen,
-    errors,
+    inputErrors,
     confirmPasswordError,
     handleSubmit,
     handleConfirm,
@@ -58,10 +58,10 @@ function Main() {
                 placeholder="Current password"
                 className={cn(
                   "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
-                  errors.password && "border-brand-red"
+                  inputErrors.password && "border-brand-red"
                 )}
               />
-              <FieldError>{errors.password}</FieldError>
+              <FieldError>{inputErrors.password}</FieldError>
             </Field>
             <Field className="gap-1">
               <FieldLabel
@@ -77,10 +77,10 @@ function Main() {
                 placeholder="New password"
                 className={cn(
                   "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
-                  errors.newPassword && "border-brand-red"
+                  inputErrors.newPassword && "border-brand-red"
                 )}
               />
-              <FieldError>{errors.newPassword}</FieldError>
+              <FieldError>{inputErrors.newPassword}</FieldError>
             </Field>
             <Field className="gap-1">
               <FieldLabel

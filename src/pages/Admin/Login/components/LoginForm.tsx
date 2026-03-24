@@ -11,7 +11,7 @@ import useLogin from "@/hooks/useLogin";
 import { cn } from "@/lib/utils";
 
 function LoginForm() {
-  const { refs, isLoading, errors, handleSubmit } = useLogin(true);
+  const { refs, isLoading, inputErrors, handleSubmit } = useLogin(true);
 
   return (
     <form className="w-full" onSubmit={handleSubmit}>
@@ -29,10 +29,10 @@ function LoginForm() {
               autoComplete="email"
               className={cn(
                 "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
-                errors.email && "border-brand-red"
+                inputErrors.email && "border-brand-red"
               )}
             />
-            <FieldError>{errors.email}</FieldError>
+            <FieldError>{inputErrors.email}</FieldError>
           </Field>
           <Field className="gap-1">
             <FieldLabel
@@ -48,10 +48,10 @@ function LoginForm() {
               placeholder="Password"
               className={cn(
                 "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
-                errors.password && "border-brand-red"
+                inputErrors.password && "border-brand-red"
               )}
             />
-            <FieldError>{errors.password}</FieldError>
+            <FieldError>{inputErrors.password}</FieldError>
           </Field>
         </FieldGroup>
         <ActionButton variant="primary">Log in</ActionButton>

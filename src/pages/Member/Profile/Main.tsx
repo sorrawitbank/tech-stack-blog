@@ -18,11 +18,11 @@ import { cn } from "@/lib/utils";
 function Main() {
   const { user } = useAuthContext();
   const {
-    refs,
+    inputRefs,
     pictureRef,
     isLoading,
     isConfirmDialogOpen,
-    errors,
+    inputErrors,
     pictureError,
     previewImageUrl,
     handleImageFileChange,
@@ -58,7 +58,6 @@ function Main() {
                 </AvatarFallback>
               </Avatar>
               <ActionButton
-                type="button"
                 variant="secondary"
                 onClick={() => pictureRef.current?.click()}
               >
@@ -80,16 +79,16 @@ function Main() {
                 <Input
                   id="name"
                   type="text"
-                  ref={refs.name}
+                  ref={inputRefs.name}
                   placeholder="Full name"
                   autoComplete="name"
                   defaultValue={user!.name}
                   className={cn(
                     "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
-                    errors.name&& "border-brand-red"
+                    inputErrors.name && "border-brand-red"
                   )}
                 />
-                <FieldError>{errors.name}</FieldError>
+                <FieldError>{inputErrors.name}</FieldError>
               </Field>
               <Field className="gap-1">
                 <FieldLabel
@@ -101,16 +100,16 @@ function Main() {
                 <Input
                   id="username"
                   type="text"
-                  ref={refs.username}
+                  ref={inputRefs.username}
                   placeholder="Username"
                   autoComplete="username"
                   defaultValue={user!.username}
                   className={cn(
                     "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
-                    errors.username && "border-brand-red"
+                    inputErrors.username && "border-brand-red"
                   )}
                 />
-                <FieldError>{errors.username}</FieldError>
+                <FieldError>{inputErrors.username}</FieldError>
               </Field>
               <Field className="gap-1 opacity-40">
                 <FieldLabel
@@ -125,14 +124,16 @@ function Main() {
                   placeholder="Email"
                   autoComplete="email"
                   defaultValue={user!.email}
-                  disabled={true}
                   className={cn(
                     "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
                   )}
+                  disabled
                 />
               </Field>
             </FieldGroup>
-            <ActionButton variant="primary">Save</ActionButton>
+            <ActionButton variant="primary" type="submit">
+              Save
+            </ActionButton>
           </div>
         </FieldSet>
       </form>

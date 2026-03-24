@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AxiosError } from "axios";
 import useConfirmDialog from "./useConfirmDialog";
-import useValidateForm, { type Refs } from "./useValidateForm";
+import useValidateForm, { type InputRefs } from "./useValidateForm";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { resetPassword } from "@/services/authService";
 import sonner from "@/utils/sonner";
@@ -13,11 +13,11 @@ function useResetPassword() {
     string | null
   >(null);
   const { logout } = useAuthContext();
-  const { errors, validateFields } = useValidateForm();
+  const { inputErrors, validateInputFields } = useValidateForm();
   const { isConfirmDialogOpen, requestConfirm, handleConfirm, handleCancel } =
     useConfirmDialog();
 
-  const refs: Pick<Refs, "password" | "newPassword"> = {
+  const refs: Pick<InputRefs, "password" | "newPassword"> = {
     password: useRef<HTMLInputElement>(document.createElement("input")),
     newPassword: useRef<HTMLInputElement>(document.createElement("input")),
   };
@@ -40,7 +40,7 @@ function useResetPassword() {
     event.preventDefault();
     setError(null);
     setConfirmPasswordError(null);
-    if (!validateFields(refs)) return;
+    if (!validateInputFields(refs)) return;
 
     if (refs.newPassword.current.value !== confirmPasswordRef.current.value) {
       setConfirmPasswordError("Passwords do not match");
@@ -80,7 +80,7 @@ function useResetPassword() {
     confirmPasswordRef,
     isLoading,
     isConfirmDialogOpen,
-    errors,
+    inputErrors,
     confirmPasswordError,
     handleSubmit,
     handleConfirm,

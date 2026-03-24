@@ -3,14 +3,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { AxiosError } from "axios";
 import useConfirmDialog from "./useConfirmDialog";
 import useUploadImage from "./useUploadImage";
-import useValidateForm, { type Refs } from "./useValidateForm";
+import useValidateForm, { type InputRefs } from "./useValidateForm";
+import { updateAdminProfile } from "@/services/adminService";
 import { updateProfile } from "@/services/userService";
 import sonner from "@/utils/sonner";
 
 function useProfile(role: Role) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const { errors, validateFields } = useValidateForm();
+  const { inputErrors, validateInputFields } = useValidateForm();
   const {
     pictureRef,
     pictureError,
@@ -22,7 +23,7 @@ function useProfile(role: Role) {
   const { isConfirmDialogOpen, requestConfirm, handleConfirm, handleCancel } =
     useConfirmDialog();
 
-  const refs: Pick<Refs, "name" | "username"> = {
+  const refs: Pick<InputRefs, "name" | "username"> = {
     name: useRef<HTMLInputElement>(document.createElement("input")),
     username: useRef<HTMLInputElement>(document.createElement("input")),
   };
@@ -41,7 +42,7 @@ function useProfile(role: Role) {
     event.preventDefault();
     setError(null);
     setPictureError(null);
-    if (!validateFields(refs)) return;
+    if (!validateInputFields(refs)) return;
 
     const isConfirmed = await requestConfirm();
     if (!isConfirmed) return;
@@ -51,6 +52,7 @@ function useProfile(role: Role) {
     const body = {
       name: refs.name.current.value,
       username: refs.username.current.value,
+      bio: role === "admin" ? refs.bio.current.value : undefined,
     };
 
     const formData = new FormData();
@@ -60,7 +62,11 @@ function useProfile(role: Role) {
     }
 
     try {
-      await updateProfile(formData);
+      if (role === "admin") {
+        await updateAdminProfile(formData);
+      } else {
+        await updateProfile(formData);
+      }
       sonner.success({
         message: "Update profile success",
         description: "Please refresh the page to see the changes.",
@@ -83,7 +89,7 @@ function useProfile(role: Role) {
     pictureRef,
     isLoading,
     isConfirmDialogOpen,
-    errors,
+    inputErrors,
     pictureError,
     previewImageUrl,
     handleImageFileChange,

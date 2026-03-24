@@ -32,10 +32,10 @@ function SignupForm(props: Props) {
               autoComplete="name"
               className={cn(
                 "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
-                props.errors.name && "border-brand-red"
+                props.inputErrors.name && "border-brand-red"
               )}
             />
-            <FieldError>{props.errors.name}</FieldError>
+            <FieldError>{props.inputErrors.name}</FieldError>
           </Field>
           <Field className="gap-1">
             <FieldLabel
@@ -52,10 +52,10 @@ function SignupForm(props: Props) {
               autoComplete="username"
               className={cn(
                 "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
-                props.errors.username && "border-brand-red"
+                props.inputErrors.username && "border-brand-red"
               )}
             />
-            <FieldError>{props.errors.username}</FieldError>
+            <FieldError>{props.inputErrors.username}</FieldError>
           </Field>
           <Field className="gap-1">
             <FieldLabel htmlFor="email" className="style-body-1 text-brown-400">
@@ -69,10 +69,10 @@ function SignupForm(props: Props) {
               autoComplete="email"
               className={cn(
                 "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
-                props.errors.email && "border-brand-red"
+                props.inputErrors.email && "border-brand-red"
               )}
             />
-            <FieldError>{props.errors.email}</FieldError>
+            <FieldError>{props.inputErrors.email}</FieldError>
           </Field>
           <Field className="gap-1">
             <FieldLabel
@@ -88,10 +88,10 @@ function SignupForm(props: Props) {
               placeholder="Password"
               className={cn(
                 "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
-                props.errors.password && "border-brand-red"
+                props.inputErrors.password && "border-brand-red"
               )}
             />
-            <FieldError>{props.errors.password}</FieldError>
+            <FieldError>{props.inputErrors.password}</FieldError>
           </Field>
         </FieldGroup>
         <ActionButton variant="primary">Sign up</ActionButton>

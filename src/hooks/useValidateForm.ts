@@ -1,18 +1,29 @@
 import React, { useState } from "react";
+import validateBio from "@/utils/validateBio";
 import validateEmail from "@/utils/validateEmail";
-import validatePassword from "@/utils/validatePassword";
 import validateName from "@/utils/validateName";
+import validatePassword from "@/utils/validatePassword";
 import validateUsername from "@/utils/validateUsername";
 
-type Keys = "name" | "username" | "email" | "password" | "newPassword";
+type InputKeys = "name" | "username" | "email" | "password" | "newPassword";
+type TextAreaKeys = "bio";
 
-export type Refs = Record<Keys, React.RefObject<HTMLInputElement>>;
+export type InputRefs = Record<InputKeys, React.RefObject<HTMLInputElement>>;
+export type TextAreaRefs = Record<
+  TextAreaKeys,
+  React.RefObject<HTMLTextAreaElement>
+>;
 
-type Validations = Record<Keys, (value: string) => string | null>;
+type InputValidations = Record<InputKeys, (value: string) => string | null>;
+type TextAreaValidations = Record<
+  TextAreaKeys,
+  (value: string) => string | null
+>;
 
-type Errors = Partial<Record<Keys, string>>;
+type InputErrors = Partial<Record<InputKeys, string>>;
+type TextAreaErrors = Partial<Record<TextAreaKeys, string>>;
 
-const validations: Validations = {
+const inputValidations: InputValidations = {
   name: validateName,
   username: validateUsername,
   email: validateEmail,
@@ -20,22 +31,44 @@ const validations: Validations = {
   newPassword: validatePassword,
 };
 
-function useValidateForm() {
-  const [errors, setErrors] = useState<Errors>({});
+const textareaValidations: TextAreaValidations = {
+  bio: validateBio,
+};
 
-  const validateFields = (refs: Partial<Refs>) => {
-    const newErrors: Errors = {};
+function useValidateForm() {
+  const [inputErrors, setInputErrors] = useState<InputErrors>({});
+  const [textareaErrors, setTextAreaErrors] = useState<TextAreaErrors>({});
+
+  const validateInputFields = (refs: Partial<InputRefs>) => {
+    const newErrors: InputErrors = {};
     for (const [key, ref] of Object.entries(refs)) {
-      const error = validations[key as Keys](ref.current.value);
+      const error = inputValidations[key as InputKeys](ref.current.value);
       if (error) {
-        newErrors[key as Keys] = error;
+        newErrors[key as InputKeys] = error;
       }
     }
-    setErrors(newErrors);
+    setInputErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  return { errors, validateFields };
+  const validateTextAreaFields = (refs: Partial<TextAreaRefs>) => {
+    const newErrors: TextAreaErrors = {};
+    for (const [key, ref] of Object.entries(refs)) {
+      const error = textareaValidations[key as TextAreaKeys](ref.current.value);
+      if (error) {
+        newErrors[key as TextAreaKeys] = error;
+      }
+    }
+    setTextAreaErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  return {
+    inputErrors,
+    textareaErrors,
+    validateInputFields,
+    validateTextAreaFields,
+  };
 }
 
 export default useValidateForm;
