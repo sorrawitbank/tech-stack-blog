@@ -26,11 +26,11 @@ function CategorySelector() {
             <SelectSeparator className="bg-brown-300" />
             {categories.map((category) => (
               <SelectItem
-                key={category}
-                value={category}
+                key={category.id}
+                value={category.name}
                 className="text-brown-400 hover:text-brown-500! hover:cursor-pointer"
               >
-                {category}
+                {category.name}
               </SelectItem>
             ))}
           </SelectGroup>

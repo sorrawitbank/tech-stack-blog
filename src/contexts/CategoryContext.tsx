@@ -1,19 +1,28 @@
+import type { Category } from "@/types/category";
 import React, { createContext, useContext } from "react";
-import { categories } from "@/data/category";
 import useCategory from "@/hooks/useCategory";
 
-const CategoryContext = createContext({
+interface CategoryContextType {
+  category: string;
+  categories: Category[];
+  isLoading: boolean;
+  handleSelectCategory: (category: string) => void;
+}
+
+const CategoryContext = createContext<CategoryContextType>({
   category: "Highlight",
-  categories: categories,
-  handleSelectCategory: (_: string) => {},
+  categories: [{ id: 0, name: "Highlight" }],
+  isLoading: false,
+  handleSelectCategory: () => {},
 });
 
 export function CategoryProvider({ children }: { children?: React.ReactNode }) {
-  const { category, handleSelectCategory } = useCategory();
+  const { category, categories, isLoading, handleSelectCategory } =
+    useCategory();
 
   return (
     <CategoryContext.Provider
-      value={{ category, categories, handleSelectCategory }}
+      value={{ category, categories, isLoading, handleSelectCategory }}
     >
       {children}
     </CategoryContext.Provider>
