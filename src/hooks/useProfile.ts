@@ -87,6 +87,7 @@ function useProfile(role: Role) {
         description: "Please refresh the page to see the changes.",
       });
     } catch (error) {
+      // Get error message from response data if available
       if (error instanceof Error) {
         if (error instanceof AxiosError) {
           setError(error.response?.data?.message || "Please try again");

@@ -81,11 +81,12 @@ function useGetPosts({
         keyword,
         controller,
       });
-      const mappedPosts: Post[] = mapToPost(data.posts);
+      const parsedPosts: Post[] = mapToPost(data.posts);
       setData(data);
-      setPosts(mappedPosts);
+      setPosts(parsedPosts);
       prevPage.current = pageToFetch;
     } catch (error) {
+      // Get error message from response data if available
       if (error instanceof Error && error.message !== "canceled") {
         if (error instanceof AxiosError) {
           setError(error.response?.data?.message || "Failed to fetch posts");

@@ -22,15 +22,15 @@ function useGetPostById(postId: number) {
     setIsLoading(true);
     try {
       const data = await fetchPostById({ postId, controller });
-      const mappedPost: Post = toPost(data);
-      setPost(mappedPost);
+      const parsedPost: Post = toPost(data);
+      setPost(parsedPost);
     } catch (error) {
       // Get error message from response data if available
       if (error instanceof Error) {
         if (error instanceof AxiosError) {
-          setError(error.response?.data?.message || "Failed to fetch posts");
+          setError(error.response?.data?.message || "Failed to fetch post");
         } else {
-          setError(error.message || "Failed to fetch posts");
+          setError(error.message || "Failed to fetch post");
         }
       }
     } finally {

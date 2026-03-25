@@ -49,7 +49,9 @@ function HeroSection() {
           {isGetAdminLoading ? (
             <Skeleton className="h-8 w-1/2" />
           ) : (
-            <h3 className="style-headline-3 text-brown-500">{admin?.name}</h3>
+            <h3 className="style-headline-3 text-brown-500">
+              {admin?.name ?? "Author name"}
+            </h3>
           )}
         </div>
         {isGetAdminLoading ? (
@@ -63,7 +65,7 @@ function HeroSection() {
           </div>
         ) : (
           <div className="markdown text-brown-400">
-            <ReactMarkdown>{admin?.bio}</ReactMarkdown>
+            <ReactMarkdown>{admin?.bio ?? "Author bio"}</ReactMarkdown>
           </div>
         )}
       </div>
