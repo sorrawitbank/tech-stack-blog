@@ -44,8 +44,8 @@ function Main() {
         alt={post.imageAlt}
         className="aspect-375/184 w-full max-w-7xl max-h-150 text-brown-500 object-cover lg:aspect-1200/587 lg:rounded-2xl"
       />
-      <div className="flex justify-between gap-8 xl:gap-20 2xl:gap-32">
-        <div className="flex flex-col lg:gap-12">
+      <div className="flex w-full justify-between gap-8 xl:gap-20 2xl:gap-32">
+        <div className="flex flex-3 flex-col lg:gap-12">
           <ArticleSection />
           <ShareSection />
           <CommentSection />

@@ -4,19 +4,26 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import { fetchUser, toLogin, toRegister } from "@/services/authService";
-import { toUser } from "@/utils/user";
+import { fetchAdmin } from "@/services/userService";
+import { toAdmin, toUser } from "@/utils/user";
 import sonner from "@/utils/sonner";
 
 function useAuth() {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
+  const [admin, setAdmin] = useState<Pick<
+    User,
+    "name" | "bio" | "profilePic"
+  > | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isGetUserLoading, setIsGetUserLoading] = useState<boolean | null>(
     null
   );
+  const [isGetAdminLoading, setIsGetAdminLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    getAdmin();
     getUser();
   }, []);
 
@@ -45,6 +52,25 @@ function useAuth() {
       return null;
     } finally {
       setIsGetUserLoading(false);
+    }
+  };
+
+  const getAdmin = async () => {
+    setIsGetAdminLoading(true);
+    try {
+      const response = await fetchAdmin();
+      const fetchedAdmin = toAdmin(response.data);
+      setAdmin(fetchedAdmin);
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error instanceof AxiosError) {
+          setError(error.response?.data?.message || "Please try again");
+        } else {
+          setError(error.message || "Please try again");
+        }
+      }
+    } finally {
+      setIsGetAdminLoading(false);
     }
   };
 
@@ -116,9 +142,11 @@ function useAuth() {
 
   return {
     user,
+    admin,
     isAuthenticated,
     isLoading,
     isGetUserLoading,
+    isGetAdminLoading,
     error,
     register,
     login,

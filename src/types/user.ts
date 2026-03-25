@@ -10,6 +10,8 @@ export interface User {
   role: Role;
 }
 
+export type Admin = Pick<User, "name" | "bio" | "profilePic">;
+
 export interface UserApi {
   readonly id: string;
   email: string;
@@ -19,3 +21,5 @@ export interface UserApi {
   profilePic: string | null;
   role: Role;
 }
+
+export type AdminApi = Pick<UserApi, "name" | "bio" | "profilePic">;

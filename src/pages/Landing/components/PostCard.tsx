@@ -53,7 +53,7 @@ function PostCard({ post }: { post: Post }) {
             </AvatarFallback>
           </Avatar>
           <span className="style-body-2 text-brown-500">
-            {post.author.name}
+            {post.author.name || "Author name"}
           </span>
         </div>
         <Separator orientation="vertical" className="h-4.5! bg-brown-300" />
