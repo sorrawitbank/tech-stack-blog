@@ -153,9 +153,9 @@ function Main() {
                 <Textarea
                   id="bio"
                   ref={textareaRefs.bio}
-									defaultValue={user!.bio}
+                  defaultValue={user!.bio}
                   placeholder="Write something about yourself"
-                  className="min-h-36 style-body-1 bg-white placeholder:text-brown-400"
+                  className="min-h-36 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
                 />
                 <FieldError>{textareaErrors.bio}</FieldError>
               </Field>
