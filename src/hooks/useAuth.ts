@@ -23,11 +23,18 @@ function useAuth() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getAdmin();
-    getUser();
+    const controller = new AbortController();
+    getAdmin(controller);
+    getUser(controller);
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
-  const getUser = async (): Promise<User | null> => {
+  const getUser = async (
+    controller?: AbortController
+  ): Promise<User | null> => {
     const token = localStorage.getItem("token");
     if (!token) {
       setIsGetUserLoading(false);
@@ -35,7 +42,7 @@ function useAuth() {
     }
     setIsGetUserLoading(true);
     try {
-      const response = await fetchUser();
+      const response = await fetchUser({ controller });
       const fetchedUser = toUser(response.data);
       setUser(fetchedUser);
       return fetchedUser;
@@ -55,13 +62,14 @@ function useAuth() {
     }
   };
 
-  const getAdmin = async () => {
+  const getAdmin = async (controller: AbortController) => {
     setIsGetAdminLoading(true);
     try {
-      const response = await fetchAdmin();
+      const response = await fetchAdmin({ controller });
       const fetchedAdmin = toAdmin(response.data);
       setAdmin(fetchedAdmin);
     } catch (error) {
+      // Get error message from response data if available
       if (error instanceof Error) {
         if (error instanceof AxiosError) {
           setError(error.response?.data?.message || "Please try again");

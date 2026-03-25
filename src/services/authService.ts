@@ -9,8 +9,10 @@ import axios from "axios";
 
 const AUTH_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/auth`;
 
-export async function fetchUser() {
-  return await axios.get<UserApi>(`${AUTH_BASE_URL}/get-user`);
+export async function fetchUser(params: { controller?: AbortController }) {
+  return await axios.get<UserApi>(`${AUTH_BASE_URL}/get-user`, {
+    signal: params.controller?.signal,
+  });
 }
 
 export async function toLogin(data: LoginData) {
