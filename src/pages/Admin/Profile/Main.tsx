@@ -16,6 +16,7 @@ import { useAuthContext } from "@/contexts/AuthContext";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import useProfile from "@/hooks/useProfile";
 import AdminLargeHeader from "@/layouts/AdminLargeHeader";
+import AdminMain from "@/layouts/AdminMain";
 import { cn } from "@/lib/utils";
 
 function Main() {
@@ -38,7 +39,7 @@ function Main() {
   const { isLarge } = useMediaQueryContext();
 
   return (
-    <main className="flex flex-col p-4 h-dvh sm:p-8 lg:p-0 lg:pt-24 lg:overflow-auto">
+    <AdminMain>
       <form onSubmit={handleSubmit}>
         <Input
           ref={pictureRef}
@@ -174,7 +175,7 @@ function Main() {
         onCancel={handleCancel}
         onConfirm={handleConfirm}
       />
-    </main>
+    </AdminMain>
   );
 }
 

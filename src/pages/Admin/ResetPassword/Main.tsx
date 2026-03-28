@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import useResetPassword from "@/hooks/useResetPassword";
 import AdminLargeHeader from "@/layouts/AdminLargeHeader";
+import AdminMain from "@/layouts/AdminMain";
 import { cn } from "@/lib/utils";
 
 function Main() {
@@ -28,7 +29,7 @@ function Main() {
   const { isLarge } = useMediaQueryContext();
 
   return (
-    <main className="flex flex-col p-4 h-dvh sm:p-8 lg:p-0 lg:pt-24 lg:overflow-auto">
+    <AdminMain>
       <form onSubmit={handleSubmit}>
         <FieldSet
           disabled={isLoading}
@@ -117,7 +118,7 @@ function Main() {
         onCancel={handleCancel}
         onConfirm={handleConfirm}
       />
-    </main>
+    </AdminMain>
   );
 }
 
