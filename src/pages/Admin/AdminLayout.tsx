@@ -56,7 +56,7 @@ function AdminLayout(props: Props) {
   return (
     <div className="flex flex-col lg:flex-row">
       {!isLarge && (
-        <header className="flex items-center gap-2 h-12 px-6 py-3 bg-brown-100 border-b border-brown-300 sm:gap-8 sm:h-24 sm:px-12 xl:px-30">
+        <header className="fixed top-0 left-0 z-50 flex items-center gap-2 w-full h-12 px-6 py-3 bg-brown-100 border-b border-brown-300 sm:gap-8 sm:h-24 sm:px-12 xl:px-30">
           <Drawer direction={isMedium ? "left" : "top"} handleOnly={true}>
             <DrawerTrigger className="text-brown-400 outline-none hover:text-brown-500 focus:text-brown-500 data-[state=open]:text-brown-500">
               <Menu className="cursor-pointer sm:size-8" />
@@ -141,7 +141,7 @@ function AdminLayout(props: Props) {
         </header>
       )}
       {!isSmall && (
-        <h3 className="px-6 py-3 style-headline-3 text-brown-600">
+        <h3 className="px-6 py-3 mt-12 style-headline-3 text-brown-600">
           {pageDetails[props.page].text}
         </h3>
       )}
@@ -206,7 +206,7 @@ function AdminLayout(props: Props) {
           </ScrollArea>
         </aside>
       )}
-      {props.children}
+      <div className="sm:mt-24 lg:flex-1 lg:mt-0">{props.children}</div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import useResetPassword from "@/hooks/useResetPassword";
+import AdminLargeHeader from "@/layouts/AdminLargeHeader";
 import { cn } from "@/lib/utils";
 
 function Main() {
@@ -27,21 +28,21 @@ function Main() {
   const { isLarge } = useMediaQueryContext();
 
   return (
-    <main className="flex flex-col p-4 sm:p-8 lg:flex-1 lg:p-0">
+    <main className="flex flex-col p-4 h-dvh sm:p-8 lg:p-0 lg:pt-24 lg:overflow-auto">
       <form onSubmit={handleSubmit}>
         <FieldSet
           disabled={isLoading}
           className="items-start gap-6 sm:gap-8 lg:gap-0"
         >
           {isLarge && (
-            <>
-              <header className="flex justify-between items-center px-15 py-6 w-full border-b border-brown-300">
-                <h3 className="style-headline-3">Reset password</h3>
-                <ActionButton variant="primary" type="submit">
-                  Reset password
-                </ActionButton>
-              </header>
-            </>
+            <AdminLargeHeader>
+              <h3 className="style-headline-3 text-brown-600">
+                Reset password
+              </h3>
+              <ActionButton variant="primary" type="submit">
+                Reset password
+              </ActionButton>
+            </AdminLargeHeader>
           )}
           <FieldGroup className="lg:max-w-150 lg:px-15 lg:py-10">
             <Field className="gap-1">
