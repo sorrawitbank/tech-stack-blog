@@ -1,5 +1,5 @@
 import Main from "./Main";
-import AdminLayout from "../AdminLayout";
+import AdminLayout from "@/layouts/AdminLayout";
 
 function AdminProfile() {
   return (

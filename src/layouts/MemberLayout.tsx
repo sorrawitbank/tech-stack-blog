@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { RotateCw, User } from "lucide-react";
-import ProfileSection from "./ProfileSection";
+import ProfileSection from "../pages/Member/ProfileSection";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import Header from "@/layouts/Header";
 import { cn } from "@/lib/utils";
