@@ -46,6 +46,8 @@ const pageDetails: Record<AdminPage, { text: string; icon: React.ReactNode }> =
 
 interface Props {
   page: AdminPage;
+  title?: string;
+  leading?: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -134,16 +136,22 @@ function AdminLayout(props: Props) {
             </DrawerContent>
           </Drawer>
           {isSmall && (
-            <h3 className="style-headline-3 text-brown-600">
-              {pageDetails[props.page].text}
-            </h3>
+            <div className="flex items-center gap-4">
+              {props.leading}
+              <h3 className="style-headline-3 text-brown-600">
+                {props.title || pageDetails[props.page].text}
+              </h3>
+            </div>
           )}
         </header>
       )}
       {!isSmall && (
-        <h3 className="px-6 py-3 mt-12 style-headline-3 text-brown-600">
-          {pageDetails[props.page].text}
-        </h3>
+        <div className="flex items-center gap-4 px-6 py-3 mt-12 ">
+          {props.leading}
+          <h3 className="style-headline-3 text-brown-600">
+            {props.title || pageDetails[props.page].text}
+          </h3>
+        </div>
       )}
       {isLarge && (
         <aside className="flex flex-col w-70 h-dvh pt-4 bg-brown-200 overflow-y-hidden">
