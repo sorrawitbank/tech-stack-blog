@@ -68,7 +68,7 @@ function useGetPosts({
   }, [keyword]);
 
   const getPosts = async (
-    controller: AbortController,
+    controller?: AbortController,
     pageToFetch: number = page
   ) => {
     setError(null);

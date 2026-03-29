@@ -2,7 +2,7 @@ import type { PostApi, PostsParams, PostsResponse } from "@/types/post";
 import axios from "axios";
 
 interface FetchPostsParams extends PostsParams {
-  controller: AbortController;
+  controller?: AbortController;
 }
 
 const POSTS_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/posts`;
@@ -15,7 +15,7 @@ export async function fetchPosts(params: FetchPostsParams) {
       category: params.category === "Highlight" ? null : params.category,
       keyword: params.keyword ? params.keyword : null,
     },
-    signal: params.controller.signal,
+    signal: params.controller?.signal,
   });
 
   return response.data;
@@ -23,12 +23,12 @@ export async function fetchPosts(params: FetchPostsParams) {
 
 export async function fetchPostById(params: {
   postId: number;
-  controller: AbortController;
+  controller?: AbortController;
 }) {
   const response = await axios.get<PostApi>(
     `${POSTS_BASE_URL}/${params.postId}`,
     {
-      signal: params.controller.signal,
+      signal: params.controller?.signal,
     }
   );
 

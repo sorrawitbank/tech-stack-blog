@@ -62,7 +62,7 @@ function useAuth() {
     }
   };
 
-  const getAdmin = async (controller: AbortController) => {
+  const getAdmin = async (controller?: AbortController) => {
     setIsGetAdminLoading(true);
     try {
       const response = await fetchAdmin({ controller });
@@ -117,8 +117,8 @@ function useAuth() {
         throw new Error("You must be an administrator to access this page");
       }
       sonner.success({
-        message: "Login successful",
-        description: "You are now logged in",
+        message: "Login successfully",
+        description: "You are now logged in.",
       });
     } catch (error) {
       // Get error message from response data if available
@@ -140,8 +140,8 @@ function useAuth() {
     navigate("/login");
     if (showMessage) {
       sonner.success({
-        message: "Logout successful",
-        description: "You are now logged out",
+        message: "Logout successfully",
+        description: "You are now logged out.",
       });
     }
   };

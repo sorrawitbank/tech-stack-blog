@@ -27,13 +27,13 @@ function useCategory() {
     sonner.error({ message: "Error!", description: error });
   }, [error]);
 
-  const getCategories = async (controller: AbortController) => {
+  const getCategories = async (controller?: AbortController) => {
     setError(null);
     setIsLoading(true);
     try {
       const data = await fetchCategories({ controller });
       const parsedCategories: Category[] = mapToCategory(data);
-      setCategories((prev) => [...prev, ...parsedCategories]);
+      setCategories((prev) => [prev[0], ...parsedCategories]);
     } catch (error) {
       // Get error message from response data if available
       if (error instanceof Error) {
@@ -54,7 +54,13 @@ function useCategory() {
     setCategory(category);
   };
 
-  return { category, categories, isLoading, handleSelectCategory };
+  return {
+    category,
+    categories,
+    isLoading,
+    getCategories,
+    handleSelectCategory,
+  };
 }
 
 export default useCategory;
