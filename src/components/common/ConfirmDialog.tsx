@@ -28,23 +28,17 @@ function ConfirmDialog(props: Props) {
           {props.title}
         </h3>
       </AlertDialogTitle>
-      <span className="text-center style-body-1 text-brown-400">
+      <span className="text-center style-body-1 text-brown-400 text-balance">
         {props.content}
       </span>
       <div className="flex gap-2 sm:gap-6 lg:gap-10">
         <AlertDialogCancel asChild>
-          <ActionButton
-            variant="secondary"
-            onClick={props.onCancel}
-          >
+          <ActionButton variant="secondary" onClick={props.onCancel}>
             {props.cancelText ?? "Cancel"}
           </ActionButton>
         </AlertDialogCancel>
         <AlertDialogAction asChild>
-          <ActionButton
-            variant="primary"
-            onClick={props.onConfirm}
-          >
+          <ActionButton variant="primary" onClick={props.onConfirm}>
             {props.confirmText ?? "Confirm"}
           </ActionButton>
         </AlertDialogAction>
