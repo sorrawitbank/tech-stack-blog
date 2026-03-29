@@ -57,7 +57,7 @@ function useResetPassword() {
         newPassword: confirmPasswordRef.current.value,
       });
       sonner.success({
-        message: "Reset password successful",
+        message: "Reset password successfully",
         description:
           "Your password has been reset. Please login with your new password.",
       });

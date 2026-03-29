@@ -83,7 +83,7 @@ function useProfile(role: Role) {
         await updateProfile(formData);
       }
       sonner.success({
-        message: "Update profile success",
+        message: "Saved profile successfully",
         description: "Please refresh the page to see the changes.",
       });
     } catch (error) {

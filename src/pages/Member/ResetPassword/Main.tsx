@@ -101,6 +101,7 @@ function Main() {
       <ConfirmDialog
         title="Reset password"
         content="Do you want to reset your password?"
+        confirmText="Reset"
         open={isConfirmDialogOpen}
         onCancel={handleCancel}
         onConfirm={handleConfirm}

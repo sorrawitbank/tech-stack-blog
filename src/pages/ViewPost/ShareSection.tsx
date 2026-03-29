@@ -8,7 +8,7 @@ const handleCopyLink = () => {
   navigator.clipboard.writeText(window.location.href);
   sonner.success({
     message: "Copied!",
-    description: "This article has been copied to your clipboard",
+    description: "This article has been copied to your clipboard.",
   });
 };
 

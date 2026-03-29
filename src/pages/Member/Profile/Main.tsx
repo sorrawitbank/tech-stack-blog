@@ -140,6 +140,7 @@ function Main() {
       <ConfirmDialog
         title="Update profile"
         content="Do you want to update your profile?"
+        confirmText="Update"
         open={isConfirmDialogOpen}
         onCancel={handleCancel}
         onConfirm={handleConfirm}
