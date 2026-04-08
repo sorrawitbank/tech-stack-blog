@@ -14,7 +14,7 @@ import ResetPassword from "./pages/Member/ResetPassword";
 import AdminLogin from "./pages/Admin/Login";
 import AdminArticle from "./pages/Admin/Article";
 import AdminCategory from "./pages/Admin/Category";
-import AdminCategoryForm from "./pages/Admin/Category/Form";
+import AdminCategoryForm from "./pages/Admin/Category/form";
 import AdminProfile from "./pages/Admin/Profile";
 import AdminNotification from "./pages/Admin/Notification";
 import AdminResetPassword from "./pages/Admin/ResetPassword";
