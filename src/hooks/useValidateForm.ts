@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import validateBio from "@/utils/validateBio";
+import validateCategory from "@/utils/validateCategory";
 import validateEmail from "@/utils/validateEmail";
 import validateName from "@/utils/validateName";
 import validatePassword from "@/utils/validatePassword";
 import validateUsername from "@/utils/validateUsername";
 
-type InputKeys = "name" | "username" | "email" | "password" | "newPassword";
+type InputKeys =
+  | "name"
+  | "username"
+  | "email"
+  | "password"
+  | "category"
+  | "newPassword";
 type TextAreaKeys = "bio";
 
 export type InputRefs = Record<InputKeys, React.RefObject<HTMLInputElement>>;
@@ -28,6 +35,7 @@ const inputValidations: InputValidations = {
   username: validateUsername,
   email: validateEmail,
   password: validatePassword,
+  category: validateCategory,
   newPassword: validatePassword,
 };
 

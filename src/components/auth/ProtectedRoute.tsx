@@ -14,9 +14,9 @@ function ProtectedRoute(props: Props) {
   if (isGetUserLoading === null) return;
 
   if (!isAuthenticated || user?.role !== props.requiredRole) {
-    if (props.requiredRole === "admin") return <Navigate to="/admin" />;
+    if (props.requiredRole === "admin") return <Navigate to="/admin" replace />;
 
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
 
   return props.children;

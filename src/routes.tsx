@@ -14,6 +14,7 @@ import ResetPassword from "./pages/Member/ResetPassword";
 import AdminLogin from "./pages/Admin/Login";
 import AdminArticle from "./pages/Admin/Article";
 import AdminCategory from "./pages/Admin/Category";
+import AdminCategoryForm from "./pages/Admin/Category/Form";
 import AdminProfile from "./pages/Admin/Profile";
 import AdminNotification from "./pages/Admin/Notification";
 import AdminResetPassword from "./pages/Admin/ResetPassword";
@@ -90,6 +91,22 @@ function AppRoutes() {
             element={
               <ProtectedRoute requiredRole="admin">
                 <AdminCategory />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/category/create"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminCategoryForm mode="create" />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/category/edit/:categoryId"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminCategoryForm mode="update" />
               </ProtectedRoute>
             }
           />
