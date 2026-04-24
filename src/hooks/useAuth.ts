@@ -118,7 +118,7 @@ function useAuth() {
       }
       sonner.success({
         message: "Login successfully",
-        description: "You are now logged in.",
+        description: "You are now logged in",
       });
     } catch (error) {
       // Get error message from response data if available
@@ -141,7 +141,7 @@ function useAuth() {
     if (showMessage) {
       sonner.success({
         message: "Logout successfully",
-        description: "You are now logged out.",
+        description: "You are now logged out",
       });
     }
   };

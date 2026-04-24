@@ -89,7 +89,7 @@ function useProfile(role: Role) {
       }
       sonner.success({
         message: "Saved profile successfully",
-        description: "Profile has been updated successfully.",
+        description: "Profile has been updated successfully",
       });
     } catch (error) {
       // Get error message from response data if available

@@ -50,7 +50,7 @@ function useCategoryManagement() {
       if (error instanceof Error) {
         if (error instanceof AxiosError) {
           setError(
-            error.response?.data?.message || "Failed to create category",
+            error.response?.data?.message || "Failed to create category"
           );
         } else {
           setError(error.message || "Failed to create category");
@@ -73,7 +73,7 @@ function useCategoryManagement() {
       await updateCategory(categoryId, refs.category.current.value);
       sonner.success({
         message: "Saved category successfully",
-        description: "Category has been updated successfully.",
+        description: "Category has been updated successfully",
       });
       getCategories();
       navigate("/admin/category");
@@ -82,7 +82,7 @@ function useCategoryManagement() {
       if (error instanceof Error) {
         if (error instanceof AxiosError) {
           setError(
-            error.response?.data?.message || "Failed to update category",
+            error.response?.data?.message || "Failed to update category"
           );
         } else {
           setError(error.message || "Failed to update category");
@@ -115,7 +115,7 @@ function useCategoryManagement() {
       if (error instanceof Error) {
         if (error instanceof AxiosError) {
           setError(
-            error.response?.data?.message || "Failed to delete category",
+            error.response?.data?.message || "Failed to delete category"
           );
         } else {
           setError(error.message || "Failed to delete category");

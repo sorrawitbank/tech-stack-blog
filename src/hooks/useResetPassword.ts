@@ -59,7 +59,7 @@ function useResetPassword() {
       sonner.success({
         message: "Reset password successfully",
         description:
-          "Your password has been reset. Please login with your new password.",
+          "Your password has been reset. Please login with your new password",
       });
       logout(false);
     } catch (error) {

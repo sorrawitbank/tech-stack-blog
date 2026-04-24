@@ -9,7 +9,7 @@ function useMediaQuery() {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 40rem)");
-    
+
     const handleChange = (event: MediaQueryListEvent) => {
       setIsSmall(event.matches);
     };
