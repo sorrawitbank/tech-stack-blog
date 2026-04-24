@@ -162,7 +162,7 @@ function Main() {
             </FieldGroup>
           </div>
           {!isLarge && (
-            <ActionButton variant="primary" type="submit">
+            <ActionButton variant="primary" type="submit" className="self-end">
               Save
             </ActionButton>
           )}

@@ -105,7 +105,7 @@ function Main() {
             </Field>
           </FieldGroup>
           {!isLarge && (
-            <ActionButton variant="primary" type="submit">
+            <ActionButton variant="primary" type="submit" className="self-end">
               Reset password
             </ActionButton>
           )}

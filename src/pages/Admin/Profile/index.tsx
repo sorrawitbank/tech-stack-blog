@@ -4,7 +4,7 @@ import AdminLayout from "@/layouts/AdminLayout";
 function AdminProfile() {
   return (
     <AdminLayout page="profile">
-      <Main/>
+      <Main />
     </AdminLayout>
   );
 }

@@ -67,7 +67,7 @@ function Main() {
           <NavigationButton
             variant="primary"
             navigateTo="/admin/category/create"
-            className="w-fit"
+            className="self-end"
           >
             <Plus />
             Create category
