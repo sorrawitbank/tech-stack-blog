@@ -14,6 +14,8 @@ interface AuthContextType {
   register: (data: RegisterData) => Promise<boolean>;
   login: (data: LoginData, requiredAdmin: boolean) => Promise<void>;
   logout: (showMessage?: boolean) => void;
+  getUser: (controller?: AbortController) => Promise<User | null>;
+  getAdmin: (controller?: AbortController) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -27,6 +29,8 @@ const AuthContext = createContext<AuthContextType>({
   register: async () => false,
   login: async () => {},
   logout: () => {},
+  getUser: async () => null,
+  getAdmin: async () => {},
 });
 
 export function AuthProvider({ children }: { children?: React.ReactNode }) {
@@ -41,6 +45,8 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
     register,
     login,
     logout,
+    getUser,
+    getAdmin,
   } = useAuth();
 
   return (
@@ -56,6 +62,8 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
         register,
         login,
         logout,
+        getUser,
+        getAdmin,
       }}
     >
       {children}

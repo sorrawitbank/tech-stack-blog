@@ -159,6 +159,8 @@ function useAuth() {
     register,
     login,
     logout,
+    getUser,
+    getAdmin,
   };
 }
 

@@ -7,6 +7,7 @@ import useValidateForm, {
   type InputRefs,
   type TextAreaRefs,
 } from "./useValidateForm";
+import { useAuthContext } from "@/contexts/AuthContext";
 import { updateAdminProfile } from "@/services/adminService";
 import { updateProfile } from "@/services/userService";
 import sonner from "@/utils/sonner";
@@ -14,6 +15,7 @@ import sonner from "@/utils/sonner";
 function useProfile(role: Role) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const { getUser, getAdmin } = useAuthContext();
   const {
     inputErrors,
     textareaErrors,
@@ -79,12 +81,15 @@ function useProfile(role: Role) {
     try {
       if (role === "admin") {
         await updateAdminProfile(formData);
+        await getUser();
+        await getAdmin();
       } else {
         await updateProfile(formData);
+        await getUser();
       }
       sonner.success({
         message: "Saved profile successfully",
-        description: "Please refresh the page to see the changes.",
+        description: "Profile has been updated successfully.",
       });
     } catch (error) {
       // Get error message from response data if available
