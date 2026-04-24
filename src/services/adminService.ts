@@ -1,6 +1,26 @@
+import type { PostsResponse, PostsParams } from "@/types/post";
 import axios from "axios";
 
+interface FetchPostsParams extends PostsParams {
+  controller?: AbortController;
+}
+
 const ADMIN_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/admin`;
+
+export async function fetchAdminPosts(params: FetchPostsParams) {
+  const response = await axios.get<PostsResponse>(`${ADMIN_BASE_URL}/posts`, {
+    params: {
+      page: params.page === 1 ? null : params.page,
+      limit: params.limit === 6 ? null : params.limit,
+      category: params.category === "Highlight" ? null : params.category,
+      keyword: params.keyword ? params.keyword : null,
+      statusId: params.statusId === 0 ? null : params.statusId,
+    },
+    signal: params.controller?.signal,
+  });
+
+  return response.data;
+}
 
 export async function createCategory(name: string) {
   await axios.post(`${ADMIN_BASE_URL}/categories`, { name });

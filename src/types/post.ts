@@ -36,6 +36,7 @@ export interface PostsParams {
   limit: number;
   category: string;
   keyword: string;
+  statusId?: number;
 }
 
 export interface PostsResponse {

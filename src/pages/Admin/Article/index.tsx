@@ -1,9 +1,10 @@
 import AdminLayout from "@/layouts/AdminLayout";
+import Main from "./Main";
 
 function AdminArticle() {
   return (
     <AdminLayout page="article">
-      <h1>AC</h1>
+      <Main />
     </AdminLayout>
   );
 }
