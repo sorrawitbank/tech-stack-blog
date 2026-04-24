@@ -30,7 +30,7 @@ function SearchBox() {
             onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            className="h-12 text-brown-400 bg-white placeholder:text-brown-400 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
+            className="h-12 style-body-1 text-brown-400 bg-white placeholder:text-brown-400 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
           />
         </PopoverTrigger>
         <PopoverContent
@@ -50,7 +50,7 @@ function SearchBox() {
           ))}
         </PopoverContent>
       </Popover>
-      <Search className="absolute right-3 top-1/2 -translate-y-1/2 size-5 text-brown-600 pointer-events-none" />
+      <Search className="absolute right-3 top-1/2 -translate-y-1/2 size-5 text-brown-400 pointer-events-none" />
     </div>
   );
 }
