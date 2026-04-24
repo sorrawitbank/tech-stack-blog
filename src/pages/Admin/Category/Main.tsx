@@ -15,7 +15,7 @@ function Main() {
   const [deleteCategory, setDeleteCategory] = useState<string>("");
   const { isConfirmDialogOpen, handleDelete, handleConfirm, handleCancel } =
     useCategoryManagement();
-  const { categories, isLoading } = useCategoryContext();
+  const { categories, isLoading, error } = useCategoryContext();
   const { isLarge } = useMediaQueryContext();
 
   return (
@@ -38,21 +38,29 @@ function Main() {
         <div className="border border-brown-300 rounded-lg overflow-hidden">
           <CategoryHeader />
           <ul>
-            {isLoading
-              ? Array.from({ length: 3 }, (_, index) => (
-                  <CategoryListSkeleton index={index} />
+            {isLoading ? (
+              Array.from({ length: 3 }, (_, index) => (
+                <CategoryListSkeleton key={index} index={index} />
+              ))
+            ) : categories.length - 1 ? (
+              categories
+                .slice(1)
+                .map((category, index) => (
+                  <CategoryList
+                    key={category.id}
+                    category={category}
+                    index={index}
+                    setDeleteCategory={setDeleteCategory}
+                    handleDelete={handleDelete}
+                  />
                 ))
-              : categories
-                  .slice(1)
-                  .map((category, index) => (
-                    <CategoryList
-                      key={index}
-                      category={category}
-                      index={index}
-                      setDeleteCategory={setDeleteCategory}
-                      handleDelete={handleDelete}
-                    />
-                  ))}
+            ) : (
+              <li className="px-4 py-5 sm:px-6">
+                <span className="style-body-1 text-brown-500">
+                  {error || "No categories found"}
+                </span>
+              </li>
+            )}
           </ul>
         </div>
         {!isLarge && (

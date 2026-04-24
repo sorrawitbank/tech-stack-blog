@@ -6,6 +6,7 @@ interface CategoryContextType {
   category: string;
   categories: Category[];
   isLoading: boolean;
+  error: string | null;
   getCategories: (controller?: AbortController) => Promise<void>;
   handleSelectCategory: (category: string) => void;
 }
@@ -14,6 +15,7 @@ const CategoryContext = createContext<CategoryContextType>({
   category: "Highlight",
   categories: [{ id: 0, name: "Highlight" }],
   isLoading: false,
+  error: null,
   getCategories: async () => {},
   handleSelectCategory: () => {},
 });
@@ -23,6 +25,7 @@ export function CategoryProvider({ children }: { children?: React.ReactNode }) {
     category,
     categories,
     isLoading,
+    error,
     getCategories,
     handleSelectCategory,
   } = useCategory();
@@ -33,6 +36,7 @@ export function CategoryProvider({ children }: { children?: React.ReactNode }) {
         category,
         categories,
         isLoading,
+        error,
         getCategories,
         handleSelectCategory,
       }}

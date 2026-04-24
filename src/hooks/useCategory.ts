@@ -1,12 +1,16 @@
 import type { Category } from "@/types/category";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { AxiosError } from "axios";
 import { fetchCategories } from "@/services/categoryService";
 import { mapToCategory } from "@/utils/category";
 import sonner from "@/utils/sonner";
 
 function useCategory() {
-  const [category, setCategory] = useState<string>("Highlight");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [category, setCategory] = useState<string>(
+    searchParams.get("category")?.trim() || "Highlight"
+  );
   const [categories, setCategories] = useState<Category[]>([
     { id: 0, name: "Highlight" },
   ]);
@@ -21,6 +25,13 @@ function useCategory() {
       controller.abort;
     };
   }, []);
+
+  useEffect(() => {
+    const fromUrl = searchParams.get("category")?.trim();
+    const next = fromUrl || "Highlight";
+
+    setCategory((prev) => (prev === next ? prev : next));
+  }, [searchParams]);
 
   useEffect(() => {
     if (!error) return;
@@ -50,14 +61,28 @@ function useCategory() {
     }
   };
 
-  const handleSelectCategory = (category: string) => {
-    setCategory(category);
+  const handleSelectCategory = (nextCategory: string) => {
+    setCategory(nextCategory);
+    setSearchParams(
+      (prev) => {
+        const params = new URLSearchParams(prev);
+        if (nextCategory === "Highlight") {
+          params.delete("category");
+        } else {
+          params.set("category", nextCategory);
+        }
+        params.delete("page");
+        return params;
+      },
+      { replace: true }
+    );
   };
 
   return {
     category,
     categories,
     isLoading,
+    error,
     getCategories,
     handleSelectCategory,
   };
