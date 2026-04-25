@@ -1,4 +1,4 @@
-export interface LoginData {
+export interface LoginBody {
   email: string;
   password: string;
 }
@@ -7,12 +7,12 @@ export interface LoginResponse {
   accessToken: string;
 }
 
-export interface RegisterData extends LoginData {
+export interface RegisterBody extends LoginBody {
   name: string;
   username: string;
 }
 
-export interface ResetPassword {
+export interface ResetPasswordBody {
   oldPassword: string;
   newPassword: string;
 }

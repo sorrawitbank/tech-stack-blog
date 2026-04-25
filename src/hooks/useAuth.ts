@@ -1,4 +1,4 @@
-import type { LoginData, RegisterData } from "@/types/auth";
+import type { LoginBody, RegisterBody } from "@/types/auth";
 import type { User } from "@/types/user";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -42,8 +42,8 @@ function useAuth() {
     }
     setIsGetUserLoading(true);
     try {
-      const response = await fetchUser({ controller });
-      const fetchedUser = toUser(response.data);
+      const data = await fetchUser({ controller });
+      const fetchedUser = toUser(data);
       setUser(fetchedUser);
       return fetchedUser;
     } catch (error) {
@@ -65,8 +65,8 @@ function useAuth() {
   const getAdmin = async (controller?: AbortController) => {
     setIsGetAdminLoading(true);
     try {
-      const response = await fetchAdmin({ controller });
-      const fetchedAdmin = toAdmin(response.data);
+      const data = await fetchAdmin({ controller });
+      const fetchedAdmin = toAdmin(data);
       setAdmin(fetchedAdmin);
     } catch (error) {
       // Get error message from response data if available
@@ -82,11 +82,11 @@ function useAuth() {
     }
   };
 
-  const register = async (data: RegisterData) => {
+  const register = async (body: RegisterBody) => {
     setError(null);
     setIsLoading(true);
     try {
-      await toRegister(data);
+      await toRegister(body);
       setIsLoading(false);
       return true;
     } catch (error) {
@@ -103,12 +103,12 @@ function useAuth() {
     }
   };
 
-  const login = async (data: LoginData, requiredAdmin: boolean) => {
+  const login = async (body: LoginBody, requiredAdmin: boolean) => {
     setError(null);
     setIsLoading(true);
     try {
-      const response = await toLogin(data);
-      const token = response.data.accessToken;
+      const data = await toLogin(body);
+      const token = data.accessToken;
       localStorage.setItem("token", token);
       const fetchedUser = await getUser();
       if (requiredAdmin && fetchedUser?.role !== "admin") {

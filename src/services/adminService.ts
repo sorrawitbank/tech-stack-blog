@@ -1,3 +1,4 @@
+import type { CategoryBody } from "@/types/category";
 import type { PostsResponse, PostsParams } from "@/types/post";
 import axios from "axios";
 
@@ -22,16 +23,16 @@ export async function fetchAdminPosts(params: FetchPostsParams) {
   return response.data;
 }
 
-export async function createCategory(name: string) {
-  await axios.post(`${ADMIN_BASE_URL}/categories`, { name });
+export async function createCategory(body: CategoryBody) {
+  await axios.post(`${ADMIN_BASE_URL}/categories`, body);
 }
 
 export async function updateAdminProfile(formData: FormData) {
   await axios.put(`${ADMIN_BASE_URL}/profile`, formData);
 }
 
-export async function updateCategory(categoryId: number, name: string) {
-  await axios.put(`${ADMIN_BASE_URL}/categories/${categoryId}`, { name });
+export async function updateCategory(categoryId: number, body: CategoryBody) {
+  await axios.put(`${ADMIN_BASE_URL}/categories/${categoryId}`, body);
 }
 
 export async function deleteCategory(categoryId: number) {

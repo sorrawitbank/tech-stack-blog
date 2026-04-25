@@ -1,8 +1,8 @@
 import type {
-  LoginData,
+  LoginBody,
   LoginResponse,
-  RegisterData,
-  ResetPassword,
+  RegisterBody,
+  ResetPasswordBody,
 } from "@/types/auth";
 import type { UserApi } from "@/types/user";
 import axios from "axios";
@@ -10,19 +10,26 @@ import axios from "axios";
 const AUTH_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/auth`;
 
 export async function fetchUser(params: { controller?: AbortController }) {
-  return await axios.get<UserApi>(`${AUTH_BASE_URL}/get-user`, {
+  const response = await axios.get<UserApi>(`${AUTH_BASE_URL}/get-user`, {
     signal: params.controller?.signal,
   });
+
+  return response.data;
 }
 
-export async function toLogin(data: LoginData) {
-  return await axios.post<LoginResponse>(`${AUTH_BASE_URL}/login`, data);
+export async function toLogin(body: LoginBody) {
+  const response = await axios.post<LoginResponse>(
+    `${AUTH_BASE_URL}/login`,
+    body
+  );
+
+  return response.data;
 }
 
-export async function toRegister(data: RegisterData) {
-  await axios.post(`${AUTH_BASE_URL}/register`, data);
+export async function toRegister(body: RegisterBody) {
+  await axios.post(`${AUTH_BASE_URL}/register`, body);
 }
 
-export async function resetPassword(data: ResetPassword) {
-  await axios.put(`${AUTH_BASE_URL}/reset-password`, data);
+export async function resetPassword(body: ResetPasswordBody) {
+  await axios.put(`${AUTH_BASE_URL}/reset-password`, body);
 }

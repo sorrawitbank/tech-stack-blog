@@ -38,7 +38,7 @@ function useCategoryManagement() {
 
     setIsLoading(true);
     try {
-      await createCategory(refs.category.current.value);
+      await createCategory({ name: refs.category.current.value });
       sonner.success({
         message: "Created category successfully",
         description: `"${refs.category.current.value}" category has been created.`,
@@ -70,7 +70,7 @@ function useCategoryManagement() {
 
     setIsLoading(true);
     try {
-      await updateCategory(categoryId, refs.category.current.value);
+      await updateCategory(categoryId, { name: refs.category.current.value });
       sonner.success({
         message: "Saved category successfully",
         description: "Category has been updated successfully",
