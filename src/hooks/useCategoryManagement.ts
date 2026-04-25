@@ -8,7 +8,7 @@ import {
   createCategory,
   deleteCategory,
   updateCategory,
-} from "@/services/adminService";
+} from "@/services/admin";
 import sonner from "@/utils/sonner";
 
 function useCategoryManagement() {

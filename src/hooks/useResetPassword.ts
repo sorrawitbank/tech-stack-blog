@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import useConfirmDialog from "./useConfirmDialog";
 import useValidateForm, { type InputRefs } from "./useValidateForm";
 import { useAuthContext } from "@/contexts/AuthContext";
-import { resetPassword } from "@/services/authService";
+import { resetPassword } from "@/services/auth";
 import sonner from "@/utils/sonner";
 
 function useResetPassword() {

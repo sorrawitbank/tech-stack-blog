@@ -3,10 +3,10 @@ import type { User } from "@/types/user";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
-import { fetchUser, toLogin, toRegister } from "@/services/authService";
-import { fetchAdmin } from "@/services/userService";
-import { toAdmin, toUser } from "@/utils/user";
+import { fetchUser, toLogin, toRegister } from "@/services/auth";
+import { fetchAdmin } from "@/services/user";
 import sonner from "@/utils/sonner";
+import { toAdmin, toUser } from "@/utils/user";
 
 function useAuth() {
   const navigate = useNavigate();

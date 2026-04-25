@@ -3,8 +3,8 @@ import type { Role } from "@/types/user";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { AxiosError } from "axios";
-import { fetchAdminPosts } from "@/services/adminService";
-import { fetchPosts } from "@/services/postService";
+import { fetchAdminPosts } from "@/services/admin";
+import { fetchPosts } from "@/services/post";
 import { mapToPost } from "@/utils/post";
 
 interface Params extends Partial<PostsParams> {

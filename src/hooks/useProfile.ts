@@ -8,8 +8,8 @@ import useValidateForm, {
   type TextAreaRefs,
 } from "./useValidateForm";
 import { useAuthContext } from "@/contexts/AuthContext";
-import { updateAdminProfile } from "@/services/adminService";
-import { updateProfile } from "@/services/userService";
+import { updateAdminProfile } from "@/services/admin";
+import { updateProfile } from "@/services/user";
 import sonner from "@/utils/sonner";
 
 function useProfile(role: Role) {

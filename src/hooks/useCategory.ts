@@ -2,7 +2,7 @@ import type { Category } from "@/types/category";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { AxiosError } from "axios";
-import { fetchCategories } from "@/services/categoryService";
+import { fetchCategories } from "@/services/category";
 import { mapToCategory } from "@/utils/category";
 import sonner from "@/utils/sonner";
 
