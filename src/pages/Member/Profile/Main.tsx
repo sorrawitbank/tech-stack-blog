@@ -59,7 +59,7 @@ function Main() {
               </Avatar>
               <ActionButton
                 variant="secondary"
-                onClick={() => pictureRef.current?.click()}
+                onClick={() => pictureRef.current.click()}
               >
                 Upload profile picture
               </ActionButton>
@@ -82,7 +82,6 @@ function Main() {
                   ref={inputRefs.name}
                   placeholder="Full name"
                   autoComplete="name"
-                  defaultValue={user!.name}
                   className={cn(
                     "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
                     inputErrors.name && "border-brand-red"
@@ -103,7 +102,6 @@ function Main() {
                   ref={inputRefs.username}
                   placeholder="Username"
                   autoComplete="username"
-                  defaultValue={user!.username}
                   className={cn(
                     "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
                     inputErrors.username && "border-brand-red"
@@ -121,9 +119,9 @@ function Main() {
                 <Input
                   id="email"
                   type="email"
+                  ref={inputRefs.email}
                   placeholder="Email"
                   autoComplete="email"
-                  defaultValue={user!.email}
                   className={cn(
                     "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
                   )}

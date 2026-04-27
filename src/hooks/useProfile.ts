@@ -15,7 +15,7 @@ import sonner from "@/utils/sonner";
 function useProfile(role: Role) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const { getUser, getAdmin } = useAuthContext();
+  const { user, getUser, getAdmin } = useAuthContext();
   const {
     inputErrors,
     textareaErrors,
@@ -33,9 +33,10 @@ function useProfile(role: Role) {
   const { isConfirmDialogOpen, requestConfirm, handleConfirm, handleCancel } =
     useConfirmDialog();
 
-  const inputRefs: Pick<InputRefs, "name" | "username"> = {
+  const inputRefs: Pick<InputRefs, "name" | "username" | "email"> = {
     name: useRef<HTMLInputElement>(document.createElement("input")),
     username: useRef<HTMLInputElement>(document.createElement("input")),
+    email: useRef<HTMLInputElement>(document.createElement("input")),
   };
 
   const textareaRefs: Pick<TextAreaRefs, "bio"> = {
@@ -50,6 +51,15 @@ function useProfile(role: Role) {
     });
   }, [error]);
 
+  useEffect(() => {
+    inputRefs.name.current.value = user!.name;
+    inputRefs.username.current.value = user!.username;
+    inputRefs.email.current.value = user!.email;
+    if (role === "admin") {
+      textareaRefs.bio.current.value = user!.bio;
+    }
+  }, []);
+
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     event
   ) => {
@@ -57,9 +67,10 @@ function useProfile(role: Role) {
     setError(null);
     setPictureError(null);
 
-    const isValid =
-      validateInputFields(inputRefs) && validateTextAreaFields(textareaRefs);
-    if (!isValid) return;
+    const isValidInputFields = validateInputFields(inputRefs);
+    const isValidTextAreaFields =
+      role === "admin" ? validateTextAreaFields(textareaRefs) : true;
+    if (!(isValidInputFields && isValidTextAreaFields)) return;
 
     const isConfirmed = await requestConfirm();
     if (!isConfirmed) return;

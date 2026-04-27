@@ -75,7 +75,7 @@ function Main() {
                 </Avatar>
                 <ActionButton
                   variant="secondary"
-                  onClick={() => pictureRef.current?.click()}
+                  onClick={() => pictureRef.current.click()}
                 >
                   Upload profile picture
                 </ActionButton>
@@ -83,7 +83,7 @@ function Main() {
               <FieldError>{pictureError}</FieldError>
             </Field>
             <Separator className="bg-brown-300" />
-            <FieldGroup>
+            <FieldGroup className="gap-6 lg:gap-7">
               <Field className="gap-1 lg:max-w-120">
                 <FieldLabel
                   htmlFor="name"
@@ -97,7 +97,6 @@ function Main() {
                   ref={inputRefs.name}
                   placeholder="Full name"
                   autoComplete="name"
-                  defaultValue={user!.name}
                   className={cn(
                     "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
                     inputErrors.name && "border-brand-red"
@@ -118,7 +117,6 @@ function Main() {
                   ref={inputRefs.username}
                   placeholder="Username"
                   autoComplete="username"
-                  defaultValue={user!.username}
                   className={cn(
                     "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
                     inputErrors.username && "border-brand-red"
@@ -136,9 +134,9 @@ function Main() {
                 <Input
                   id="email"
                   type="email"
+                  ref={inputRefs.email}
                   placeholder="Email"
                   autoComplete="email"
-                  defaultValue={user!.email}
                   className="h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
                   disabled
                 />
@@ -148,14 +146,16 @@ function Main() {
                   htmlFor="bio"
                   className="style-body-1 text-brown-400"
                 >
-                  Bio (max 120 letters)
+                  Bio (max 400 letters)
                 </FieldLabel>
                 <Textarea
                   id="bio"
                   ref={textareaRefs.bio}
-                  defaultValue={user!.bio}
                   placeholder="Write something about yourself"
-                  className="min-h-36 style-body-1 text-brown-500 bg-white placeholder:text-brown-400"
+                  className={cn(
+                    "min-h-36 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                    textareaErrors.bio && "border-brand-red"
+                  )}
                 />
                 <FieldError>{textareaErrors.bio}</FieldError>
               </Field>
