@@ -5,7 +5,7 @@ function validateUsername(username: string) {
   if (username.trim().length < 4)
     return "Username must be at least 4 characters long";
   if (username.trim().length > 16)
-    return "Username cannot exceed 16 characters";
+    return "Username must be less than 16 characters long";
   if (!usernameRegex.test(username.trim()))
     return "Username must contain only letters, numbers, dots, dashes and underscores";
 
