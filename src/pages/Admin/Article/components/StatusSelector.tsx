@@ -11,15 +11,15 @@ import {
 import statuses from "@/constants/status";
 
 interface Props {
-  defaultValueId: number;
-  onValueChange: (statusId: string) => void;
+  defaultStatusId: number;
+  onStatusChange: (statusId: string) => void;
 }
 
 function StatusSelector(props: Props) {
   return (
     <Select
-      onValueChange={props.onValueChange}
-      defaultValue={String(statuses[props.defaultValueId].id)}
+      onValueChange={props.onStatusChange}
+      defaultValue={String(statuses[props.defaultStatusId].id)}
     >
       <SelectTrigger className="w-full h-12! text-brown-400 style-body-1 bg-white md:w-40 hover:cursor-pointer">
         <SelectValue />
@@ -32,7 +32,7 @@ function StatusSelector(props: Props) {
             <SelectItem
               key={status.id}
               value={String(status.id)}
-              className="text-brown-400 hover:text-brown-500! hover:cursor-pointer"
+              className="text-brown-400 hover:text-brown-500! hover:bg-brown-200! hover:cursor-pointer"
             >
               {status.name}
             </SelectItem>

@@ -28,7 +28,7 @@ function CategorySelector() {
               <SelectItem
                 key={category.id}
                 value={category.name}
-                className="text-brown-400 hover:text-brown-500! hover:cursor-pointer"
+                className="text-brown-400 hover:text-brown-500! hover:bg-brown-200! hover:cursor-pointer"
               >
                 {category.name}
               </SelectItem>

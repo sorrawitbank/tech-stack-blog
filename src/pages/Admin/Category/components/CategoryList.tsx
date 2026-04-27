@@ -1,8 +1,8 @@
+import type { Category } from "@/types/category";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Edit2, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { Category } from "@/types/category";
 
 interface Props {
   category: Category;
