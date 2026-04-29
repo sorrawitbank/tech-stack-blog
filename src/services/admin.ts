@@ -1,5 +1,5 @@
 import type { CategoryBody } from "@/types/category";
-import type { PostsResponse, PostsParams } from "@/types/post";
+import type { PostsResponse, PostsParams, PostApi } from "@/types/post";
 import axios from "axios";
 
 interface FetchPostsParams extends PostsParams {
@@ -23,8 +23,24 @@ export async function fetchAdminPosts(params: FetchPostsParams) {
   return response.data;
 }
 
+export async function fetchAdminPostById(params: {
+  postId: number;
+  controller?: AbortController;
+}) {
+  const response = await axios.get<PostApi>(
+    `${ADMIN_BASE_URL}/posts/${params.postId}`,
+    { signal: params.controller?.signal }
+  );
+
+  return response.data;
+}
+
 export async function createCategory(body: CategoryBody) {
   await axios.post(`${ADMIN_BASE_URL}/categories`, body);
+}
+
+export async function createPost(formData: FormData) {
+  await axios.post(`${ADMIN_BASE_URL}/posts`, formData);
 }
 
 export async function updateAdminProfile(formData: FormData) {
@@ -35,6 +51,14 @@ export async function updateCategory(categoryId: number, body: CategoryBody) {
   await axios.put(`${ADMIN_BASE_URL}/categories/${categoryId}`, body);
 }
 
+export async function updatePost(postId: number, formData: FormData) {
+  await axios.put(`${ADMIN_BASE_URL}/posts/${postId}`, formData);
+}
+
 export async function deleteCategory(categoryId: number) {
   await axios.delete(`${ADMIN_BASE_URL}/categories/${categoryId}`);
+}
+
+export async function deletePost(postId: number) {
+  await axios.delete(`${ADMIN_BASE_URL}/posts/${postId}`);
 }

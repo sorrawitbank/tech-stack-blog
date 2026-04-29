@@ -1,4 +1,4 @@
-import type { LoginData, RegisterData } from "@/types/auth";
+import type { LoginBody, RegisterBody } from "@/types/auth";
 import type { Admin, User } from "@/types/user";
 import { createContext, useContext } from "react";
 import useAuth from "@/hooks/useAuth";
@@ -11,8 +11,8 @@ interface AuthContextType {
   isGetUserLoading: boolean | null;
   isGetAdminLoading: boolean;
   error: string | null;
-  register: (data: RegisterData) => Promise<boolean>;
-  login: (data: LoginData, requiredAdmin: boolean) => Promise<void>;
+  register: (data: RegisterBody) => Promise<boolean>;
+  login: (data: LoginBody, requiredAdmin: boolean) => Promise<void>;
   logout: (showMessage?: boolean) => void;
   getUser: (controller?: AbortController) => Promise<User | null>;
   getAdmin: (controller?: AbortController) => Promise<void>;

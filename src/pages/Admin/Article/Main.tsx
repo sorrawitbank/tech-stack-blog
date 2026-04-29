@@ -5,6 +5,7 @@ import ArticleListSkeleton from "./components/ArticleListSkeleton";
 import CategorySelector from "./components/CategorySelector";
 import StatusSelector from "./components/StatusSelector";
 import { NavigationButton } from "@/components/common/Button";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { Input } from "@/components/ui/input";
 import {
   Pagination,
@@ -17,12 +18,21 @@ import {
 } from "@/components/ui/pagination";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
+import useArticleManagement from "@/hooks/useArticleManagement";
 import usePaginatedPosts from "@/hooks/usePaginatedPosts";
 import AdminLargeHeader from "@/layouts/AdminLargeHeader";
 import AdminMain from "@/layouts/AdminMain";
+import { useState } from "react";
 
 function Main() {
+  const [deleteTitle, setDeleteTitle] = useState<string>("");
   const { isSmall, isLarge } = useMediaQueryContext();
+  const {
+    isDeleteConfirmDialogOpen,
+    handleDelete,
+    handleDeleteConfirm,
+    handleDeleteCancel,
+  } = useArticleManagement("delete");
   const {
     inputValue,
     statusId,
@@ -31,8 +41,8 @@ function Main() {
     isLoading,
     error,
     handleInputChange,
-    handleChangePage,
-    handleChangeStatus,
+    handlePageChange,
+    handleStatusChange,
   } = usePaginatedPosts("admin");
 
   return (
@@ -68,8 +78,8 @@ function Main() {
             <div className="flex flex-col gap-4 md:flex-row">
               <CategorySelector />
               <StatusSelector
-                defaultValueId={statusId}
-                onValueChange={handleChangeStatus}
+                defaultStatusId={statusId}
+                onStatusChange={handleStatusChange}
               />
             </div>
           </div>
@@ -82,7 +92,13 @@ function Main() {
                 ))
               ) : posts.length ? (
                 posts.map((post, index) => (
-                  <ArticleList key={post.id} post={post} index={index} />
+                  <ArticleList
+                    key={post.id}
+                    post={post}
+                    index={index}
+                    setDeleteTitle={setDeleteTitle}
+                    handleDelete={handleDelete}
+                  />
                 ))
               ) : (
                 <li className="px-4 py-5 sm:px-6">
@@ -110,7 +126,7 @@ function Main() {
                   <PaginationItem>
                     <PaginationPrevious
                       onClick={() => {
-                        handleChangePage(data.currentPage - 1);
+                        handlePageChange(data.currentPage - 1);
                       }}
                       className="style-body-1 cursor-pointer hover:text-brown-400 active:text-brown-600"
                     />
@@ -119,7 +135,7 @@ function Main() {
                 {data.currentPage - 2 >= 1 && (
                   <PaginationItem>
                     <PaginationLink
-                      onClick={() => handleChangePage(1)}
+                      onClick={() => handlePageChange(1)}
                       className="style-body-1 cursor-pointer hover:text-brown-400 active:text-brown-600"
                     >
                       1
@@ -134,7 +150,7 @@ function Main() {
                 {data.currentPage - 1 >= 1 && (
                   <PaginationItem>
                     <PaginationLink
-                      onClick={() => handleChangePage(data.currentPage - 1)}
+                      onClick={() => handlePageChange(data.currentPage - 1)}
                       className="style-body-1 cursor-pointer hover:text-brown-400 active:text-brown-600"
                     >
                       {data.currentPage - 1}
@@ -152,7 +168,7 @@ function Main() {
                 {data.currentPage + 1 <= data.totalPages && (
                   <PaginationItem>
                     <PaginationLink
-                      onClick={() => handleChangePage(data.currentPage + 1)}
+                      onClick={() => handlePageChange(data.currentPage + 1)}
                       className="style-body-1 cursor-pointer hover:text-brown-400 active:text-brown-600"
                     >
                       {data.currentPage + 1}
@@ -167,7 +183,7 @@ function Main() {
                 {data.currentPage + 2 <= data.totalPages && (
                   <PaginationItem>
                     <PaginationLink
-                      onClick={() => handleChangePage(data.totalPages)}
+                      onClick={() => handlePageChange(data.totalPages)}
                       className="style-body-1 cursor-pointer hover:text-brown-400 active:text-brown-600"
                     >
                       {data.totalPages}
@@ -177,7 +193,7 @@ function Main() {
                 {isSmall && data.currentPage + 1 <= data.totalPages && (
                   <PaginationItem>
                     <PaginationNext
-                      onClick={() => handleChangePage(data.currentPage + 1)}
+                      onClick={() => handlePageChange(data.currentPage + 1)}
                       className="style-body-1 cursor-pointer hover:text-brown-400 active:text-brown-600"
                     />
                   </PaginationItem>
@@ -197,6 +213,14 @@ function Main() {
           </NavigationButton>
         )}
       </div>
+      <ConfirmDialog
+        title="Delete article"
+        content={`Do you want to delete article? (Title: ${deleteTitle})`}
+        confirmText="Delete"
+        open={isDeleteConfirmDialogOpen}
+        onCancel={handleDeleteCancel}
+        onConfirm={handleDeleteConfirm}
+      />
     </AdminMain>
   );
 }

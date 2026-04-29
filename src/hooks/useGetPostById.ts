@@ -1,10 +1,12 @@
 import type { Post } from "@/types/post";
+import type { Role } from "@/types/user";
 import { useEffect, useState } from "react";
 import { AxiosError } from "axios";
+import { fetchAdminPostById } from "@/services/admin";
 import { fetchPostById } from "@/services/post";
 import { toPost } from "@/utils/post";
 
-function useGetPostById(postId: number) {
+function useGetPostById(postId: number, role: Role = "user") {
   const [post, setPost] = useState<Post | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -21,9 +23,14 @@ function useGetPostById(postId: number) {
   const getPost = async (controller?: AbortController) => {
     setIsLoading(true);
     try {
-      const data = await fetchPostById({ postId, controller });
-      const parsedPost: Post = toPost(data);
-      setPost(parsedPost);
+      let data;
+      if (role === "admin") {
+        data = await fetchAdminPostById({ postId, controller });
+      } else {
+        data = await fetchPostById({ postId, controller });
+      }
+      const post: Post = toPost(data);
+      setPost(post);
     } catch (error) {
       // Get error message from response data if available
       if (error instanceof Error) {

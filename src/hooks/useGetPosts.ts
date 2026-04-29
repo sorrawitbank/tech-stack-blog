@@ -134,9 +134,9 @@ function useGetPosts({
           controller,
         });
       }
-      const parsedPosts: Post[] = mapToPost(data.posts);
+      const posts: Post[] = mapToPost(data.posts);
       setData(data);
-      setPosts(parsedPosts);
+      setPosts(posts);
       memPage.current = pageToFetch;
     } catch (error) {
       // Get error message from response data if available

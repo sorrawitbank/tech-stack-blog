@@ -87,7 +87,7 @@ function usePaginatedPosts(role: Role = "user") {
     setPage((prev) => prev + 1);
   };
 
-  const handleChangePage = (nextPage: number) => {
+  const handlePageChange = (nextPage: number) => {
     setPage(nextPage);
     setSearchParams(
       (prev) => {
@@ -103,7 +103,7 @@ function usePaginatedPosts(role: Role = "user") {
     );
   };
 
-  const handleChangeStatus = (nextStatusId: string) => {
+  const handleStatusChange = (nextStatusId: string) => {
     setStatusId(Number(nextStatusId));
     setSearchParams(
       (prev) => {
@@ -135,8 +135,8 @@ function usePaginatedPosts(role: Role = "user") {
     error,
     handleInputChange,
     handleLoadMore,
-    handleChangePage,
-    handleChangeStatus,
+    handlePageChange,
+    handleStatusChange,
   };
 }
 

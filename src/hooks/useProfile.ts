@@ -127,9 +127,9 @@ function useProfile(role: Role) {
     pictureError,
     previewImageUrl,
     handleImageFileChange,
+    handleSubmit,
     handleConfirm,
     handleCancel,
-    handleSubmit,
   };
 }
 

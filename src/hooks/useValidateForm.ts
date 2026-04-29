@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import validateBio from "@/utils/validateBio";
-import validateCategory from "@/utils/validateCategory";
-import validateEmail from "@/utils/validateEmail";
-import validateName from "@/utils/validateName";
-import validatePassword from "@/utils/validatePassword";
-import validateUsername from "@/utils/validateUsername";
+import validateBio from "@/utils/validation/validateBio";
+import validateCategory from "@/utils/validation/validateCategory";
+import validateContent from "@/utils/validation/validateContent";
+import validateEmail from "@/utils/validation/validateEmail";
+import validateImageAlt from "@/utils/validation/validateImageAlt";
+import validateIntroduction from "@/utils/validation/validateIntroduction";
+import validateName from "@/utils/validation/validateName";
+import validatePassword from "@/utils/validation/validatePassword";
+import validateTitle from "@/utils/validation/validateTitle";
+import validateUsername from "@/utils/validation/validateUsername";
 
 type InputKeys =
   | "name"
@@ -12,8 +16,10 @@ type InputKeys =
   | "email"
   | "password"
   | "category"
+  | "imageAlt"
+  | "title"
   | "newPassword";
-type TextAreaKeys = "bio";
+type TextAreaKeys = "bio" | "introduction" | "content";
 
 export type InputRefs = Record<InputKeys, React.RefObject<HTMLInputElement>>;
 export type TextAreaRefs = Record<
@@ -36,11 +42,15 @@ const inputValidations: InputValidations = {
   email: validateEmail,
   password: validatePassword,
   category: validateCategory,
-  newPassword: validatePassword,
+  imageAlt: validateImageAlt,
+  title: validateTitle,
+  newPassword: (value) => validatePassword(value, "New"),
 };
 
 const textareaValidations: TextAreaValidations = {
   bio: validateBio,
+  introduction: validateIntroduction,
+  content: validateContent,
 };
 
 function useValidateForm() {

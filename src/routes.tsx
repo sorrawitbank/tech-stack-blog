@@ -13,6 +13,7 @@ import Profile from "./pages/Member/Profile";
 import ResetPassword from "./pages/Member/ResetPassword";
 import AdminLogin from "./pages/Admin/Login";
 import AdminArticle from "./pages/Admin/Article";
+import AdminArticleForm from "./pages/Admin/Article/form";
 import AdminCategory from "./pages/Admin/Category";
 import AdminCategoryForm from "./pages/Admin/Category/form";
 import AdminProfile from "./pages/Admin/Profile";
@@ -83,6 +84,22 @@ function AppRoutes() {
             element={
               <ProtectedRoute requiredRole="admin">
                 <AdminArticle />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/article/create"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminArticleForm mode="create" />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/article/edit/:postId"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminArticleForm mode="update" />
               </ProtectedRoute>
             }
           />

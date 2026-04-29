@@ -28,7 +28,7 @@ function ConfirmDialog(props: Props) {
           {props.title}
         </h3>
       </AlertDialogTitle>
-      <span className="text-center style-body-1 text-brown-400 text-balance">
+      <span className="style-body-1 text-center text-balance text-brown-400">
         {props.content}
       </span>
       <div className="flex gap-2 sm:gap-6 lg:gap-10">

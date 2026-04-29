@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 interface Props {
   post: Post;
   index: number;
+  setDeleteTitle: React.Dispatch<React.SetStateAction<string>>;
+  handleDelete: (postId: number) => Promise<void>;
 }
 
 function ArticleList(props: Props) {
@@ -47,7 +49,13 @@ function ArticleList(props: Props) {
         >
           <Edit2 />
         </Link>
-        <button className="text-brown-400 transition-colors duration-200 cursor-pointer hover:text-brown-500 active:text-brown-600">
+        <button
+          onClick={() => {
+            props.setDeleteTitle(props.post.title);
+            props.handleDelete(props.post.id);
+          }}
+          className="text-brown-400 transition-colors duration-200 cursor-pointer hover:text-brown-500 active:text-brown-600"
+        >
           <Trash2 />
         </button>
       </div>

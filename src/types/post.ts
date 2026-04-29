@@ -5,7 +5,7 @@ export interface Post {
   readonly id: number;
   author: User;
   image: string;
-  imageAlt: string;
+  imageAlt: string | null;
   categories: string[];
   title: string;
   description: string;

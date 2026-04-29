@@ -4,16 +4,12 @@ import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "text";
 
-interface ActionButtonProps {
+interface ActionButtonProps extends React.ComponentProps<"button"> {
   /**
    * Variant of button - "primary", "secondary", or "text" only
    */
   variant: ButtonVariant;
   children: React.ReactNode;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  disabled?: boolean;
-  className?: string;
 }
 
 interface NavigationButtonProps {
@@ -47,19 +43,24 @@ const variants: Record<ButtonVariant, string> = {
   ),
 };
 
-export function ActionButton(props: ActionButtonProps) {
+export function ActionButton({
+  variant,
+  type,
+  children,
+  className,
+  ...props
+}: ActionButtonProps) {
   return (
     <button
-      type={props.type ?? "button"}
-      onClick={props.onClick}
-      disabled={props.disabled}
+      type={type ?? "button"}
       className={cn(
-        variants[props.variant],
+        variants[variant],
         "disabled:cursor-not-allowed",
-        props.className
+        className
       )}
+      {...props}
     >
-      {props.children}
+      {children}
     </button>
   );
 }
