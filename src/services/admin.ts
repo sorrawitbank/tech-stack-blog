@@ -1,6 +1,7 @@
 import type { CategoryBody } from "@/types/category";
 import type { PostsResponse, PostsParams, PostApi } from "@/types/post";
 import axios from "axios";
+import DEFAULT_CATEGORY_NAME from "@/constants/category";
 
 interface FetchPostsParams extends PostsParams {
   controller?: AbortController;
@@ -13,7 +14,8 @@ export async function fetchAdminPosts(params: FetchPostsParams) {
     params: {
       page: params.page === 1 ? null : params.page,
       limit: params.limit === 6 ? null : params.limit,
-      category: params.category === "Highlight" ? null : params.category,
+      category:
+        params.category === DEFAULT_CATEGORY_NAME ? null : params.category,
       keyword: params.keyword ? params.keyword : null,
       statusId: params.statusId === 0 ? null : params.statusId,
     },

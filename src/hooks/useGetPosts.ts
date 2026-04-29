@@ -3,6 +3,7 @@ import type { Role } from "@/types/user";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { AxiosError } from "axios";
+import DEFAULT_CATEGORY_NAME from "@/constants/category";
 import { fetchAdminPosts } from "@/services/admin";
 import { fetchPosts } from "@/services/post";
 import { mapToPost } from "@/utils/post";
@@ -16,7 +17,7 @@ interface Params extends Partial<PostsParams> {
 function useGetPosts({
   page = 1,
   limit = 6,
-  category = "Highlight",
+  category = DEFAULT_CATEGORY_NAME,
   keyword = "",
   statusId = 0,
   role = "user",
@@ -29,7 +30,7 @@ function useGetPosts({
     role === "user" ? 1 : Number(searchParams.get("page")?.trim()) || 1
   );
   const memCategory = useRef<string>(
-    searchParams.get("category")?.trim() || "Highlight"
+    searchParams.get("category")?.trim() || DEFAULT_CATEGORY_NAME
   );
   const memKeyword = useRef<string>("");
   const [data, setData] = useState<Omit<PostsResponse, "posts">>({

@@ -2,6 +2,7 @@ import type { Category } from "@/types/category";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { AxiosError } from "axios";
+import DEFAULT_CATEGORY_NAME from "@/constants/category";
 import { fetchCategories } from "@/services/category";
 import { mapToCategory } from "@/utils/category";
 import sonner from "@/utils/sonner";
@@ -9,10 +10,10 @@ import sonner from "@/utils/sonner";
 function useCategory() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState<string>(
-    searchParams.get("category")?.trim() || "Highlight"
+    searchParams.get("category")?.trim() || DEFAULT_CATEGORY_NAME
   );
   const [categories, setCategories] = useState<Category[]>([
-    { id: 0, name: "Highlight" },
+    { id: 0, name: category },
   ]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -28,7 +29,7 @@ function useCategory() {
 
   useEffect(() => {
     const fromUrl = searchParams.get("category")?.trim();
-    const next = fromUrl || "Highlight";
+    const next = fromUrl || DEFAULT_CATEGORY_NAME;
 
     setCategory((prev) => (prev === next ? prev : next));
   }, [searchParams]);
@@ -66,7 +67,7 @@ function useCategory() {
     setSearchParams(
       (prev) => {
         const params = new URLSearchParams(prev);
-        if (nextCategory === "Highlight") {
+        if (nextCategory === DEFAULT_CATEGORY_NAME) {
           params.delete("category");
         } else {
           params.set("category", nextCategory);

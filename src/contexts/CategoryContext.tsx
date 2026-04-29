@@ -1,5 +1,6 @@
 import type { Category } from "@/types/category";
 import React, { createContext, useContext } from "react";
+import DEFAULT_CATEGORY_NAME from "@/constants/category";
 import useCategory from "@/hooks/useCategory";
 
 interface CategoryContextType {
@@ -12,8 +13,8 @@ interface CategoryContextType {
 }
 
 const CategoryContext = createContext<CategoryContextType>({
-  category: "Highlight",
-  categories: [{ id: 0, name: "Highlight" }],
+  category: DEFAULT_CATEGORY_NAME,
+  categories: [{ id: 0, name: DEFAULT_CATEGORY_NAME }],
   isLoading: false,
   error: null,
   getCategories: async () => {},
