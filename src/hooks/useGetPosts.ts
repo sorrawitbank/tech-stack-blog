@@ -158,7 +158,7 @@ function useGetPosts({
     setPosts([]);
   };
 
-  return { data, memPage, posts, isLoading, error, clearPosts };
+  return { data, memPage, posts, isLoading, error, getPosts, clearPosts };
 }
 
 export default useGetPosts;

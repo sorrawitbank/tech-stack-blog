@@ -26,7 +26,7 @@ function usePaginatedPosts(role: Role = "user") {
   const [isPaginationLoading, setIsPaginationLoading] =
     useState<boolean>(false);
   const { category } = useCategoryContext();
-  const { data, memPage, posts, isLoading, error } = useGetPosts({
+  const { data, memPage, posts, isLoading, error, getPosts } = useGetPosts({
     page,
     category,
     keyword,
@@ -134,6 +134,7 @@ function usePaginatedPosts(role: Role = "user") {
     isLoading,
     isPaginationLoading,
     error,
+    getPosts,
     handleInputChange,
     handleLoadMore,
     handlePageChange,

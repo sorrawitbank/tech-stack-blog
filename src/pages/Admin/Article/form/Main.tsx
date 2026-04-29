@@ -261,16 +261,12 @@ function Main({ mode }: { mode: "create" | "update" }) {
               />
               <FieldError>{textareaErrors.content}</FieldError>
             </Field>
-            {mode === "update" && isLarge && (
+            {post && isLarge && (
               <ActionButton
                 variant="text"
-                onClick={
-                  post
-                    ? () => {
-                        handleDelete(post.id);
-                      }
-                    : undefined
-                }
+                onClick={() => {
+                  handleDelete(post.id, true);
+                }}
                 className="self-start"
               >
                 <Trash2 />
@@ -304,16 +300,12 @@ function Main({ mode }: { mode: "create" | "update" }) {
                     : "Save"}
                 </ActionButton>
               </div>
-              {mode === "update" && (
+              {post && (
                 <ActionButton
                   variant="text"
-                  onClick={
-                    post
-                      ? () => {
-                          handleDelete(post.id);
-                        }
-                      : undefined
-                  }
+                  onClick={() => {
+                    handleDelete(post.id, true);
+                  }}
                 >
                   <Trash2 />
                   Delete article

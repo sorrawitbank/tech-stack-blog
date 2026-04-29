@@ -42,6 +42,7 @@ function Main() {
     posts,
     isLoading,
     error,
+    getPosts,
     handleInputChange,
     handlePageChange,
     handleStatusChange,
@@ -223,7 +224,10 @@ function Main() {
         confirmText="Delete"
         open={isDeleteConfirmDialogOpen}
         onCancel={handleDeleteCancel}
-        onConfirm={handleDeleteConfirm}
+        onConfirm={() => {
+          handleDeleteConfirm();
+          getPosts();
+        }}
       />
     </AdminMain>
   );

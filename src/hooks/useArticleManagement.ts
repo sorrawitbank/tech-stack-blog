@@ -234,7 +234,7 @@ function useArticleManagement(mode: "create" | "update" | "delete") {
     }
   };
 
-  const handleDelete = async (postId: number) => {
+  const handleDelete = async (postId: number, isNavigate: boolean = false) => {
     setError(null);
 
     const isConfirmed = await requestDeleteConfirm();
@@ -247,7 +247,9 @@ function useArticleManagement(mode: "create" | "update" | "delete") {
         message: "Deleted article successfully",
         description: "Article has been deleted successfully",
       });
-      navigate(backTo);
+      if (isNavigate) {
+        navigate(backTo);
+      }
     } catch (error) {
       // Get error message from response data if available
       if (error instanceof Error) {
