@@ -28,7 +28,7 @@ function Main() {
     return (
       <FullHeightMain className="flex-col gap-4 px-4 lg:gap-6">
         <TriangleAlert className="size-12 min-h-12 text-brown-600" />
-        <h3 className="style-headline-3 text-center text-brown-600 text-balance">
+        <h3 className="style-headline-3 text-center text-balance text-brown-600">
           {error || "Failed to fetch post"}
         </h3>
         <NavigationButton variant="primary" navigateTo="/">
@@ -41,7 +41,7 @@ function Main() {
     <StandardMain className="lg:items-center lg:gap-12">
       <img
         src={post.image}
-        alt={post.imageAlt}
+        alt={post.imageAlt ?? "Thumbnail"}
         className="aspect-375/184 w-full max-w-7xl max-h-150 text-brown-500 object-cover lg:aspect-1200/587 lg:rounded-2xl"
       />
       <div className="flex w-full justify-between gap-8 xl:gap-20 2xl:gap-32">

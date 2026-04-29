@@ -16,7 +16,7 @@ function PostCard({ post }: { post: Post }) {
     <article className="flex flex-col gap-4 lg:gap-6">
       <img
         src={post.image}
-        alt={post.imageAlt}
+        alt={post.imageAlt ?? "Thumbnail"}
         onClick={handleNavigate}
         className="aspect-343/212 text-brown-500 object-cover rounded-2xl hover:cursor-pointer hover:shadow-[0px_0px_12px_4px_rgb(0_0_0_/0.2)] md:aspect-59/36"
       />
