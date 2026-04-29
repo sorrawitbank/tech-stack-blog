@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Plus, Search } from "lucide-react";
 import ArticleHeader from "./components/ArticleHeader";
 import ArticleList from "./components/ArticleList";
@@ -22,7 +23,6 @@ import useArticleManagement from "@/hooks/useArticleManagement";
 import usePaginatedPosts from "@/hooks/usePaginatedPosts";
 import AdminLargeHeader from "@/layouts/AdminLargeHeader";
 import AdminMain from "@/layouts/AdminMain";
-import { useState } from "react";
 
 function Main() {
   const [deleteTitle, setDeleteTitle] = useState<string>("");
@@ -52,10 +52,7 @@ function Main() {
           <h3 className="style-headline-3 text-brown-600">
             Article management
           </h3>
-          <NavigationButton
-            variant="primary"
-            navigateTo="/admin/article/create"
-          >
+          <NavigationButton variant="primary" to="/admin/article/create">
             <Plus />
             Create article
           </NavigationButton>
@@ -205,7 +202,7 @@ function Main() {
         {!isLarge && (
           <NavigationButton
             variant="primary"
-            navigateTo="/admin/article/create"
+            to="/admin/article/create"
             className="self-end"
           >
             <Plus />

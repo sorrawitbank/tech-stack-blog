@@ -12,14 +12,12 @@ interface ActionButtonProps extends React.ComponentProps<"button"> {
   children: React.ReactNode;
 }
 
-interface NavigationButtonProps {
+interface NavigationButtonProps extends React.ComponentProps<typeof Link> {
   /**
    * Variant of button - "primary", "secondary", or "text" only
    */
   variant: ButtonVariant;
   children: React.ReactNode;
-  navigateTo: `/${string}`;
-  className?: string;
 }
 
 const variants: Record<ButtonVariant, string> = {
@@ -65,17 +63,24 @@ export function ActionButton({
   );
 }
 
-export function NavigationButton(props: NavigationButtonProps) {
+export function NavigationButton({
+  variant,
+  to,
+  children,
+  className,
+  ...props
+}: NavigationButtonProps) {
   return (
     <Link
-      to={props.navigateTo}
+      to={to}
       className={cn(
-        variants[props.variant],
+        variants[variant],
         "disabled:cursor-not-allowed",
-        props.className
+        className
       )}
+      {...props}
     >
-      {props.children}
+      {children}
     </Link>
   );
 }

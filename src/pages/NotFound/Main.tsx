@@ -9,7 +9,7 @@ function Main() {
       <h3 className="style-headline-3 text-center text-brown-600">
         Page not found
       </h3>
-      <NavigationButton variant="primary" navigateTo="/">
+      <NavigationButton variant="primary" to="/">
         Go to Home page
       </NavigationButton>
     </FullHeightMain>

@@ -122,12 +122,12 @@ function Header() {
           <nav>
             <ul className="flex gap-2">
               <li>
-                <NavigationButton variant="secondary" navigateTo="/login">
+                <NavigationButton variant="secondary" to="/login">
                   Log in
                 </NavigationButton>
               </li>
               <li>
-                <NavigationButton variant="primary" navigateTo="/signup">
+                <NavigationButton variant="primary" to="/signup">
                   Sign up
                 </NavigationButton>
               </li>
@@ -220,12 +220,12 @@ function Header() {
               <nav className="h-full">
                 <ul className="flex flex-col gap-6">
                   <li>
-                    <NavigationButton variant="secondary" navigateTo="/login">
+                    <NavigationButton variant="secondary" to="/login">
                       Log in
                     </NavigationButton>
                   </li>
                   <li>
-                    <NavigationButton variant="primary" navigateTo="/signup">
+                    <NavigationButton variant="primary" to="/signup">
                       Sign up
                     </NavigationButton>
                   </li>

@@ -21,7 +21,7 @@ function Main() {
           <span className="style-body-1 text-brown-400">
             Don’t have any account?
           </span>
-          <NavigationButton variant="text" navigateTo="/signup">
+          <NavigationButton variant="text" to="/signup">
             Sign up
           </NavigationButton>
         </div>

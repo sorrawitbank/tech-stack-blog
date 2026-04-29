@@ -31,7 +31,7 @@ function Main() {
         <h3 className="style-headline-3 text-center text-balance text-brown-600">
           {error || "Failed to fetch post"}
         </h3>
-        <NavigationButton variant="primary" navigateTo="/">
+        <NavigationButton variant="primary" to="/">
           Go to Home page
         </NavigationButton>
       </FullHeightMain>

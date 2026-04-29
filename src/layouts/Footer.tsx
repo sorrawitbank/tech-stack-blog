@@ -29,7 +29,7 @@ function Footer() {
           </li>
         </ul>
       </div>
-      <NavigationButton variant="text" navigateTo="/">
+      <NavigationButton variant="text" to="/">
         Home page
       </NavigationButton>
     </footer>

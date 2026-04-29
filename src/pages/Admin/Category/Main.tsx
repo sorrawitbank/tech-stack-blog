@@ -25,10 +25,7 @@ function Main() {
           <h3 className="style-headline-3 text-brown-600">
             Category management
           </h3>
-          <NavigationButton
-            variant="primary"
-            navigateTo="/admin/category/create"
-          >
+          <NavigationButton variant="primary" to="/admin/category/create">
             <Plus />
             Create category
           </NavigationButton>
@@ -66,7 +63,7 @@ function Main() {
         {!isLarge && (
           <NavigationButton
             variant="primary"
-            navigateTo="/admin/category/create"
+            to="/admin/category/create"
             className="self-end"
           >
             <Plus />

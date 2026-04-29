@@ -25,7 +25,7 @@ function CreateAccountDialog({ children }: { children?: React.ReactNode }) {
           Create an account to continue
         </h2>
       </AlertDialogTitle>
-      <NavigationButton variant="primary" navigateTo="/signup">
+      <NavigationButton variant="primary" to="/signup">
         Create account
       </NavigationButton>
       <div className="flex justify-center gap-3">
@@ -34,7 +34,7 @@ function CreateAccountDialog({ children }: { children?: React.ReactNode }) {
             Already have an account?
           </span>
         </AlertDialogDescription>
-        <NavigationButton variant="text" navigateTo="/login">
+        <NavigationButton variant="text" to="/login">
           Login
         </NavigationButton>
       </div>

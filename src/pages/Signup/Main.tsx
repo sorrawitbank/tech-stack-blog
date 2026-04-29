@@ -30,7 +30,7 @@ function Main() {
           >
             Registration success
           </h2>
-          <NavigationButton variant="primary" navigateTo="/">
+          <NavigationButton variant="primary" to="/">
             Continue
           </NavigationButton>
         </section>
@@ -56,7 +56,7 @@ function Main() {
             <span className="style-body-1 text-brown-400">
               Already have an account?
             </span>
-            <NavigationButton variant="text" navigateTo="/login">
+            <NavigationButton variant="text" to="/login">
               Log in
             </NavigationButton>
           </div>
