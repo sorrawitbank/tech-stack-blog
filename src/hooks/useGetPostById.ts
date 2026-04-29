@@ -21,6 +21,11 @@ function useGetPostById(postId: number, role: Role = "user") {
   }, []);
 
   const getPost = async (controller?: AbortController) => {
+    if (!postId) {
+      setError("Please enter a valid post ID");
+      return;
+    }
+
     setIsLoading(true);
     try {
       let data;
