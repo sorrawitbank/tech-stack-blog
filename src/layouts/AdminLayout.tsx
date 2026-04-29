@@ -151,7 +151,7 @@ function AdminLayout(props: Props) {
         </header>
       )}
       {!isSmall && (
-        <div className="flex items-center gap-4 px-6 py-3 mt-12 ">
+        <div className="flex items-center gap-4 px-4 pt-3 mt-12">
           {props.leading}
           <h3 className="style-headline-3 text-brown-600">
             {props.title || pageDetails[props.page].text}

@@ -14,7 +14,7 @@ import AdminMain from "@/layouts/AdminMain";
 function Main() {
   const [deleteCategory, setDeleteCategory] = useState<string>("");
   const { isConfirmDialogOpen, handleDelete, handleConfirm, handleCancel } =
-    useCategoryManagement();
+    useCategoryManagement("delete");
   const { categories, isLoading, error } = useCategoryContext();
   const { isLarge } = useMediaQueryContext();
 

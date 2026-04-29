@@ -31,10 +31,7 @@ function Main() {
   return (
     <AdminMain>
       <form onSubmit={handleSubmit}>
-        <FieldSet
-          disabled={isLoading}
-          className="items-start gap-6 sm:gap-8 lg:gap-0"
-        >
+        <FieldSet disabled={isLoading} className="gap-6 sm:gap-8 lg:gap-0">
           {isLarge && (
             <AdminLargeHeader>
               <h3 className="style-headline-3 text-brown-600">
@@ -45,8 +42,8 @@ function Main() {
               </ActionButton>
             </AdminLargeHeader>
           )}
-          <FieldGroup className="lg:max-w-150 lg:px-15 lg:py-10">
-            <Field className="gap-1">
+          <FieldGroup className="gap-6 lg:gap-7 lg:px-15 lg:py-10">
+            <Field className="gap-1 lg:max-w-120">
               <FieldLabel
                 htmlFor="current-password"
                 className="style-body-1 text-brown-400"
@@ -65,7 +62,7 @@ function Main() {
               />
               <FieldError>{inputErrors.password}</FieldError>
             </Field>
-            <Field className="gap-1">
+            <Field className="gap-1 lg:max-w-120">
               <FieldLabel
                 htmlFor="new-password"
                 className="style-body-1 text-brown-400"
@@ -84,7 +81,7 @@ function Main() {
               />
               <FieldError>{inputErrors.newPassword}</FieldError>
             </Field>
-            <Field className="gap-1">
+            <Field className="gap-1 lg:max-w-120">
               <FieldLabel
                 htmlFor="confirm-new-password"
                 className="style-body-1 text-brown-400"

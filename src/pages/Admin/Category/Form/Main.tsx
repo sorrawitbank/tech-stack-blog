@@ -1,4 +1,4 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
 import { ActionButton } from "@/components/common/Button";
 import ConfirmDialog from "@/components/common/ConfirmDialog";
@@ -15,68 +15,26 @@ import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import useCategoryManagement from "@/hooks/useCategoryManagement";
 import AdminLargeHeader from "@/layouts/AdminLargeHeader";
 import AdminMain from "@/layouts/AdminMain";
-import sonner from "@/utils/sonner";
 import { cn } from "@/lib/utils";
 
 function Main({ mode }: { mode: "create" | "update" }) {
-  const params = useParams();
   const {
     refs,
+    categoryId,
     isLoading,
     isConfirmDialogOpen,
     inputErrors,
-    handleSubmitCreate,
-    handleSubmitUpdate,
+    handleSubmit,
     handleConfirm,
     handleCancel,
-  } = useCategoryManagement();
+  } = useCategoryManagement(mode);
   const { categories } = useCategoryContext();
   const { isLarge } = useMediaQueryContext();
 
-  const categoryId = Number(params.categoryId);
-
-  if (mode === "update") {
-    if (!Number.isInteger(categoryId) || categoryId <= 0) {
-      sonner.error({
-        message: "Invalid category ID",
-        description: "Please enter a valid category ID",
-      });
-      return <Navigate to="/admin/category" replace />;
-    } else if (
-      !categories.map((category) => category.id).includes(categoryId)
-    ) {
-      sonner.error({
-        message: "Category not found",
-        description: "Please enter a valid category ID",
-      });
-      return <Navigate to="/admin/category" replace />;
-    }
-  }
-
   return (
     <AdminMain>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (mode === "create") {
-            handleSubmitCreate();
-          } else if (
-            categories.find((category) => category.id === categoryId)?.name ===
-            refs.category.current.value.trim()
-          ) {
-            sonner.error({
-              message: "Category name is the same",
-              description: "Please edit the category name",
-            });
-          } else {
-            handleSubmitUpdate(categoryId);
-          }
-        }}
-      >
-        <FieldSet
-          disabled={isLoading}
-          className="items-start gap-6 sm:gap-8 lg:gap-0"
-        >
+      <form onSubmit={handleSubmit}>
+        <FieldSet disabled={isLoading} className="gap-6 sm:gap-8 lg:gap-0">
           {isLarge && (
             <AdminLargeHeader>
               <div className="flex gap-8 items-center">
@@ -92,8 +50,8 @@ function Main({ mode }: { mode: "create" | "update" }) {
               </ActionButton>
             </AdminLargeHeader>
           )}
-          <FieldGroup className="lg:max-w-150 lg:px-15 lg:py-10">
-            <Field className="gap-1">
+          <FieldGroup className="lg:px-15 lg:py-10">
+            <Field className="gap-1 lg:max-w-120">
               <FieldLabel
                 htmlFor="category-name"
                 className="style-body-1 text-brown-400"
@@ -104,12 +62,6 @@ function Main({ mode }: { mode: "create" | "update" }) {
                 id="category-name"
                 type="text"
                 ref={refs.category}
-                defaultValue={
-                  mode === "update"
-                    ? categories.find((category) => category.id === categoryId)
-                        ?.name
-                    : undefined
-                }
                 placeholder="Category name"
                 className={cn(
                   "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
@@ -120,7 +72,7 @@ function Main({ mode }: { mode: "create" | "update" }) {
             </Field>
           </FieldGroup>
           {!isLarge && (
-            <ActionButton variant="primary" type="submit">
+            <ActionButton variant="primary" type="submit" className="self-end">
               {mode === "create" ? "Create" : "Save"}
             </ActionButton>
           )}

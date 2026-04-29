@@ -31,15 +31,15 @@ function HeroSection() {
         </p>
       </div>
       {isGetAdminLoading ? (
-        <Skeleton className="w-full max-w-[500px] h-[470px] rounded-2xl lg:w-[calc(100%*386/1200)] lg:h-[400px] xl:h-[529px]" />
+        <Skeleton className="w-full max-w-125 h-[470px] rounded-2xl lg:w-[calc(100%*386/1200)] lg:h-100 xl:h-[529px]" />
       ) : admin && admin.profilePic ? (
         <img
           src={admin.profilePic}
           alt="Author"
-          className="w-full max-w-[500px] h-[470px] text-brown-500 object-cover rounded-2xl lg:w-[calc(100%*386/1200)] lg:h-[400px] xl:h-[529px]"
+          className="w-full max-w-125 h-[470px] text-brown-500 object-cover rounded-2xl lg:w-[calc(100%*386/1200)] lg:h-100 xl:h-[529px]"
         />
       ) : (
-        <div className="flex justify-center items-center w-full max-w-[500px] h-[470px] bg-brown-200 rounded-2xl lg:w-[calc(100%*386/1200)] lg:h-[400px] xl:h-[529px]">
+        <div className="flex justify-center items-center w-full max-w-125 h-[470px] bg-brown-200 rounded-2xl lg:w-[calc(100%*386/1200)] lg:h-100 xl:h-[529px]">
           <User className="size-40 text-brown-400" />
         </div>
       )}

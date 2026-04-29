@@ -48,10 +48,7 @@ function Main() {
           onChange={handleImageFileChange}
           className="hidden"
         />
-        <FieldSet
-          disabled={isLoading}
-          className="items-start gap-6 sm:gap-8 lg:gap-0"
-        >
+        <FieldSet disabled={isLoading} className="gap-6 sm:gap-8 lg:gap-0">
           {isLarge && (
             <AdminLargeHeader>
               <h3 className="style-headline-3 text-brown-600">Profile</h3>
@@ -60,7 +57,7 @@ function Main() {
               </ActionButton>
             </AdminLargeHeader>
           )}
-          <div className="flex flex-col gap-10 w-full lg:px-15 lg:py-10">
+          <div className="flex flex-col gap-8 lg:gap-10 lg:px-15 lg:py-10">
             <Field className="gap-2">
               <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-7">
                 <Avatar className="size-30">
