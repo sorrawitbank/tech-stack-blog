@@ -46,10 +46,7 @@ function usePaginatedPosts(role: Role = "user") {
 
   // This effect will not run on the first render.
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
+    if (isFirstRender.current) return;
     setPage(1);
     setPaginatedPosts([]);
   }, [category, keyword, statusId]);
@@ -69,6 +66,10 @@ function usePaginatedPosts(role: Role = "user") {
     setPage(memPage.current);
     sonner.error({ message: "Error!", description: error });
   }, [error]);
+
+  useEffect(() => {
+    isFirstRender.current = false;
+  }, []);
 
   const debouncedSetKeyword = useMemo(() => {
     return debounceFunction(setKeyword, { wait: 600 });

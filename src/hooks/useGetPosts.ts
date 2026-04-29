@@ -45,8 +45,9 @@ function useGetPosts({
 
   // This effect will not run on the first render.
   useEffect(() => {
+    if (isFirstRender.current) return;
     // Skip loading if page didn't change
-    if (page === memPage.current || isFirstRender.current) return;
+    if (page === memPage.current) return;
     // Skip loading if category changed
     if (category !== memCategory.current) {
       memCategory.current = category;
@@ -82,7 +83,8 @@ function useGetPosts({
 
   // This effect will not run on the first render.
   useEffect(() => {
-    if (isFirstRender.current || (requiredKeyword && !keyword)) return;
+    if (isFirstRender.current) return;
+    if (requiredKeyword && !keyword) return;
     if (memPage.current === 1) {
       memKeyword.current = keyword;
     }

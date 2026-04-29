@@ -18,7 +18,8 @@ function useSignup() {
 
   // This effect will not run on the first render.
   useEffect(() => {
-    if (!error || isFirstRender.current) return;
+    if (isFirstRender.current) return;
+    if (!error) return;
     sonner.error({
       message: "Registration failed",
       description: error,
