@@ -50,7 +50,7 @@ function Main({ mode }: { mode: "create" | "update" }) {
               </ActionButton>
             </AdminLargeHeader>
           )}
-          <FieldGroup className="lg:px-15 lg:py-10">
+          <FieldGroup className="lg:px-10 lg:py-10 xl:px-15">
             <Field className="gap-1 lg:max-w-120">
               <FieldLabel
                 htmlFor="category-name"

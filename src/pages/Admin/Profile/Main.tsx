@@ -57,7 +57,7 @@ function Main() {
               </ActionButton>
             </AdminLargeHeader>
           )}
-          <div className="flex flex-col gap-8 lg:gap-10 lg:px-15 lg:py-10">
+          <div className="flex flex-col gap-8 lg:gap-10 lg:px-10 lg:py-10 xl:px-15">
             <Field className="gap-2">
               <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-7">
                 <Avatar className="size-30">

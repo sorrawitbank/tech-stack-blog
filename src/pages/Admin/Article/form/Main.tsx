@@ -97,7 +97,7 @@ function Main({ mode }: { mode: "create" | "update" }) {
               </div>
             </AdminLargeHeader>
           )}
-          <FieldGroup className="gap-6 lg:gap-7 lg:px-15 lg:py-10">
+          <FieldGroup className="gap-6 lg:gap-7 lg:px-10 lg:py-10 xl:px-15">
             <Field className="gap-2">
               <div className="flex flex-col gap-4">
                 <div className="flex justify-between">
@@ -117,7 +117,7 @@ function Main({ mode }: { mode: "create" | "update" }) {
                   )}
                 </div>
                 <div className="flex flex-col items-center gap-4 md:flex-row md:items-end md:gap-7">
-                  <div className="relative w-full md:w-111 lg:w-99 xl:w-120 2xl:w-160">
+                  <div className="relative w-full md:w-109 xl:w-120 2xl:w-160">
                     {previewImageUrl || post?.image ? (
                       <img
                         src={(previewImageUrl || post?.image) ?? undefined}

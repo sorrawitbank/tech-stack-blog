@@ -42,7 +42,7 @@ function Main() {
               </ActionButton>
             </AdminLargeHeader>
           )}
-          <FieldGroup className="gap-6 lg:gap-7 lg:px-15 lg:py-10">
+          <FieldGroup className="gap-6 lg:gap-7 lg:px-10 lg:py-10 xl:px-15">
             <Field className="gap-1 lg:max-w-120">
               <FieldLabel
                 htmlFor="current-password"
