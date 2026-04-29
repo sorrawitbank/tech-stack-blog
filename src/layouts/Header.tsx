@@ -1,4 +1,4 @@
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ChevronDown,
   LogOut,
@@ -22,16 +22,6 @@ import { cn } from "@/lib/utils";
 
 function Header() {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const categoryParam = searchParams.get("category")?.trim();
-  const homeTo = categoryParam
-    ? `/?${new URLSearchParams({ category: categoryParam }).toString()}`
-    : "/";
-  const adminArticleTo = categoryParam
-    ? `/admin/article?${new URLSearchParams({
-        category: categoryParam,
-      }).toString()}`
-    : "/admin/article";
   const { user, isAuthenticated, logout } = useAuthContext();
   const { isSmall } = useMediaQueryContext();
   const { scrollDirection, scrollY } = useScrollContext();
@@ -49,7 +39,7 @@ function Header() {
       <img
         src="/logo.svg"
         alt="Logo"
-        onClick={() => navigate(homeTo)}
+        onClick={() => navigate("/")}
         className="size-6 text-brown-500 cursor-pointer sm:size-11"
       />
       {isSmall ? (
@@ -102,7 +92,7 @@ function Header() {
                   {user!.role === "admin" && (
                     <li>
                       <Link
-                        to={adminArticleTo}
+                        to={"/admin/article"}
                         className="flex gap-3 px-4 py-3 hover:bg-brown-200"
                       >
                         <SquareArrowOutUpRight className="text-brown-400" />
@@ -205,7 +195,7 @@ function Header() {
                     {user!.role === "admin" && (
                       <li>
                         <Link
-                          to={adminArticleTo}
+                          to={"/admin/article"}
                           className="flex gap-3 px-4 py-3 rounded-lg hover:bg-brown-200"
                         >
                           <SquareArrowOutUpRight className="text-brown-400" />

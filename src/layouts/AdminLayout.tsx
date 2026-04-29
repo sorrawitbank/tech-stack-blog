@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Bell,
   Folder,
@@ -54,11 +54,6 @@ interface Props {
 function AdminLayout(props: Props) {
   const { logout } = useAuthContext();
   const { isSmall, isMedium, isLarge } = useMediaQueryContext();
-  const [searchParams] = useSearchParams();
-  const categoryParam = searchParams.get("category")?.trim();
-  const homeTo = categoryParam
-    ? `/?${new URLSearchParams({ category: categoryParam }).toString()}`
-    : "/";
 
   return (
     <div className="flex flex-col lg:flex-row">
@@ -116,7 +111,7 @@ function AdminLayout(props: Props) {
                       <ul>
                         <li className="hover:bg-brown-300">
                           <Link
-                            to={homeTo}
+                            to={"/"}
                             className="flex gap-3 px-6 py-5 text-brown-400 sm:px-12 md:px-6"
                           >
                             <SquareArrowOutUpRight />
@@ -197,7 +192,7 @@ function AdminLayout(props: Props) {
               <ul>
                 <li className="hover:bg-brown-300">
                   <Link
-                    to={homeTo}
+                    to={"/"}
                     className="flex gap-3 px-6 py-5 text-brown-400 sm:px-12 md:px-6"
                   >
                     <SquareArrowOutUpRight />
