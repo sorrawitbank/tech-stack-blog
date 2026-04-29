@@ -1,7 +1,7 @@
 import type { Post } from "@/types/post";
 import { Link } from "react-router-dom";
 import { Edit2, Trash2 } from "lucide-react";
-import statuses from "@/constants/status";
+import STATUSES from "@/constants/status";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import { cn } from "@/lib/utils";
 
@@ -36,7 +36,7 @@ function ArticleList(props: Props) {
         <span
           className={cn(
             "w-30 style-body-1 text-brown-500 line-clamp-1",
-            statuses.find((status) => status.name === props.post.status)?.style
+            STATUSES.find((status) => status.name === props.post.status)?.style
           )}
         >
           • {props.post.status}

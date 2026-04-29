@@ -8,7 +8,7 @@ import useValidateForm, {
   type InputRefs,
   type TextAreaRefs,
 } from "./useValidateForm";
-import statuses from "@/constants/status";
+import STATUSES from "@/constants/status";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { useCategoryContext } from "@/contexts/CategoryContext";
 import { createPost, deletePost, updatePost } from "@/services/admin";
@@ -113,7 +113,7 @@ function useArticleManagement(mode: "create" | "update" | "delete") {
       title: inputRefs.title.current.value,
       description: textareaRefs.introduction.current.value,
       content: textareaRefs.content.current.value,
-      statusId: statuses[isPublish ? 2 : 1].id,
+      statusId: STATUSES[isPublish ? 2 : 1].id,
     };
 
     const formData = new FormData();
@@ -152,7 +152,7 @@ function useArticleManagement(mode: "create" | "update" | "delete") {
       title: inputRefs.title.current.value,
       description: textareaRefs.introduction.current.value,
       content: textareaRefs.content.current.value,
-      statusId: statuses[isPublish ? 2 : 1].id,
+      statusId: STATUSES[isPublish ? 2 : 1].id,
     };
 
     const formData = new FormData();

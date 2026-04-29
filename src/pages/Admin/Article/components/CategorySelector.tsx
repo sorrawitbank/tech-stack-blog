@@ -28,7 +28,7 @@ function CategorySelector() {
               value={category.name}
               className="text-brown-400 hover:text-brown-500! hover:bg-brown-200! hover:cursor-pointer"
             >
-              {category.name}
+              {category.name === categories[0].name ? "All" : category.name}
             </SelectItem>
           ))}
         </SelectGroup>

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import statuses from "@/constants/status";
+import STATUSES from "@/constants/status";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import useArticleManagement from "@/hooks/useArticleManagement";
 import AdminLargeHeader from "@/layouts/AdminLargeHeader";
@@ -104,7 +104,7 @@ function Main({ mode }: { mode: "create" | "update" }) {
                     <span
                       className={cn(
                         "style-body-1 text-brown-500 line-clamp-1",
-                        statuses.find((status) => status.name === post.status)
+                        STATUSES.find((status) => status.name === post.status)
                           ?.style
                       )}
                     >

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import debounceFunction from "debounce-fn";
 import useGetPosts from "./useGetPosts";
-import statuses from "@/constants/status";
+import STATUSES from "@/constants/status";
 import { useCategoryContext } from "@/contexts/CategoryContext";
 import sonner from "@/utils/sonner";
 
@@ -17,7 +17,7 @@ function usePaginatedPosts(role: Role = "user") {
     role === "user" ? 1 : Number(searchParams.get("page")?.trim()) || 1
   );
   const [statusId, setStatusId] = useState<number>(
-    statuses.find(
+    STATUSES.find(
       (status) => status.name === searchParams.get("status")?.trim()
     )?.id ?? 0
   );
@@ -109,12 +109,12 @@ function usePaginatedPosts(role: Role = "user") {
       (prev) => {
         const params = new URLSearchParams(prev);
         if (
-          Number(nextStatusId) === statuses[0].id ||
-          Number(nextStatusId) >= statuses.length
+          Number(nextStatusId) === STATUSES[0].id ||
+          Number(nextStatusId) >= STATUSES.length
         ) {
           params.delete("status");
         } else {
-          params.set("status", statuses[Number(nextStatusId)].name);
+          params.set("status", STATUSES[Number(nextStatusId)].name);
         }
         params.delete("page");
         return params;

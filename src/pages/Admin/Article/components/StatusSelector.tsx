@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import statuses from "@/constants/status";
+import STATUSES from "@/constants/status";
 
 interface Props {
   defaultStatusId: number;
@@ -19,7 +19,7 @@ function StatusSelector(props: Props) {
   return (
     <Select
       onValueChange={props.onStatusChange}
-      defaultValue={String(statuses[props.defaultStatusId].id)}
+      defaultValue={String(STATUSES[props.defaultStatusId].id)}
     >
       <SelectTrigger className="w-full h-12! text-brown-400 style-body-1 bg-white md:w-40 hover:cursor-pointer">
         <SelectValue />
@@ -28,7 +28,7 @@ function StatusSelector(props: Props) {
         <SelectGroup>
           <SelectLabel className="text-brown-600">Status</SelectLabel>
           <SelectSeparator className="bg-brown-300" />
-          {statuses.map((status) => (
+          {STATUSES.map((status) => (
             <SelectItem
               key={status.id}
               value={String(status.id)}
