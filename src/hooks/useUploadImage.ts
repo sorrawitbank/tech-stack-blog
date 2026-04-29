@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
 function useUploadImage() {
+  const pictureRef = useRef<HTMLInputElement>(document.createElement("input"));
   const [pictureError, setPictureError] = useState<string | null>(null);
   const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
   const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
-  const pictureRef = useRef<HTMLInputElement>(document.createElement("input"));
 
   useEffect(() => {
     if (!selectedImageFile) {

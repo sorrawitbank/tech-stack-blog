@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Plus, Search } from "lucide-react";
 import ArticleHeader from "./components/ArticleHeader";
 import ArticleList from "./components/ArticleList";
@@ -25,6 +26,7 @@ import AdminLargeHeader from "@/layouts/AdminLargeHeader";
 import AdminMain from "@/layouts/AdminMain";
 
 function Main() {
+  const location = useLocation();
   const [deleteTitle, setDeleteTitle] = useState<string>("");
   const { isSmall, isLarge } = useMediaQueryContext();
   const {
@@ -52,7 +54,11 @@ function Main() {
           <h3 className="style-headline-3 text-brown-600">
             Article management
           </h3>
-          <NavigationButton variant="primary" to="/admin/article/create">
+          <NavigationButton
+            variant="primary"
+            to="/admin/article/create"
+            state={{ fromSearch: location.search }}
+          >
             <Plus />
             Create article
           </NavigationButton>
@@ -203,6 +209,7 @@ function Main() {
           <NavigationButton
             variant="primary"
             to="/admin/article/create"
+            state={{ fromSearch: location.search }}
             className="self-end"
           >
             <Plus />

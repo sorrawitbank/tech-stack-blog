@@ -1,5 +1,5 @@
 import type { Post } from "@/types/post";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Edit2, Trash2 } from "lucide-react";
 import STATUSES from "@/constants/status";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
@@ -13,6 +13,7 @@ interface Props {
 }
 
 function ArticleList(props: Props) {
+  const location = useLocation();
   const { isSmall, isXLarge } = useMediaQueryContext();
 
   const categoriesText = props.post.categories.join(", ");
@@ -45,6 +46,7 @@ function ArticleList(props: Props) {
       <div className="flex gap-5 w-17">
         <Link
           to={`/admin/article/edit/${props.post.id}`}
+          state={{ fromSearch: location.search }}
           className="text-brown-400 transition-colors duration-200 hover:text-brown-500 active:text-brown-600"
         >
           <Edit2 />

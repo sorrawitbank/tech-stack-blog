@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronLeft, Image, Trash2 } from "lucide-react";
 import CategoryCombobox from "../components/CategoryCombobox";
 import { ActionButton } from "@/components/common/Button";
@@ -20,6 +20,7 @@ import AdminMain from "@/layouts/AdminMain";
 import { cn } from "@/lib/utils";
 
 function Main({ mode }: { mode: "create" | "update" }) {
+  const location = useLocation();
   const {
     intent,
     inputRefs,
@@ -47,6 +48,9 @@ function Main({ mode }: { mode: "create" | "update" }) {
   } = useArticleManagement(mode);
   const { isSmall, isMedium, isLarge, isXLarge } = useMediaQueryContext();
 
+  const fromSearch = location.state?.fromSearch ?? "";
+  const backTo = `/admin/article${fromSearch}`;
+
   return (
     <AdminMain>
       <form onSubmit={handleSubmit}>
@@ -64,7 +68,7 @@ function Main({ mode }: { mode: "create" | "update" }) {
           {isLarge && (
             <AdminLargeHeader>
               <div className="flex gap-8 items-center">
-                <Link to="/admin/article">
+                <Link to={backTo}>
                   <ChevronLeft className="size-8 text-brown-600 hover:text-brown-400 hover:cursor-pointer active:text-brown-500" />
                 </Link>
                 <h3 className="style-headline-3 text-brown-600">

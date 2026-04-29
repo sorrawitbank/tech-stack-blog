@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AxiosError } from "axios";
 import useConfirmDialog from "./useConfirmDialog";
 import useGetPostById from "./useGetPostById";
@@ -18,6 +18,7 @@ function useArticleManagement(mode: "create" | "update" | "delete") {
   const params = useParams();
   const postId = Number(params.postId);
 
+  const location = useLocation();
   const navigate = useNavigate();
   const intent = useRef<string | undefined>(undefined);
   const [categoryIds, setCategoryIds] = useState<number[]>([]);
@@ -56,6 +57,9 @@ function useArticleManagement(mode: "create" | "update" | "delete") {
     handleCancel: handleDeleteCancel,
   } = useConfirmDialog();
 
+  const fromSearch = location.state?.fromSearch ?? "";
+  const backTo = `/admin/article${fromSearch}`;
+
   useEffect(() => {
     if (!post) return;
     setCategoryIds(
@@ -82,7 +86,7 @@ function useArticleManagement(mode: "create" | "update" | "delete") {
       message: "Get post failed",
       description: getPostError,
     });
-    navigate("/admin/article", { replace: true });
+    navigate(backTo, { replace: true });
   }, [getPostError]);
 
   useEffect(() => {
@@ -128,7 +132,7 @@ function useArticleManagement(mode: "create" | "update" | "delete") {
         message: "Created article successfully",
         description: "Article has been created successfully",
       });
-      navigate("/admin/article");
+      navigate(backTo);
     } catch (error) {
       // Get error message from response data if available
       if (error instanceof Error) {
@@ -167,7 +171,7 @@ function useArticleManagement(mode: "create" | "update" | "delete") {
         message: "Saved article successfully",
         description: "Article has been updated successfully",
       });
-      navigate("/admin/article");
+      navigate(backTo);
     } catch (error) {
       // Get error message from response data if available
       if (error instanceof Error) {
@@ -243,7 +247,7 @@ function useArticleManagement(mode: "create" | "update" | "delete") {
         message: "Deleted article successfully",
         description: "Article has been deleted successfully",
       });
-      navigate("/admin/article");
+      navigate(backTo);
     } catch (error) {
       // Get error message from response data if available
       if (error instanceof Error) {
