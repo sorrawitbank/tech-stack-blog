@@ -220,6 +220,11 @@
   }
 }
 
+[data-sonner-toaster],
+[data-sonner-toast] {
+  font-family: var(--default-font-family);
+}
+
 [data-slot="scroll-area-viewport"] > div {
   height: 100%;
 }
