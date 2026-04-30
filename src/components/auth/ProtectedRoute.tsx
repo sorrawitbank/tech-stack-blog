@@ -9,11 +9,11 @@ interface Props {
 }
 
 function ProtectedRoute(props: Props) {
-  const { user, isAuthenticated, isGetUserLoading } = useAuthContext();
+  const { user, isGetUserLoading } = useAuthContext();
 
   if (isGetUserLoading === null) return;
 
-  if (!isAuthenticated || user?.role !== props.requiredRole) {
+  if (user?.role !== props.requiredRole) {
     if (props.requiredRole === "admin") return <Navigate to="/admin" replace />;
 
     return <Navigate to="/login" replace />;

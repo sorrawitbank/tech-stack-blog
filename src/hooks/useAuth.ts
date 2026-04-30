@@ -146,12 +146,9 @@ function useAuth() {
     }
   };
 
-  const isAuthenticated = Boolean(user);
-
   return {
     user,
     admin,
-    isAuthenticated,
     isLoading,
     isGetUserLoading,
     isGetAdminLoading,

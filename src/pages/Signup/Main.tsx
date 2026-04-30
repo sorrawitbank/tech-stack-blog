@@ -7,8 +7,8 @@ import useSignup from "@/hooks/useSignup";
 import { cn } from "@/lib/utils";
 
 function Main() {
-  const { isLarge } = useMediaQueryContext();
   const { refs, isSuccess, isLoading, inputErrors, handleSubmit } = useSignup();
+  const { isLarge } = useMediaQueryContext();
 
   return (
     <StandardMain className="pb-12 sm:pb-20">

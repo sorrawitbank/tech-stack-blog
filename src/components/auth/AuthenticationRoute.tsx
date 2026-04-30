@@ -3,9 +3,9 @@ import { Navigate } from "react-router-dom";
 import { useAuthContext } from "@/contexts/AuthContext";
 
 function AuthenticationRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated } = useAuthContext();
+  const { user } = useAuthContext();
 
-  if (isAuthenticated) return <Navigate to="/" replace />;
+  if (user) return <Navigate to="/" replace />;
 
   return children;
 }

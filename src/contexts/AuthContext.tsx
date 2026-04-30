@@ -6,7 +6,6 @@ import useAuth from "@/hooks/useAuth";
 interface AuthContextType {
   user: User | null;
   admin: Admin | null;
-  isAuthenticated: boolean;
   isLoading: boolean;
   isGetUserLoading: boolean | null;
   isGetAdminLoading: boolean;
@@ -21,7 +20,6 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType>({
   user: null,
   admin: null,
-  isAuthenticated: false,
   isLoading: false,
   isGetUserLoading: null,
   isGetAdminLoading: false,
@@ -37,7 +35,6 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
   const {
     user,
     admin,
-    isAuthenticated,
     isLoading,
     isGetUserLoading,
     isGetAdminLoading,
@@ -54,7 +51,6 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
       value={{
         user,
         admin,
-        isAuthenticated,
         isLoading,
         isGetUserLoading,
         isGetAdminLoading,

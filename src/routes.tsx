@@ -34,49 +34,50 @@ function AppRoutes() {
         }
       />
 
+      <Route path="/" element={<Landing />} />
+      <Route path="/post/:postId" element={<ViewPost />} />
+
+      {/* Authentication Section */}
+      <Route
+        path="/signup"
+        element={
+          <AuthenticationRoute>
+            <Signup />
+          </AuthenticationRoute>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <AuthenticationRoute>
+            <Login />
+          </AuthenticationRoute>
+        }
+      />
+
+      {/* User Section */}
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/reset-password"
+        element={
+          <ProtectedRoute requiredRole="user">
+            <ResetPassword />
+          </ProtectedRoute>
+        }
+      />
+
       {isGetUserLoading ? (
         <Route path="*" element={<LoadingScreen />} />
       ) : (
         <>
-          <Route path="/" element={<Landing />} />
-          <Route path="/post/:postId" element={<ViewPost />} />
           <Route path="*" element={<NotFound />} />
-
-          {/* Authentication Section */}
-          <Route
-            path="/signup"
-            element={
-              <AuthenticationRoute>
-                <Signup />
-              </AuthenticationRoute>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <AuthenticationRoute>
-                <Login />
-              </AuthenticationRoute>
-            }
-          />
-
-          {/* User Section */}
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute requiredRole="user">
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/reset-password"
-            element={
-              <ProtectedRoute requiredRole="user">
-                <ResetPassword />
-              </ProtectedRoute>
-            }
-          />
 
           {/* Admin Section */}
           <Route

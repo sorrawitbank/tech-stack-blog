@@ -7,8 +7,8 @@ import { usePostContext } from "@/contexts/PostContext";
 import { cn } from "@/lib/utils";
 
 function ArticleSection() {
-  const { post } = usePostContext();
   const { isLarge, isXLarge } = useMediaQueryContext();
+  const { post } = usePostContext();
 
   return (
     <section

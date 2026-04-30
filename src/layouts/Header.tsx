@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import { useScrollContext } from "@/contexts/ScrollContext";
@@ -22,7 +23,7 @@ import { cn } from "@/lib/utils";
 
 function Header() {
   const navigate = useNavigate();
-  const { user, isAuthenticated, logout } = useAuthContext();
+  const { user, isLoading, isGetUserLoading, logout } = useAuthContext();
   const { isSmall } = useMediaQueryContext();
   const { scrollDirection, scrollY } = useScrollContext();
 
@@ -43,19 +44,19 @@ function Header() {
         className="size-6 text-brown-500 cursor-pointer sm:size-11"
       />
       {isSmall ? (
-        isAuthenticated ? (
+        user ? (
           <div className="flex items-center gap-2">
             <Avatar className="size-12">
               <AvatarImage
-                src={user!.profilePic}
-                alt={user!.name}
+                src={user.profilePic}
+                alt={user.name}
                 className="text-brown-500 object-cover"
               />
               <AvatarFallback className="bg-brown-300">
                 <User className="size-3/5 text-brown-400" />
               </AvatarFallback>
             </Avatar>
-            <span className="style-body-1 text-brown-500">{user!.name}</span>
+            <span className="style-body-1 text-brown-500">{user.name}</span>
             <DropdownMenu>
               <DropdownMenuTrigger className="text-brown-400">
                 <ChevronDown className="size-4 cursor-pointer" />
@@ -67,7 +68,7 @@ function Header() {
                 <ul>
                   <li>
                     <Link
-                      to={`${user!.role === "admin" ? "/admin" : ""}/profile`}
+                      to={`${user.role === "admin" ? "/admin" : ""}/profile`}
                       className="flex gap-3 px-4 py-3 hover:bg-brown-200"
                     >
                       <User className="text-brown-400" />
@@ -79,7 +80,7 @@ function Header() {
                   <li>
                     <Link
                       to={`${
-                        user!.role === "admin" ? "/admin" : ""
+                        user.role === "admin" ? "/admin" : ""
                       }/reset-password`}
                       className="flex gap-3 px-4 py-3 hover:bg-brown-200"
                     >
@@ -89,7 +90,7 @@ function Header() {
                       </span>
                     </Link>
                   </li>
-                  {user!.role === "admin" && (
+                  {user.role === "admin" && (
                     <li>
                       <Link
                         to={"/admin/article"}
@@ -118,6 +119,11 @@ function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+        ) : !isLoading && isGetUserLoading ? (
+          <div className="flex items-center gap-2">
+            <Skeleton className="size-12 rounded-full" />
+            <Skeleton className="w-32 h-6" />
+          </div>
         ) : (
           <nav>
             <ul className="flex gap-2">
@@ -134,6 +140,8 @@ function Header() {
             </ul>
           </nav>
         )
+      ) : !isLoading && isGetUserLoading ? (
+        <Skeleton className="size-6" />
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger className="text-brown-400 outline-none hover:text-brown-500 focus:text-brown-500 data-[state=open]:text-brown-500">
@@ -146,16 +154,16 @@ function Header() {
               "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
               "data-[state=closed]:zoom-out-100 data-[state=open]:zoom-in-100",
               "data-[side=bottom]:slide-in-from-top-2",
-              isAuthenticated ? "p-6" : "px-6 py-10"
+              user ? "p-6" : "px-6 py-10"
             )}
           >
-            {isAuthenticated ? (
+            {user ? (
               <div className="flex flex-col gap-4">
                 <div className="flex items-center gap-2">
                   <Avatar className="size-12">
                     <AvatarImage
-                      src={user!.profilePic}
-                      alt={user!.name}
+                      src={user.profilePic}
+                      alt={user.name}
                       className="text-brown-500 object-cover"
                     />
                     <AvatarFallback className="bg-brown-300">
@@ -163,14 +171,14 @@ function Header() {
                     </AvatarFallback>
                   </Avatar>
                   <span className="style-body-1 text-brown-500 line-clamp-1">
-                    {user!.name}
+                    {user.name}
                   </span>
                 </div>
                 <nav className="flex flex-col gap-4">
                   <ul>
                     <li>
                       <Link
-                        to={`${user!.role === "admin" ? "/admin" : ""}/profile`}
+                        to={`${user.role === "admin" ? "/admin" : ""}/profile`}
                         className="flex gap-3 px-4 py-3 rounded-lg hover:bg-brown-200"
                       >
                         <User className="text-brown-400" />
@@ -182,7 +190,7 @@ function Header() {
                     <li>
                       <Link
                         to={`${
-                          user!.role === "admin" ? "/admin" : ""
+                          user.role === "admin" ? "/admin" : ""
                         }/reset-password`}
                         className="flex gap-3 px-4 py-3 rounded-lg hover:bg-brown-200"
                       >
@@ -192,7 +200,7 @@ function Header() {
                         </span>
                       </Link>
                     </li>
-                    {user!.role === "admin" && (
+                    {user.role === "admin" && (
                       <li>
                         <Link
                           to={"/admin/article"}

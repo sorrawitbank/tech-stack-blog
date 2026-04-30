@@ -10,11 +10,11 @@ import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import { cn } from "@/lib/utils";
 
 function CreateAccountDialog({ children }: { children?: React.ReactNode }) {
-  const { isAuthenticated } = useAuthContext();
+  const { user } = useAuthContext();
   const { isXLarge } = useMediaQueryContext();
 
   return (
-    <Dialog openWhenTrigger={!isAuthenticated} trigger={children}>
+    <Dialog openWhenTrigger={!user} trigger={children}>
       <AlertDialogTitle asChild>
         <h2
           className={cn(
