@@ -56,12 +56,12 @@ function HeroSection() {
         </div>
         {isGetAdminLoading ? (
           <div className="flex flex-col gap-2">
+            <Skeleton className="h-4 w-full mt-1" />
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-2/3" />
+            <Skeleton className="h-4 w-2/3 mb-1" />
           </div>
         ) : (
           <div className="markdown text-brown-400">
