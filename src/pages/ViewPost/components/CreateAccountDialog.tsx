@@ -7,33 +7,34 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
+import { cn } from "@/lib/utils";
 
 function CreateAccountDialog({ children }: { children?: React.ReactNode }) {
-  const { isAuthenticated } = useAuthContext();
+  const { user } = useAuthContext();
   const { isXLarge } = useMediaQueryContext();
 
   return (
-    <Dialog openWhenTrigger={!isAuthenticated} trigger={children}>
+    <Dialog openWhenTrigger={!user} trigger={children}>
       <AlertDialogTitle asChild>
         <h2
-          className={
-            (isXLarge ? "text-headline-2" : "text-headline-3") +
-            " text-center text-brown-600"
-          }
+          className={cn(
+            "text-center text-brown-600",
+            isXLarge ? "style-headline-2" : "style-headline-3"
+          )}
         >
           Create an account to continue
         </h2>
       </AlertDialogTitle>
-      <NavigationButton variant="primary" navigateTo="/signup">
+      <NavigationButton variant="primary" to="/signup">
         Create account
       </NavigationButton>
       <div className="flex justify-center gap-3">
         <AlertDialogDescription asChild>
-          <span className="text-body-1 text-brown-400!">
+          <span className="style-body-1 text-brown-400!">
             Already have an account?
           </span>
         </AlertDialogDescription>
-        <NavigationButton variant="text" navigateTo="/login">
+        <NavigationButton variant="text" to="/login">
           Login
         </NavigationButton>
       </div>

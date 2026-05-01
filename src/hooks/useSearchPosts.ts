@@ -14,7 +14,7 @@ function useSearchPosts() {
   const { posts, error, clearPosts } = useGetPosts({
     category,
     keyword,
-    requireKeyword: true,
+    requiredKeyword: true,
     fetchOnCategoryChange: false,
   });
 

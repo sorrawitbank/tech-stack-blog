@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { RotateCw, User } from "lucide-react";
-import ProfileSection from "./ProfileSection";
+import ProfileSection from "../pages/Member/ProfileSection";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import Header from "@/layouts/Header";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,7 @@ function MemberLayout(props: Props) {
       <div className="md:flex md:justify-center">
         <div className="max-w-211 pt-12 sm:pt-20 md:flex md:flex-col md:min-w-186 lg:gap-7.5 lg:w-[calc(100%*397/720)] lg:pt-30 xl:pt-35">
           {isMedium && <ProfileSection page={props.page} />}
-          <div className="md:flex md:gap-12">
+          <div className="md:flex md:gap-12 md:pb-8 lg:pb-12">
             <aside className="md:w-49">
               <nav>
                 <ul className="flex md:flex-col">
@@ -47,7 +47,7 @@ function MemberLayout(props: Props) {
                         )}
                       >
                         {detail.icon}
-                        <span className="text-body-1">{detail.text}</span>
+                        <span className="style-body-1">{detail.text}</span>
                       </Link>
                     </li>
                   ))}

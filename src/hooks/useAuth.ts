@@ -1,35 +1,51 @@
-import type { LoginData, RegisterData } from "@/types/auth";
+import type { LoginBody, RegisterBody } from "@/types/auth";
 import type { User } from "@/types/user";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
-import { fetchUser, toLogin, toRegister } from "@/services/authService";
-import { toUser } from "@/utils/user";
+import { fetchUser, toLogin, toRegister } from "@/services/auth";
+import { fetchAdmin } from "@/services/user";
+import sonner from "@/utils/sonner";
+import { toAdmin, toUser } from "@/utils/user";
 
 function useAuth() {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
+  const [admin, setAdmin] = useState<Pick<
+    User,
+    "name" | "bio" | "profilePic"
+  > | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isGetUserLoading, setIsGetUserLoading] = useState<boolean | null>(
     null
   );
+  const [isGetAdminLoading, setIsGetAdminLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getUser();
+    const controller = new AbortController();
+    getAdmin(controller);
+    getUser(controller);
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
-  const getUser = async () => {
+  const getUser = async (
+    controller?: AbortController
+  ): Promise<User | null> => {
     const token = localStorage.getItem("token");
     if (!token) {
       setIsGetUserLoading(false);
-      return;
+      return null;
     }
-
     setIsGetUserLoading(true);
     try {
-      const response = await fetchUser();
-      setUser(toUser(response.data));
+      const data = await fetchUser({ controller });
+      const fetchedUser = toUser(data);
+      setUser(fetchedUser);
+      return fetchedUser;
     } catch (error) {
       setUser(null);
       // Get error message from response data if available
@@ -40,16 +56,37 @@ function useAuth() {
           setError(error.message || "Please try again");
         }
       }
+      return null;
     } finally {
       setIsGetUserLoading(false);
     }
   };
 
-  const register = async (data: RegisterData) => {
+  const getAdmin = async (controller?: AbortController) => {
+    setIsGetAdminLoading(true);
+    try {
+      const data = await fetchAdmin({ controller });
+      const fetchedAdmin = toAdmin(data);
+      setAdmin(fetchedAdmin);
+    } catch (error) {
+      // Get error message from response data if available
+      if (error instanceof Error) {
+        if (error instanceof AxiosError) {
+          setError(error.response?.data?.message || "Please try again");
+        } else {
+          setError(error.message || "Please try again");
+        }
+      }
+    } finally {
+      setIsGetAdminLoading(false);
+    }
+  };
+
+  const register = async (body: RegisterBody) => {
     setError(null);
     setIsLoading(true);
     try {
-      await toRegister(data);
+      await toRegister(body);
       setIsLoading(false);
       return true;
     } catch (error) {
@@ -66,15 +103,23 @@ function useAuth() {
     }
   };
 
-  const login = async (data: LoginData) => {
+  const login = async (body: LoginBody, requiredAdmin: boolean) => {
     setError(null);
     setIsLoading(true);
     try {
-      const response = await toLogin(data);
-      const token = response.data.accessToken;
+      const data = await toLogin(body);
+      const token = data.accessToken;
       localStorage.setItem("token", token);
-      await getUser();
-      navigate("/");
+      const fetchedUser = await getUser();
+      if (requiredAdmin && fetchedUser?.role !== "admin") {
+        localStorage.removeItem("token");
+        setUser(null);
+        throw new Error("You must be an administrator to access this page");
+      }
+      sonner.success({
+        message: "Login successfully",
+        description: "You are now logged in",
+      });
     } catch (error) {
       // Get error message from response data if available
       if (error instanceof Error) {
@@ -89,23 +134,30 @@ function useAuth() {
     }
   };
 
-  const logout = () => {
+  const logout = (showMessage: boolean = true) => {
     localStorage.removeItem("token");
     setUser(null);
     navigate("/login");
+    if (showMessage) {
+      sonner.success({
+        message: "Logout successfully",
+        description: "You are now logged out",
+      });
+    }
   };
-
-  const isAuthenticated = Boolean(user);
 
   return {
     user,
-    isAuthenticated,
+    admin,
     isLoading,
     isGetUserLoading,
+    isGetAdminLoading,
     error,
     register,
     login,
     logout,
+    getUser,
+    getAdmin,
   };
 }
 

@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { useAuthContext } from "@/contexts/AuthContext";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import { cn } from "@/lib/utils";
 
@@ -45,16 +46,19 @@ const pageDetails: Record<AdminPage, { text: string; icon: React.ReactNode }> =
 
 interface Props {
   page: AdminPage;
+  title?: string;
+  leading?: React.ReactNode;
   children?: React.ReactNode;
 }
 
 function AdminLayout(props: Props) {
+  const { logout } = useAuthContext();
   const { isSmall, isMedium, isLarge } = useMediaQueryContext();
 
   return (
     <div className="flex flex-col lg:flex-row">
       {!isLarge && (
-        <header className="flex items-center gap-2 h-12 px-6 py-3 bg-brown-100 border-b border-brown-300 sm:gap-8 sm:h-24 sm:px-12 xl:px-30">
+        <header className="fixed top-0 left-0 z-50 flex items-center gap-2 w-full h-12 px-6 py-3 bg-brown-100 border-b border-brown-300 sm:gap-8 sm:h-24 sm:px-12 xl:px-30">
           <Drawer direction={isMedium ? "left" : "top"} handleOnly={true}>
             <DrawerTrigger className="text-brown-400 outline-none hover:text-brown-500 focus:text-brown-500 data-[state=open]:text-brown-500">
               <Menu className="cursor-pointer sm:size-8" />
@@ -67,7 +71,7 @@ function AdminLayout(props: Props) {
                   className="size-11 text-brown-500 md:size-15"
                 />
                 <DrawerTitle className="text-brand-orange" asChild>
-                  <h4 className="text-headline-4 text-brand-orange">
+                  <h4 className="style-headline-4 text-brand-orange">
                     Admin panel
                   </h4>
                 </DrawerTitle>
@@ -95,7 +99,9 @@ function AdminLayout(props: Props) {
                               )}
                             >
                               {detail.icon}
-                              <span className="text-body-1">{detail.text}</span>
+                              <span className="style-body-1">
+                                {detail.text}
+                              </span>
                             </Link>
                           </li>
                         ))}
@@ -105,18 +111,21 @@ function AdminLayout(props: Props) {
                       <ul>
                         <li className="hover:bg-brown-300">
                           <Link
-                            to="/"
+                            to={"/"}
                             className="flex gap-3 px-6 py-5 text-brown-400 sm:px-12 md:px-6"
                           >
                             <SquareArrowOutUpRight />
-                            <span className="text-body-1">hh. website</span>
+                            <span className="style-body-1">hh. website</span>
                           </Link>
                         </li>
                         <Separator className="bg-brown-300" />
                         <li className="mb-4 hover:bg-brown-300">
-                          <button className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6">
+                          <button
+                            onClick={() => logout()}
+                            className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6"
+                          >
                             <LogOut />
-                            <span className="text-body-1">Log out</span>
+                            <span className="style-body-1">Log out</span>
                           </button>
                         </li>
                       </ul>
@@ -127,16 +136,22 @@ function AdminLayout(props: Props) {
             </DrawerContent>
           </Drawer>
           {isSmall && (
-            <h3 className="text-headline-3 text-brown-600">
-              {pageDetails[props.page].text}
-            </h3>
+            <div className="flex items-center gap-4">
+              {props.leading}
+              <h3 className="style-headline-3 text-brown-600">
+                {props.title || pageDetails[props.page].text}
+              </h3>
+            </div>
           )}
         </header>
       )}
       {!isSmall && (
-        <h3 className="px-6 py-3 text-headline-3 text-brown-600">
-          {pageDetails[props.page].text}
-        </h3>
+        <div className="flex items-center gap-4 px-4 pt-3 mt-12">
+          {props.leading}
+          <h3 className="style-headline-3 text-brown-600">
+            {props.title || pageDetails[props.page].text}
+          </h3>
+        </div>
       )}
       {isLarge && (
         <aside className="flex flex-col w-70 h-dvh pt-4 bg-brown-200 overflow-y-hidden">
@@ -146,7 +161,7 @@ function AdminLayout(props: Props) {
               alt="Logo"
               className="size-15 text-brown-500"
             />
-            <h4 className="text-headline-4 text-brand-orange">Admin panel</h4>
+            <h4 className="style-headline-4 text-brand-orange">Admin panel</h4>
           </div>
           <ScrollArea className="h-[calc(100dvh-14.25rem)]">
             <nav className="flex flex-col justify-between gap-16 h-full">
@@ -169,7 +184,7 @@ function AdminLayout(props: Props) {
                       )}
                     >
                       {detail.icon}
-                      <span className="text-body-1">{detail.text}</span>
+                      <span className="style-body-1">{detail.text}</span>
                     </Link>
                   </li>
                 ))}
@@ -177,18 +192,21 @@ function AdminLayout(props: Props) {
               <ul>
                 <li className="hover:bg-brown-300">
                   <Link
-                    to="/"
+                    to={"/"}
                     className="flex gap-3 px-6 py-5 text-brown-400 sm:px-12 md:px-6"
                   >
                     <SquareArrowOutUpRight />
-                    <span className="text-body-1">hh. website</span>
+                    <span className="style-body-1">hh. website</span>
                   </Link>
                 </li>
                 <Separator className="bg-brown-300" />
                 <li className="mb-4 hover:bg-brown-300">
-                  <button className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6">
+                  <button
+                    onClick={() => logout()}
+                    className="flex gap-3 w-full px-6 py-5 text-brown-400 cursor-pointer sm:px-12 md:px-6"
+                  >
                     <LogOut />
-                    <span className="text-body-1">Log out</span>
+                    <span className="style-body-1">Log out</span>
                   </button>
                 </li>
               </ul>
@@ -196,7 +214,7 @@ function AdminLayout(props: Props) {
           </ScrollArea>
         </aside>
       )}
-      {props.children}
+      <div className="sm:mt-24 lg:flex-1 lg:mt-0">{props.children}</div>
     </div>
   );
 }

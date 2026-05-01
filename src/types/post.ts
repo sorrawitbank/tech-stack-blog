@@ -5,7 +5,7 @@ export interface Post {
   readonly id: number;
   author: User;
   image: string;
-  imageAlt: string;
+  imageAlt: string | null;
   categories: string[];
   title: string;
   description: string;
@@ -20,7 +20,7 @@ export interface PostApi {
   readonly id: number;
   author: UserApi;
   image: string;
-  imageAlt?: string;
+  imageAlt: string | null;
   categories: string[];
   title: string;
   description: string;
@@ -36,6 +36,7 @@ export interface PostsParams {
   limit: number;
   category: string;
   keyword: string;
+  statusId?: number;
 }
 
 export interface PostsResponse {

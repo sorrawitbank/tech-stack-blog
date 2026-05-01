@@ -11,14 +11,14 @@ import useLogin from "@/hooks/useLogin";
 import { cn } from "@/lib/utils";
 
 function LoginForm() {
-  const { refs, isLoading, errors, handleSubmit } = useLogin();
+  const { refs, isLoading, inputErrors, handleSubmit } = useLogin();
 
   return (
     <form className="w-full" onSubmit={handleSubmit}>
-      <FieldSet className="items-center gap-6 lg:gap-10">
-        <FieldGroup className="gap-6 text-brown-400 lg:gap-7">
+      <FieldSet disabled={isLoading} className="items-center gap-6 lg:gap-10">
+        <FieldGroup className="gap-6 lg:gap-7">
           <Field className="gap-1">
-            <FieldLabel htmlFor="email" className="text-body-1">
+            <FieldLabel htmlFor="email" className="style-body-1 text-brown-400">
               Email
             </FieldLabel>
             <Input
@@ -27,16 +27,18 @@ function LoginForm() {
               ref={refs.email}
               placeholder="Email"
               autoComplete="email"
-              disabled={isLoading}
               className={cn(
-                "h-12 text-body-1 bg-white placeholder:text-brown-400",
-                errors.email && "border-brand-red"
+                "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                inputErrors.email && "border-brand-red"
               )}
             />
-            <FieldError>{errors.email}</FieldError>
+            <FieldError>{inputErrors.email}</FieldError>
           </Field>
           <Field className="gap-1">
-            <FieldLabel htmlFor="password" className="text-body-1">
+            <FieldLabel
+              htmlFor="password"
+              className="style-body-1 text-brown-400"
+            >
               Password
             </FieldLabel>
             <Input
@@ -44,16 +46,15 @@ function LoginForm() {
               type="password"
               ref={refs.password}
               placeholder="Password"
-              disabled={isLoading}
               className={cn(
-                "h-12 text-body-1 bg-white placeholder:text-brown-400",
-                errors.password && "border-brand-red"
+                "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                inputErrors.password && "border-brand-red"
               )}
             />
-            <FieldError>{errors.password}</FieldError>
+            <FieldError>{inputErrors.password}</FieldError>
           </Field>
         </FieldGroup>
-        <ActionButton variant="primary" disabled={isLoading}>
+        <ActionButton variant="primary" type="submit">
           Log in
         </ActionButton>
       </FieldSet>

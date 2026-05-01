@@ -16,7 +16,7 @@ function CommentSection() {
           <FieldLabel
             id="comment-label"
             htmlFor="comment"
-            className="text-body-1"
+            className="style-body-1"
           >
             Comment
           </FieldLabel>
@@ -24,7 +24,7 @@ function CommentSection() {
             <Textarea
               id="comment"
               placeholder="What are your thoughts?"
-              className="min-h-25.5 text-body-1 bg-white placeholder:text-brown-400"
+              className="min-h-25.5 style-body-1 bg-white placeholder:text-brown-400"
             />
           </CreateAccountDialog>
         </Field>

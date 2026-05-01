@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import useValidateForm, { type Refs } from "./useValidateForm";
+import useValidateForm, { type InputRefs } from "./useValidateForm";
 import { useAuthContext } from "@/contexts/AuthContext";
 import sonner from "@/utils/sonner";
 
@@ -7,9 +7,9 @@ function useSignup() {
   const isFirstRender = useRef<boolean>(true);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const { isLoading, error, register } = useAuthContext();
-  const { errors, validateFields } = useValidateForm();
+  const { inputErrors, validateInputFields } = useValidateForm();
 
-  const refs: Pick<Refs, "name" | "username" | "email" | "password"> = {
+  const refs: Pick<InputRefs, "name" | "username" | "email" | "password"> = {
     name: useRef<HTMLInputElement>(document.createElement("input")),
     username: useRef<HTMLInputElement>(document.createElement("input")),
     email: useRef<HTMLInputElement>(document.createElement("input")),
@@ -18,7 +18,8 @@ function useSignup() {
 
   // This effect will not run on the first render.
   useEffect(() => {
-    if (!error || isFirstRender.current) return;
+    if (isFirstRender.current) return;
+    if (!error) return;
     sonner.error({
       message: "Registration failed",
       description: error,
@@ -33,7 +34,7 @@ function useSignup() {
     event
   ) => {
     event.preventDefault();
-    if (!validateFields(refs)) return;
+    if (!validateInputFields(refs)) return;
     const success = await register({
       name: refs.name.current.value,
       username: refs.username.current.value,
@@ -43,7 +44,7 @@ function useSignup() {
     setIsSuccess(success);
   };
 
-  return { refs, isSuccess, isLoading, errors, handleSubmit };
+  return { refs, isSuccess, isLoading, inputErrors, handleSubmit };
 }
 
 export default useSignup;

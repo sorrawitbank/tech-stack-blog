@@ -16,7 +16,7 @@ function BlogSection() {
       <div className="lg:flex lg:flex-col lg:gap-8">
         <h3
           id="blog-label"
-          className="p-4 text-headline-3 text-brown-600 sm:px-12 lg:p-0"
+          className="p-4 style-headline-3 text-brown-600 sm:px-12 lg:p-0"
         >
           Latest articles
         </h3>

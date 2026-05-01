@@ -15,9 +15,9 @@ function CategorySelector() {
 
   return (
     <div className="flex flex-col gap-1 text-brown-400">
-      <span className="text-body-1">Category</span>
+      <span className="style-body-1">Category</span>
       <Select value={category} onValueChange={handleSelectCategory}>
-        <SelectTrigger className="w-full h-12! text-body-1 bg-white hover:cursor-pointer">
+        <SelectTrigger className="w-full h-12! style-body-1 bg-white hover:cursor-pointer">
           <SelectValue />
         </SelectTrigger>
         <SelectContent position="popper">
@@ -26,11 +26,11 @@ function CategorySelector() {
             <SelectSeparator className="bg-brown-300" />
             {categories.map((category) => (
               <SelectItem
-                key={category}
-                value={category}
-                className="text-brown-400 hover:text-brown-500! hover:cursor-pointer"
+                key={category.id}
+                value={category.name}
+                className="text-brown-400 hover:text-brown-500! hover:bg-brown-200! hover:cursor-pointer"
               >
-                {category}
+                {category.name}
               </SelectItem>
             ))}
           </SelectGroup>

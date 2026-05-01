@@ -1,21 +1,22 @@
 import React, { useEffect, useRef } from "react";
-import useValidateForm, { type Refs } from "./useValidateForm";
+import useValidateForm, { type InputRefs } from "./useValidateForm";
 import { useAuthContext } from "@/contexts/AuthContext";
 import sonner from "@/utils/sonner";
 
-function useLogin() {
+function useLogin(requiredAdmin: boolean = false) {
   const isFirstRender = useRef<boolean>(true);
   const { isLoading, error, login } = useAuthContext();
-  const { errors, validateFields } = useValidateForm();
+  const { inputErrors, validateInputFields } = useValidateForm();
 
-  const refs: Pick<Refs, "email" | "password"> = {
+  const refs: Pick<InputRefs, "email" | "password"> = {
     email: useRef<HTMLInputElement>(document.createElement("input")),
     password: useRef<HTMLInputElement>(document.createElement("input")),
   };
 
   // This effect will not run on the first render.
   useEffect(() => {
-    if (!error || isFirstRender.current) return;
+    if (isFirstRender.current) return;
+    if (!error) return;
     sonner.error({
       message: "Login failed",
       description: error,
@@ -30,14 +31,17 @@ function useLogin() {
     event
   ) => {
     event.preventDefault();
-    if (!validateFields(refs)) return;
-    await login({
-      email: refs.email.current.value,
-      password: refs.password.current.value,
-    });
+    if (!validateInputFields(refs)) return;
+    await login(
+      {
+        email: refs.email.current.value,
+        password: refs.password.current.value,
+      },
+      requiredAdmin
+    );
   };
 
-  return { refs, isLoading, errors, handleSubmit };
+  return { refs, isLoading, inputErrors, handleSubmit };
 }
 
 export default useLogin;

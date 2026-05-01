@@ -15,10 +15,13 @@ type Props = Omit<ReturnType<typeof useSignup>, "isSuccess">;
 function SignupForm(props: Props) {
   return (
     <form className="w-full" onSubmit={props.handleSubmit}>
-      <FieldSet className="items-center gap-6 lg:gap-10">
-        <FieldGroup className="gap-6 text-brown-400 lg:gap-7">
+      <FieldSet
+        disabled={props.isLoading}
+        className="items-center gap-6 lg:gap-10"
+      >
+        <FieldGroup className="gap-6 lg:gap-7">
           <Field className="gap-1">
-            <FieldLabel htmlFor="name" className="text-body-1">
+            <FieldLabel htmlFor="name" className="style-body-1 text-brown-400">
               Name
             </FieldLabel>
             <Input
@@ -27,16 +30,18 @@ function SignupForm(props: Props) {
               ref={props.refs.name}
               placeholder="Full name"
               autoComplete="name"
-              disabled={props.isLoading}
               className={cn(
-                "h-12 text-body-1 bg-white placeholder:text-brown-400",
-                props.errors.name && "border-brand-red"
+                "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                props.inputErrors.name && "border-brand-red"
               )}
             />
-            <FieldError>{props.errors.name}</FieldError>
+            <FieldError>{props.inputErrors.name}</FieldError>
           </Field>
           <Field className="gap-1">
-            <FieldLabel htmlFor="username" className="text-body-1">
+            <FieldLabel
+              htmlFor="username"
+              className="style-body-1 text-brown-400"
+            >
               Username
             </FieldLabel>
             <Input
@@ -45,16 +50,15 @@ function SignupForm(props: Props) {
               ref={props.refs.username}
               placeholder="Username"
               autoComplete="username"
-              disabled={props.isLoading}
               className={cn(
-                "h-12 text-body-1 bg-white placeholder:text-brown-400",
-                props.errors.username && "border-brand-red"
+                "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                props.inputErrors.username && "border-brand-red"
               )}
             />
-            <FieldError>{props.errors.username}</FieldError>
+            <FieldError>{props.inputErrors.username}</FieldError>
           </Field>
           <Field className="gap-1">
-            <FieldLabel htmlFor="email" className="text-body-1">
+            <FieldLabel htmlFor="email" className="style-body-1 text-brown-400">
               Email
             </FieldLabel>
             <Input
@@ -63,16 +67,18 @@ function SignupForm(props: Props) {
               ref={props.refs.email}
               placeholder="Email"
               autoComplete="email"
-              disabled={props.isLoading}
               className={cn(
-                "h-12 text-body-1 bg-white placeholder:text-brown-400",
-                props.errors.email && "border-brand-red"
+                "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                props.inputErrors.email && "border-brand-red"
               )}
             />
-            <FieldError>{props.errors.email}</FieldError>
+            <FieldError>{props.inputErrors.email}</FieldError>
           </Field>
           <Field className="gap-1">
-            <FieldLabel htmlFor="password" className="text-body-1">
+            <FieldLabel
+              htmlFor="password"
+              className="style-body-1 text-brown-400"
+            >
               Password
             </FieldLabel>
             <Input
@@ -80,16 +86,15 @@ function SignupForm(props: Props) {
               type="password"
               ref={props.refs.password}
               placeholder="Password"
-              disabled={props.isLoading}
               className={cn(
-                "h-12 text-body-1 bg-white placeholder:text-brown-400",
-                props.errors.password && "border-brand-red"
+                "h-12 style-body-1 text-brown-500 bg-white placeholder:text-brown-400",
+                props.inputErrors.password && "border-brand-red"
               )}
             />
-            <FieldError>{props.errors.password}</FieldError>
+            <FieldError>{props.inputErrors.password}</FieldError>
           </Field>
         </FieldGroup>
-        <ActionButton variant="primary" disabled={props.isLoading}>
+        <ActionButton variant="primary" type="submit">
           Sign up
         </ActionButton>
       </FieldSet>

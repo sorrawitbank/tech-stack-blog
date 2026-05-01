@@ -1,5 +1,5 @@
 import Main from "./Main";
-import MemberLayout from "../MemberLayout";
+import MemberLayout from "@/layouts/MemberLayout";
 
 function Profile() {
   return (

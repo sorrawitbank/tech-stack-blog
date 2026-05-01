@@ -4,10 +4,11 @@ import AuthorCard from "./components/AuthorCard";
 import CategoryTag from "@/components/common/CategoryTag";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import { usePostContext } from "@/contexts/PostContext";
+import { cn } from "@/lib/utils";
 
 function ArticleSection() {
-  const { post } = usePostContext();
   const { isLarge, isXLarge } = useMediaQueryContext();
+  const { post } = usePostContext();
 
   return (
     <section
@@ -20,16 +21,16 @@ function ArticleSection() {
           {post!.categories.map((category) => (
             <CategoryTag key={category}>{category}</CategoryTag>
           ))}
-          <span className="text-body-1 text-brown-400">
+          <span className="style-body-1 text-brown-400">
             {format(post!.createdAt, "dd MMMM yyyy")}
           </span>
         </ul>
         <h2
           id="article-label"
-          className={
-            (isXLarge ? "text-headline-2" : "text-headline-3") +
-            " text-brown-600"
-          }
+          className={cn(
+            "text-brown-600",
+            isXLarge ? "style-headline-2" : "style-headline-3"
+          )}
         >
           {post!.title}
         </h2>

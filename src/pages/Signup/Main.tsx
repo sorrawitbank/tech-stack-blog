@@ -4,13 +4,14 @@ import StandardMain from "@/layouts/StandardMain";
 import { NavigationButton } from "@/components/common/Button";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
 import useSignup from "@/hooks/useSignup";
+import { cn } from "@/lib/utils";
 
 function Main() {
+  const { refs, isSuccess, isLoading, inputErrors, handleSubmit } = useSignup();
   const { isLarge } = useMediaQueryContext();
-  const { refs, isSuccess, isLoading, errors, handleSubmit } = useSignup();
 
   return (
-    <StandardMain>
+    <StandardMain className="pb-12 sm:pb-20">
       {isSuccess ? (
         <section
           id="signup-section"
@@ -22,14 +23,14 @@ function Main() {
           </div>
           <h2
             id="signup-label"
-            className={
-              (isLarge ? "text-headline-2" : "text-headline-3") +
-              " text-brown-600 text-center"
-            }
+            className={cn(
+              "text-brown-600 text-center",
+              isLarge ? "style-headline-2" : "style-headline-3"
+            )}
           >
             Registration success
           </h2>
-          <NavigationButton variant="primary" navigateTo="/">
+          <NavigationButton variant="primary" to="/">
             Continue
           </NavigationButton>
         </section>
@@ -41,21 +42,21 @@ function Main() {
         >
           <h2
             id="signup-label"
-            className="text-headline-2 text-brown-600 text-center"
+            className="style-headline-2 text-brown-600 text-center"
           >
             Sign up
           </h2>
           <SignupForm
             refs={refs}
             isLoading={isLoading}
-            errors={errors}
+            inputErrors={inputErrors}
             handleSubmit={handleSubmit}
           />
           <div className="flex gap-3">
-            <span className="text-body-1 text-brown-400">
+            <span className="style-body-1 text-brown-400">
               Already have an account?
             </span>
-            <NavigationButton variant="text" navigateTo="/login">
+            <NavigationButton variant="text" to="/login">
               Log in
             </NavigationButton>
           </div>

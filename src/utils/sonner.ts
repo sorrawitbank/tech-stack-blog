@@ -18,8 +18,8 @@ const sonner = {
       },
       classNames: {
         icon: "text-white size-8!",
-        title: "text-headline-4 text-white!",
-        description: "text-body-2 text-white!",
+        title: "style-headline-4 text-white!",
+        description: "style-body-2 text-white!",
       },
     });
   },
@@ -35,8 +35,8 @@ const sonner = {
       },
       classNames: {
         icon: "text-white size-8!",
-        title: "text-headline-4 text-white!",
-        description: "text-body-2 text-white!",
+        title: "style-headline-4 text-white!",
+        description: "style-body-2 text-white!",
       },
     });
   },

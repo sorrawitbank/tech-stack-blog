@@ -10,10 +10,10 @@ function CommentList() {
       <div className="flex flex-col items-center gap-2">
         <MessageSquareMore className="size-10 text-brown-600" />
         <div className="flex flex-col gap-1">
-          <h4 className="text-headline-4 text-center text-brown-600">
+          <h4 className="style-headline-4 text-center text-brown-600">
             No comments yet
           </h4>
-          <p className="text-body-1 text-center text-brown-400">
+          <p className="style-body-1 text-center text-brown-400">
             Be the first to comment!
           </p>
         </div>

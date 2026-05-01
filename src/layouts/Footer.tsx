@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className="flex flex-col items-center gap-6 px-4 py-10 bg-brown-200 sm:flex-row sm:justify-between sm:gap-0 sm:px-12 sm:py-15 xl:px-30">
       <div className="flex gap-6">
-        <span className="text-body-1 text-brown-500">Get in touch</span>
+        <span className="style-body-1 text-brown-500">Get in touch</span>
         <ul className="flex gap-4">
           <li>
             <a
@@ -29,7 +29,7 @@ function Footer() {
           </li>
         </ul>
       </div>
-      <NavigationButton variant="text" navigateTo="/">
+      <NavigationButton variant="text" to="/">
         Home page
       </NavigationButton>
     </footer>

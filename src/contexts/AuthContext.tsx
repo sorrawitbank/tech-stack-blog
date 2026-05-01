@@ -1,53 +1,65 @@
-import type { LoginData, RegisterData } from "@/types/auth";
-import type { User } from "@/types/user";
+import type { LoginBody, RegisterBody } from "@/types/auth";
+import type { Admin, User } from "@/types/user";
 import { createContext, useContext } from "react";
 import useAuth from "@/hooks/useAuth";
 
 interface AuthContextType {
   user: User | null;
-  isAuthenticated: boolean;
+  admin: Admin | null;
   isLoading: boolean;
   isGetUserLoading: boolean | null;
+  isGetAdminLoading: boolean;
   error: string | null;
-  register: (data: RegisterData) => Promise<boolean>;
-  login: (data: LoginData) => Promise<void>;
-  logout: () => void;
+  register: (data: RegisterBody) => Promise<boolean>;
+  login: (data: LoginBody, requiredAdmin: boolean) => Promise<void>;
+  logout: (showMessage?: boolean) => void;
+  getUser: (controller?: AbortController) => Promise<User | null>;
+  getAdmin: (controller?: AbortController) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
-  isAuthenticated: false,
+  admin: null,
   isLoading: false,
   isGetUserLoading: null,
+  isGetAdminLoading: false,
   error: null,
-  register: async (data: RegisterData) => false,
-  login: async (data: LoginData) => {},
+  register: async () => false,
+  login: async () => {},
   logout: () => {},
+  getUser: async () => null,
+  getAdmin: async () => {},
 });
 
 export function AuthProvider({ children }: { children?: React.ReactNode }) {
   const {
     user,
-    isAuthenticated,
+    admin,
     isLoading,
     isGetUserLoading,
+    isGetAdminLoading,
     error,
     register,
     login,
     logout,
+    getUser,
+    getAdmin,
   } = useAuth();
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        isAuthenticated,
+        admin,
         isLoading,
         isGetUserLoading,
+        isGetAdminLoading,
         error,
         register,
         login,
         logout,
+        getUser,
+        getAdmin,
       }}
     >
       {children}

@@ -5,15 +5,21 @@ export interface User {
   email: string;
   username: string;
   name: string;
-  profilePic: string;
+  bio: string;
+  profilePic: string | undefined;
   role: Role;
 }
+
+export type Admin = Pick<User, "name" | "bio" | "profilePic">;
 
 export interface UserApi {
   readonly id: string;
   email: string;
   username: string;
   name: string;
-  profilePic?: string;
+  bio: string | null;
+  profilePic: string | null;
   role: Role;
 }
+
+export type AdminApi = Pick<UserApi, "name" | "bio" | "profilePic">;

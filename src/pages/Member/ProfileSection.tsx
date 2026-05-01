@@ -1,9 +1,10 @@
-import type { MemberPage } from "./MemberLayout";
+import type { MemberPage } from "@/layouts/MemberLayout";
 import { User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { useMediaQueryContext } from "@/contexts/MediaQueryContext";
+import { cn } from "@/lib/utils";
 
 function ProfileSection({ page }: { page: MemberPage }) {
   const { user } = useAuthContext();
@@ -26,20 +27,19 @@ function ProfileSection({ page }: { page: MemberPage }) {
       </Avatar>
       <div className="flex items-center gap-4">
         <h3
-          className={
-            "flex-1 " +
-            (isLarge ? "text-headline-3" : "text-headline-4") +
-            " text-brown-400 line-clamp-1"
-          }
+          className={cn(
+            "flex-1 text-brown-400 line-clamp-1",
+            isLarge ? "style-headline-3" : "style-headline-4"
+          )}
         >
           {user!.name}
         </h3>
         <Separator orientation="vertical" className="h-7! bg-brown-300" />
         <h3
-          className={
-            (isLarge ? "text-headline-3" : "text-headline-4") +
-            " text-brown-600"
-          }
+          className={cn(
+            "text-brown-600",
+            isLarge ? "style-headline-3" : "style-headline-4"
+          )}
         >
           {page === "profile" ? "Profile" : "Reset password"}
         </h3>

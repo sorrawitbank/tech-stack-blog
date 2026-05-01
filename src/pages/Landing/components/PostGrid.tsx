@@ -24,7 +24,7 @@ function PostGrid() {
       return (
         <div className="flex flex-col items-center gap-2 mb-[calc(max(0px,100dvh-37rem))] sm:mb-[calc(max(0px,100dvh-41rem))]">
           <TriangleAlert className="size-12 min-h-12 text-brown-600" />
-          <h4 className="text-headline-4 text-center text-brown-600">
+          <h4 className="style-headline-4 text-center text-brown-600">
             {error}
           </h4>
         </div>
@@ -34,10 +34,10 @@ function PostGrid() {
       <div className="flex flex-col items-center gap-2 mb-[calc(max(0px,100dvh-37rem-28px))] sm:mb-[calc(max(0px,100dvh-41rem-28px))]">
         <CircleAlert className="size-12 min-h-12 text-brown-600" />
         <div className="flex flex-col gap-1">
-          <h4 className="text-headline-4 text-center text-brown-600">
+          <h4 className="style-headline-4 text-center text-brown-600">
             No posts found
           </h4>
-          <p className="text-body-1 text-center text-brown-400">
+          <p className="style-body-1 text-center text-brown-400">
             Browse other categories to discover more.
           </p>
         </div>

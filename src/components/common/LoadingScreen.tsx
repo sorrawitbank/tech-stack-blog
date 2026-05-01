@@ -7,9 +7,9 @@ function LoadingScreen() {
   return (
     <main className="flex flex-col justify-center items-center gap-3 h-dvh w-vw text-brown-500 bg-brown-200">
       <Spinner className="size-12 md:size-16" />
-      <span className={isMedium ? "text-headline-3" : "text-headline-4"}>
+      <h3 className={isMedium ? "style-headline-3" : "style-headline-4"}>
         Loading...
-      </span>
+      </h3>
     </main>
   );
 }

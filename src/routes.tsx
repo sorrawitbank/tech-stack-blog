@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import AdminRedirectRoute from "./components/auth/AdminRedirectRoute";
 import AuthenticationRoute from "./components/auth/AuthenticationRoute";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import LoadingScreen from "./components/common/LoadingScreen";
@@ -12,7 +13,9 @@ import Profile from "./pages/Member/Profile";
 import ResetPassword from "./pages/Member/ResetPassword";
 import AdminLogin from "./pages/Admin/Login";
 import AdminArticle from "./pages/Admin/Article";
+import AdminArticleForm from "./pages/Admin/Article/forms";
 import AdminCategory from "./pages/Admin/Category";
+import AdminCategoryForm from "./pages/Admin/Category/forms";
 import AdminProfile from "./pages/Admin/Profile";
 import AdminNotification from "./pages/Admin/Notification";
 import AdminResetPassword from "./pages/Admin/ResetPassword";
@@ -20,13 +23,19 @@ import AdminResetPassword from "./pages/Admin/ResetPassword";
 function AppRoutes() {
   const { isGetUserLoading } = useAuthContext();
 
-  return isGetUserLoading ? (
-    <LoadingScreen />
-  ) : (
+  return (
     <Routes>
+      <Route
+        path="/admin"
+        element={
+          <AdminRedirectRoute>
+            <AdminLogin />
+          </AdminRedirectRoute>
+        }
+      />
+
       <Route path="/" element={<Landing />} />
       <Route path="/post/:postId" element={<ViewPost />} />
-      <Route path="*" element={<NotFound />} />
 
       {/* Authentication Section */}
       <Route
@@ -64,55 +73,87 @@ function AppRoutes() {
         }
       />
 
-      {/* Admin Section */}
-      <Route
-        path="/admin"
-        element={
-          <AuthenticationRoute>
-            <AdminLogin />
-          </AuthenticationRoute>
-        }
-      />
-      <Route
-        path="/admin/article"
-        element={
-          <ProtectedRoute requiredRole="admin">
-            <AdminArticle />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/admin/category"
-        element={
-          <ProtectedRoute requiredRole="admin">
-            <AdminCategory />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/admin/profile"
-        element={
-          <ProtectedRoute requiredRole="admin">
-            <AdminProfile />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/admin/notification"
-        element={
-          <ProtectedRoute requiredRole="admin">
-            <AdminNotification />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/admin/reset-password"
-        element={
-          <ProtectedRoute requiredRole="admin">
-            <AdminResetPassword />
-          </ProtectedRoute>
-        }
-      />
+      {isGetUserLoading ? (
+        <Route path="*" element={<LoadingScreen />} />
+      ) : (
+        <>
+          <Route path="*" element={<NotFound />} />
+
+          {/* Admin Section */}
+          <Route
+            path="/admin/article"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminArticle />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/article/create"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminArticleForm mode="create" />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/article/edit/:postId"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminArticleForm mode="update" />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/category"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminCategory />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/category/create"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminCategoryForm mode="create" />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/category/edit/:categoryId"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminCategoryForm mode="update" />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/profile"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/notification"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminNotification />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/reset-password"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminResetPassword />
+              </ProtectedRoute>
+            }
+          />
+        </>
+      )}
     </Routes>
   );
 }

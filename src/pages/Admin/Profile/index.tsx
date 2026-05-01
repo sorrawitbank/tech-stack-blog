@@ -1,9 +1,10 @@
-import AdminLayout from "../AdminLayout";
+import Main from "./Main";
+import AdminLayout from "@/layouts/AdminLayout";
 
 function AdminProfile() {
   return (
     <AdminLayout page="profile">
-      <h1>PF</h1>
+      <Main />
     </AdminLayout>
   );
 }

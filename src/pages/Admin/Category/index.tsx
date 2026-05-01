@@ -1,9 +1,10 @@
-import AdminLayout from "../AdminLayout";
+import Main from "./Main";
+import AdminLayout from "@/layouts/AdminLayout";
 
 function AdminCategory() {
   return (
     <AdminLayout page="category">
-      <h1>CAT</h1>
+      <Main />
     </AdminLayout>
   );
 }
