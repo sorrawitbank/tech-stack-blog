@@ -25,15 +25,6 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route
-        path="/admin"
-        element={
-          <AdminRedirectRoute>
-            <AdminLogin />
-          </AdminRedirectRoute>
-        }
-      />
-
       <Route path="/" element={<Landing />} />
       <Route path="/post/:postId" element={<ViewPost />} />
 
@@ -52,6 +43,16 @@ function AppRoutes() {
           <AuthenticationRoute>
             <Login />
           </AuthenticationRoute>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <AdminRedirectRoute>
+            <AuthenticationRoute>
+              <AdminLogin />
+            </AuthenticationRoute>
+          </AdminRedirectRoute>
         }
       />
 
