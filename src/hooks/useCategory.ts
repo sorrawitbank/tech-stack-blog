@@ -34,7 +34,7 @@ function useCategory() {
       },
       { replace: true }
     );
-  }, [location.pathname, searchParams, category]);
+  }, [location.pathname, searchParams]);
 
   useEffect(() => {
     if (isFirstRender.current) return;
