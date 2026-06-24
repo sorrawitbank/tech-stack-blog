@@ -36,3 +36,23 @@ export async function fetchPostById(params: {
 
   return response.data;
 }
+
+export async function fetchPostLike(params: {
+  postId: number;
+  controller?: AbortController;
+}) {
+  const response = await axios.get<Boolean>(
+    `${POSTS_BASE_URL}/${params.postId}/like`,
+    { signal: params.controller?.signal }
+  );
+
+  return response.data;
+}
+
+export async function likePost(postId: number) {
+  await axios.put(`${POSTS_BASE_URL}/${postId}/like`);
+}
+
+export async function unlikePost(postId: number) {
+  await axios.delete(`${POSTS_BASE_URL}/${postId}/unlike`);
+}

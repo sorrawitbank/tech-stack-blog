@@ -1,7 +1,9 @@
 import { Copy, Facebook, Linkedin, Smile, Twitter } from "lucide-react";
 import CreateAccountDialog from "./components/CreateAccountDialog";
 import { ActionButton } from "@/components/common/Button";
+import { useAuthContext } from "@/contexts/AuthContext";
 import { usePostContext } from "@/contexts/PostContext";
+import useLike from "@/hooks/useLike";
 import sonner from "@/utils/sonner";
 
 const handleCopyLink = () => {
@@ -13,7 +15,15 @@ const handleCopyLink = () => {
 };
 
 function ShareSection() {
+  const { user } = useAuthContext();
   const { post } = usePostContext();
+  const {
+    likeAdjust,
+    isLikeValue,
+    isLoading,
+    handleLikePost,
+    handleUnlikePost,
+  } = useLike(post!.id);
 
   return (
     <section
@@ -22,9 +32,15 @@ function ShareSection() {
       className="flex flex-col gap-6 p-4 bg-brown-200 sm:px-12 lg:rounded-2xl xl:flex-row xl:justify-between"
     >
       <CreateAccountDialog>
-        <ActionButton variant="secondary">
+        <ActionButton
+          variant={isLikeValue ? "primary" : "secondary"}
+          onClick={
+            user ? (isLikeValue ? handleUnlikePost : handleLikePost) : undefined
+          }
+          disabled={isLoading}
+        >
           <Smile />
-          {post!.likes}
+          {post!.likes + likeAdjust}
         </ActionButton>
       </CreateAccountDialog>
       <div className="flex gap-2 sm:justify-between lg:flex-row lg:justify-between xl:justify-start xl:gap-3">
